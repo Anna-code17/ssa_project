@@ -1,3 +1,9 @@
+#Use Case Diagram
+
+![use_case_model.png](img/diagrams/use_case_model.png)
+
+```plantuml
+
 @startuml 
 left to right direction
 
@@ -25,7 +31,15 @@ usecase "Load city state" as UC_Load
 
 }
 
-' ===== User interactions ===== User --> UC_View User --> UC_Tick User --> UC_Reset User --> UC_Load User --> UC_ApplyPol User --> UC_Save User --> UC_Create User --> UC_Remove
+' ===== User interactions ===== 
+User --> UC_View 
+User --> UC_Tick 
+User --> UC_Reset 
+User --> UC_Load 
+User --> UC_ApplyPol 
+User --> UC_Save 
+User --> UC_Create 
+User --> UC_Remove
 
 ' ==== Dipendences =====
 
