@@ -43,6 +43,6 @@ User --> UC_Remove
 
 ' ==== Dipendences =====
 
-UC_Create .> UC_Validate : <>
+UC_Create .> UC_Validate : <<include>>
 
 @enduml
