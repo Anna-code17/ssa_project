@@ -1,0 +1,35 @@
+@startuml
+autonumber
+
+actor User
+
+boundary UI
+control PlacementController
+entity City
+entity CityGrid
+entity Cell
+entity PlaceableEntity
+
+User -> UI : selectEntity(entity)
+User -> UI : selectCell(x, y)
+User -> UI : confirmPlacement()
+
+UI -> PlacementController : placeEntity(entity, x, y)
+
+PlacementController -> City : getGrid()
+City --> PlacementController : CityGrid
+
+PlacementController -> CityGrid : getCell(x, y)
+CityGrid --> PlacementController : Cell
+
+PlacementController -> Cell : isEmpty()
+
+opt Cell is free
+    PlacementController -> Cell : place(entity)
+    PlacementController -> UI : placementSuccess()
+end
+
+opt Cell is occupied
+    PlacementController -> UI : showPlacementError()
+end
+@enduml 
