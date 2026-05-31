@@ -1,6 +1,6 @@
-#Sequence diagrams
+# Sequence diagrams
 
-##External sequence diagram
+## External sequence diagram
 
 ![external_sequence_diagram.png](img/diagrams/external_sequence_diagram.png)
 
@@ -68,10 +68,10 @@ end
 @enduml
 
 ```
-#Internal Sequence Diagrams
+# Internal Sequence Diagrams
 
 
-##Create entity
+## Create entity
 ![create_entity.png](img/diagrams/create_entity.png)
 
 ```plantuml
@@ -114,7 +114,7 @@ end
 
 ```
 
-##Activate Policy
+## Activate Policy
 
 ![activate_policy.png](img/diagrams/activate_policy.png)
 
@@ -147,7 +147,7 @@ end
 @enduml
 
 ```
-##Tick
+## Tick
 
 ![tick.png](img/diagrams/tick.png)
 
@@ -223,7 +223,7 @@ TickEngine -> UI : refreshCityView()
 @enduml
 
 ```
-##Save City State
+## Save City State
 
 ![save_city_state.png](img/diagrams/save_city_state.png)
 
@@ -259,5 +259,6 @@ SaveController --> UI : showSaveSuccess()
 UI --> User : save confirmed
 
 @enduml
+```
 
 ```
