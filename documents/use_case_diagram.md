@@ -1,4 +1,4 @@
-#Use Case Diagram
+# Use Case Diagram
 
 ![use_case_model.png](img/diagrams/use_case_model.png)
 
