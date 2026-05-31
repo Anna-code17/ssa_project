@@ -1,3 +1,11 @@
+#Sequence diagrams
+
+##External sequence diagram
+
+![external_sequence_diagram.png](img/diagrams/external_sequence_diagram.png)
+
+```plantuml
+
 @startuml
 actor User
 participant "City Simulation System" as System
@@ -59,6 +67,14 @@ loop while simulation is running
 end
 @enduml
 
+```
+#Internal Sequence Diagrams
+
+
+##Create entity
+![create_entity.png](img/diagrams/create_entity.png)
+
+```plantuml
 
 @startuml
 autonumber
@@ -96,6 +112,14 @@ opt Cell is occupied
 end
 @enduml 
 
+```
+
+##Activate Policy
+
+![activate_policy.png](img/diagrams/activate_policy.png)
+
+```plantuml
+
 @startuml
 autonumber
 
@@ -121,6 +145,13 @@ opt Policy already active
     PolicyController -> UI : showPolicyError()
 end
 @enduml
+
+```
+##Tick
+
+![tick.png](img/diagrams/tick.png)
+
+```plantuml
 
 @startuml
 autonumber
@@ -191,6 +222,13 @@ RuleEngine --> TickEngine : tickProcessed()
 TickEngine -> UI : refreshCityView()
 @enduml
 
+```
+##Save City State
+
+![save_city_state.png](img/diagrams/save_city_state.png)
+
+```plantuml
+
 @startuml
 autonumber
 
@@ -221,3 +259,5 @@ SaveController --> UI : showSaveSuccess()
 UI --> User : save confirmed
 
 @enduml
+
+```
