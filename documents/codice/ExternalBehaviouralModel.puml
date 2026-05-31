@@ -1,0 +1,60 @@
+@startuml
+actor User
+participant "City Simulation System" as System
+
+User -> System : launchApplication()
+System --> User : displayUI(cityState, cityGrid)
+
+loop while simulation is running
+
+  opt Create new entity
+    User -> System : createEntity(entityType, position)
+    System -> System : validatePlacement(position, entityType)
+
+    opt placement allowed
+      System -> System : addEntityToGrid()
+      System --> User : entityCreated()
+      System --> User : updateGrid()
+
+    else placement not allowed
+      System --> User : showError("Invalid placement")
+    end
+  end
+
+  opt Remove entity
+    User -> System : removeEntity(position)
+    System -> System : removeEntityFromGrid()
+    System --> User : entityRemoved()
+    System --> User : updateGrid()
+  end
+
+  opt Activate policy
+    User -> System : activatePolicy(policy)
+    System -> System : applyPolicy(policy)
+    System --> User : policyActivated()
+    System --> User : updateUI()
+  end
+
+  opt Advance time
+    User -> System : advanceTick()
+    System -> System : scanGridAndApplyEffects()
+    System -> System : updateCityState()
+    System --> User : cityStateUpdated()
+    System --> User : updateUI()
+  end
+
+  opt Save simulation
+    User -> System : saveCityState()
+    System -> System : saveSimulation()
+    System --> User : saveConfirmed()
+  end
+
+  opt Reset simulation
+    User -> System : resetSimulation()
+    System -> System : resetSimulationState()
+    System --> User : resetConfirmed()
+    System --> User : updateUI()
+  end
+
+end
+@enduml
