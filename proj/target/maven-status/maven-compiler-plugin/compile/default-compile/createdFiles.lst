@@ -2,7 +2,6 @@ EffectLoader.class
 PowerPlant.class
 Building.class
 IndustrialBuilding.class
-Main.class
 Park.class
 Road.class
 Infrastructure.class
