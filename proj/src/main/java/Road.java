@@ -4,4 +4,9 @@ public class Road extends Infrastructure {
         super("Road");
         this.effects = EffectLoader.load("road.json");
     }
+
+    @Override
+    public String getSymbol() {
+        return "P";
+    }
 }
