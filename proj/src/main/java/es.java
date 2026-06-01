@@ -47,7 +47,39 @@ System.out.println("\n\n\n\n\n\n------------------------------------------------
 
 //Questi test sono stati fatti per vedere se ho salvato male i file / fatto le estensioni sbagliate ai building 
 
+//---------------------- TEST SULLA CLASSE CELL ----------------------------
+System.out.println("\n\n-----------------------------------------------------CELL---------------------------------------------------\n\n");
+	Cell test = new Cell(0 , 0);
+	System.out.println("print oggetto all'interno cella: " + test.getEntity());
+	
+//INSERZIONE IN UNA CELLA DI UNA ENTITÀ
+	boolean result = test.placeEntity(a);
+	if(result)
+		System.out.println("Park correttamente inserito all'interno della cella");
+	else
+	System.out.println("Park NON inserito. PROBLEMA.");
 
+// PRINT DELLA ENTITA' CHE E' CONTENUTA ALL'INTERNO DELLA CELLA 
+	System.out.println("\n Print della entita' contenuta all'interno cella: \n");
+	System.out.println(test.getEntity());	
+	
+// Provo a mettere una seconda entità su questa cella gia' piena 
+	boolean result2 = test.placeEntity(b);
+	if(result2)
+		System.out.println("PP correttamente inserito all'interno della cella.PROBLEMA");
+	else
+	System.out.println("PP NON inserito. GIUSTO.");
+	
+	
+//---------------------- TEST SULLA CLASSE CITYGRID ----------------------------
+System.out.println("\n\n-----------------------------------------------------CITYGRID---------------------------------------------------\n\n");
+//creazione della city grid
+ 
+CityGrid cityG = new CityGrid(4);
+
+
+    
+    
     }
 
 }
