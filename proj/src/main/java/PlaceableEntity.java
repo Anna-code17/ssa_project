@@ -52,6 +52,8 @@ public abstract class PlaceableEntity {
     {
         return  effects.toString() + "Entity:\nName: " + name + " \nType: " + type;
     }
-
+//------------------------------- METODO ASTRATTO PER RICAVARE IL SIMBOLO DELL'ENTITA' --------------------
+    
+    public abstract String getSymbol();
 
 }
