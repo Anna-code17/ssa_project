@@ -7,6 +7,6 @@ public class Road extends Infrastructure {
 
     @Override
     public String getSymbol() {
-        return "P";
+        return "R";
     }
 }
