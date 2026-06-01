@@ -7,6 +7,7 @@ public class CityGrid {
 
     private int size;
     private Cell[][] cells;
+    private int occupiedCount = 0;
 
 // --------------------------------- METODO COSTRUTTORE -------------------------------
 
@@ -32,10 +33,13 @@ public class CityGrid {
         {
             return false;
         }
-        
-        //il metodo place entity gestisce il controllo se la cella e' valida o meno. Rerstituisce un boolean.
-        //puo' essere quindi evitato un secondo controllo qui. 
-        return cells[x][y].placeEntity(entity);
+
+        boolean result = cells[x][y].placeEntity(entity);
+
+        if(result)
+            occupiedCount++;
+
+        return result;
     }
 
 
@@ -46,7 +50,13 @@ public class CityGrid {
             return;
         }
 
+        if (!cells[x][y].isEmpty()) {
         cells[x][y].clear();
+        occupiedCount--;
+        }
+
+        cells[x][y].clear();
+        
     }
 
 
@@ -66,6 +76,11 @@ public class CityGrid {
         return size;
     }
 
+    public int getOccupiedCount()
+    {
+        return occupiedCount;
+    }
+
 // --------------------------- METODO PRIVATO -------------------------------
 
 //Effettua il controllo se le coordinate sono negative oppure vanno oltre allo spazio disponibile
@@ -73,5 +88,40 @@ public class CityGrid {
         return x >= 0 && x < size &&
                y >= 0 && y < size;
     }
+
+// --------------------------- ALTRI METODI --------------------------
+
+//permette di visualizzare la griglia in modo grafico
+@Override
+public String toString() {
+    StringBuilder sb = new StringBuilder();
+
+    sb.append("CityGrid ")
+      .append(occupiedCount)
+      .append("/")
+      .append(size * size)
+      .append("\n");
+
+    for (int y = 0; y < size; y++) {
+        for (int x = 0; x < size; x++) {
+            Cell cell = cells[x][y];
+
+            if (cell.isEmpty()) {
+                sb.append(". ");
+            } else {
+                sb.append(cell.getEntity().getSymbol()).append(" ");
+            }
+        }
+        sb.append("\n");
+    }
+
+    return sb.toString();
+}
+
+public boolean isFull()
+{
+    return occupiedCount == size * size ;
+}
+
 
 }
