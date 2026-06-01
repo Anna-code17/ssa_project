@@ -4,4 +4,9 @@ public class PowerPlant extends Infrastructure {
         super("PowerPlant");
         this.effects = EffectLoader.load("powerPlant.json");
     }
+
+    @Override
+    public String getSymbol() {
+        return "W";
+    }
 }
