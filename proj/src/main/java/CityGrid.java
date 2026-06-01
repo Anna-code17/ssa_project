@@ -1,6 +1,10 @@
 /*
 Aggiunti rispetto al design model:
 - getSize (Potrebbe essere utile per fare il debugging)
+- aggiunto occupiedCount
+-Aggiunto clearGrid
+- Aggiunto isFull
+-Aggiunta sovrascrizione del metodo to string
 */ 
 
 public class CityGrid {
@@ -58,8 +62,16 @@ public class CityGrid {
         cells[x][y].clear();
         
     }
+	
+	public void clearGrid() {
+    	for (int x = 0; x < size; x++) {
+        	for (int y = 0; y < size; y++) {
+            	cells[x][y].clear();
+        	}		
+    	}
 
-
+    	occupiedCount = 0;
+	}
 // ---------------------------- METODI GETTER -------------------------------
 
     public Cell getCell(int x, int y) {

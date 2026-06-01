@@ -74,11 +74,24 @@ System.out.println("\n\n-----------------------------------------------------CEL
 //---------------------- TEST SULLA CLASSE CITYGRID ----------------------------
 System.out.println("\n\n-----------------------------------------------------CITYGRID---------------------------------------------------\n\n");
 //creazione della city grid
- 
-CityGrid cityG = new CityGrid(4);
-
-
-    
+//---------------------------------------test sulla visualizzazione della griglia---------------------------
+//entita' posizionate nella griglia per vedere se devo correggere simboli da associare 
+CityGrid cityG = new CityGrid(3);
+cityG.place(0, 0, a);
+cityG.place(0, 1, b);
+cityG.place(0, 2, c);
+cityG.place(1, 0, d);
+cityG.place(1, 1, e);
+cityG.place(1, 2, f);
+//test se la griglia full come sembra
+cityG.place(2, 0, d);
+cityG.place(2, 1, e);
+cityG.place(2, 2, f);
+System.out.println(cityG);
+//TEST DEL CLEARGRID
+System.out.println("Visualizzazione della griglia, vuota:\n\n");
+cityG.clearGrid();
+System.out.println(cityG);
     
     }
 
