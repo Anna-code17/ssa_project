@@ -4,4 +4,9 @@ public class CommercialBuilding extends Building
         super("CommercialBuilding");
         this.effects = EffectLoader.load("commercialBuilding.json");
     }
+
+        @Override
+        public String getSymbol() {
+        return "C";
+        }
 }
