@@ -19,10 +19,6 @@ public class Controller {
     
     // ---------------------------POLICY ------------------------------
     
-   public void removeEntity(int x, int y) {
-        city.getGrid().remove(x, y);
-    }
-    
     public void applyPolicy(Policy policy) {
         city.setPolicy(policy);
     }
