@@ -31,11 +31,11 @@ public class Controller {
     
     //per gestire evoluzione temporale della città
     public void nextTick() {
-        TickEngine.advanceTick(city);
+        tickEngine.advanceTick(city);
     }
     
     public int getCurrentTick() {
-        return TickEngine.getCurrentTick();
+        return tickEngine.getCurrentTick();
     }
     
     //alcune opzioni per gestire l'interfaccia visiva
