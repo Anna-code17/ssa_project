@@ -10,6 +10,10 @@ class City {
   - state: CityState
   - activePolicy: Policy
   + City(name: String, size: int)
+  + placeEntity( x: int, y: int, entity: PlaceableEntity): boolean
+  + placeBuilding( x: int, y: int , entity: Building): boolean
+  + placeInfrastructure( x: int, y: int , entity: Infrastructure): boolean
+  + removeEntity(x: int, y: int): void
   + getGrid(): CityGrid
   + getState(): CityState
   + getPolicy(): Policy
@@ -132,10 +136,8 @@ class Controller {
   - tickEngine: TickEngine
   + Controller(gridSize: int) 
   + placeEntity( x: int, y: int, entity: PlaceableEntity): boolean
-  + placeBuilding( x: int, y: int , entity: Building): boolean
-  + placeInfrastructure( x: int, y: int , entity: Infrastructure): boolean
-  + applyPolicy(policy: Policy): void 
   + removeEntity(x: int, y: int): void
+  + applyPolicy(policy: Policy): void 
   + deactivatePolicy(): void 
   + nextTick(): void
   + getCurrentTick(): int
