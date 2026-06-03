@@ -123,9 +123,19 @@ class IndustrialExpansionPolicy{
 ' ======================
 
 class Controller {
-  + placeEntity(entity: Entity, x: int, y: int, city: City): boolean
-  + applyPolicy(policy: Policy, city: City): boolean
-  + removeEntity(x: int, y: int, city: City): void
+  - city: City
+  - tickEngine: TickEngine
+  + Controller(gridSize: int) 
+  + placeEntity(entity: PlaceableEntity, x: int, y: int): boolean
+  + applyPolicy(policy: Policy): void 
+  + removeEntity(x: int, y: int): void
+  + deactivatePolicy(): void 
+  + getActivePolicy(): Policy
+  + nextTick(): void
+  + getCurrentTick(): int
+  + getCity(): City
+  + getCityState(): CityState
+  + getGrid(): CityGrid 
 }
 
 class TickEngine {
