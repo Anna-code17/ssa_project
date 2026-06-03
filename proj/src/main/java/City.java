@@ -38,7 +38,7 @@ public class City {
     // Posizionamento Building e valutazione rispetto delle PlacementRules
     public boolean placeBuilding(int x, int y, Building building) {
         if (PlacementRules.canPlaceBuilding(building, city.getGrid(), x, y)) {
-            return city.getGrid().place(x, y, building);
+            return  this.grid.place(x, y, building);
         }
         return false;
     }
@@ -46,13 +46,13 @@ public class City {
     // Posizionamento Infrastructure e valutazione rispetto delle PlacementRules
     public boolean placeInfrastructure(int x, int y, Infrastructure infrastructure) {
         if (PlacementRules.canPlaceInfrastructure(infrastructure, city.getGrid(), x, y)) {
-            return city.getGrid().place(x, y, infrastructure);
+            return this.grid.place(x, y, infrastructure);
         }
         return false;
     }
 
        public void removeEntity(int x, int y) {
-        city.getGrid().remove(x, y);
+        this.grid.remove(x, y);
     }
 // --------------------------- METODI GETTER ------------------------------
     
