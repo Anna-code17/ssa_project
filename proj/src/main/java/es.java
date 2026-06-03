@@ -73,11 +73,25 @@ System.out.println("\n\n-----------------------------------------------------CEL
 	
 //---------------------- TEST SULLA CLASSE CITYGRID ----------------------------
 System.out.println("\n\n-----------------------------------------------------CITYGRID---------------------------------------------------\n\n");
+
+
+
 //creazione della city grid
 //---------------------------------------test sulla visualizzazione della griglia---------------------------
 //entita' posizionate nella griglia per vedere se devo correggere simboli da associare 
 CityGrid cityG = new CityGrid(3);
 cityG.place(0, 0, a);
+System.out.println(cityG);
+System.out.println("TEST SE MI PERMETTE DI METTERE UNA ENTiTA' IN UNA CELLA GIA' OCCUPATA");
+cityG.place(0, 0, f);
+System.out.println(cityG);
+System.out.println("Se al posto di park c'e' un building c'e' qualcosa che non va");
+System.out.println("ESEGUO TEST SU REMOVE");
+cityG.remove(0, 0);
+System.out.println(cityG);
+System.out.println("Se non c' e' nulla su griglia esegue corretamente");
+
+//effettuo fill di tutta la griglia 
 cityG.place(0, 1, b);
 cityG.place(0, 2, c);
 cityG.place(1, 0, d);
@@ -92,6 +106,11 @@ System.out.println(cityG);
 System.out.println("Visualizzazione della griglia, vuota:\n\n");
 cityG.clearGrid();
 System.out.println(cityG);
+//
+
+    
+    
+    
     
     }
 

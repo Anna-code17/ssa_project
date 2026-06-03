@@ -93,15 +93,14 @@ public class CityGrid {
         return occupiedCount;
     }
 
-// --------------------------- METODO PRIVATO -------------------------------
+
+// --------------------------- ALTRI METODI --------------------------
 
 //Effettua il controllo se le coordinate sono negative oppure vanno oltre allo spazio disponibile
-    private boolean isValidPosition(int x, int y) {
+    public boolean isValidPosition(int x, int y) {
         return x >= 0 && x < size &&
                y >= 0 && y < size;
     }
-
-// --------------------------- ALTRI METODI --------------------------
 
 //permette di visualizzare la griglia in modo grafico
 @Override
@@ -133,6 +132,12 @@ public String toString() {
 public boolean isFull()
 {
     return occupiedCount == size * size ;
+}
+
+//mostra se la griglia non e' occupata in una certa posizione 
+public boolean isEmpty(int x, int y)
+{
+	 return cells[x][y].isEmpty();
 }
 
 
