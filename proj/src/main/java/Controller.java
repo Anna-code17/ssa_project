@@ -9,38 +9,12 @@ public class Controller {
     
     // -------------------------- ENTITÀ ------------------------------
     
- public boolean placeEntity(int x, int y, PlaceableEntity entity) {
-    String type = entity.getName(); //la tipologia di edificio è salvata in name
-    
-    //distinguo Buildings e Infrastructures in base al tipo
-        if (type.equals("ResidentialBuilding") || 
-        type.equals("IndustrialBuilding") || 
-        type.equals("CommercialBuilding")) {
-            return placeBuilding(x, y, (Building)entity);
-        } 
-        else {
-            return placeInfrastructure(x, y, (Infrastructure)entity);
-        }
-    }
-
-    // Posizionamento Building e valutazione rispetto delle PlacementRules
-    public boolean placeBuilding(int x, int y, Building building) {
-        if (PlacementRules.canPlaceBuilding(building, city.getGrid(), x, y)) {
-            return city.getGrid().place(x, y, building);
-        }
-        return false;
-    }
-    
-    // Posizionamento Infrastructure e valutazione rispetto delle PlacementRules
-    public boolean placeInfrastructure(int x, int y, Infrastructure infrastructure) {
-        if (PlacementRules.canPlaceInfrastructure(infrastructure, city.getGrid(), x, y)) {
-            return city.getGrid().place(x, y, infrastructure);
-        }
-        return false;
+   public boolean placeEntity(int x, int y, PlaceableEntity entity) {
+        return city.placeEntity(x, y, entity);  
     }
     
     public void removeEntity(int x, int y) {
-        city.getGrid().remove(x, y);
+        city.removeEntity(x, y); 
     }
     
     // ---------------------------POLICY ------------------------------
