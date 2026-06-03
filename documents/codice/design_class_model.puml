@@ -75,15 +75,17 @@ abstract class Building {
 
 class ResidentialBuilding {
   + ResidentialBuilding()
-  + canBePlaced(x: int, y: int): boolean
+  + getSymbol(): String
 }
 
 class IndustrialBuilding {
   + IndustrialBuilding()
+  + getSymbol(): String
 }
 
 class CommercialBuilding {
   + CommercialBuilding()
+  + getSymbol(): String
 }
 
 abstract class Infrastructure {
@@ -92,14 +94,17 @@ abstract class Infrastructure {
 
 class PowerPlant {
   + PowerPlant()
+  + getSymbol(): String
 }
 
 class Park {
   + Park()
+  + getSymbol(): String
 }
 
 class Road {
   + Road()
+  + getSymbol(): String
 }
 
 interface Policy {
@@ -126,18 +131,25 @@ class Controller {
   - city: City
   - tickEngine: TickEngine
   + Controller(gridSize: int) 
-  + placeEntity(entity: PlaceableEntity, x: int, y: int): boolean
+  + placeEntity( x: int, y: int, entity: PlaceableEntity): boolean
+  + placeBuilding( x: int, y: int , entity: Building): boolean
+  + placeInfrastructure( x: int, y: int , entity: Infrastructure): boolean
   + applyPolicy(policy: Policy): void 
   + removeEntity(x: int, y: int): void
   + deactivatePolicy(): void 
-  + getActivePolicy(): Policy
   + nextTick(): void
   + getCurrentTick(): int
   + getCity(): City
   + getCityState(): CityState
   + getGrid(): CityGrid 
+  + getActivePolicy() : Policy
 }
 
+class PlacementRules{
+  - hasPowerPlantNearby( grid: CityGrid, x : int, y : int) : boolean
+  + canPlaceBuilding( entity : PlaceableEntity, grid : CityGrid, x : int, y : int) : boolean
+  + canPlaceInfrastructure( infrastructure: Infrastructure, grid : CityGrid, x : int, y : int) : boolean
+}
 class TickEngine {
   - currentTick: int
   + advanceTick(city: City): void
@@ -184,6 +196,7 @@ Policy <|.. IndustrialExpansionPolicy
 Controller --> City
 TickEngine --> City
 SaveManager --> City
+Controller ..> PlacementRules
 
 ' ======================
 ' Notes
