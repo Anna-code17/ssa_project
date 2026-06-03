@@ -49,7 +49,7 @@ public class Controller {
         city.getGrid().remove(x, y);
     }
     
-    public void activatePolicy(Policy policy) {
+    public void applyPolicy(Policy policy) {
         city.setPolicy(policy);
     }
     
