@@ -1,10 +1,3 @@
-/*
-Modifiche apportate al Domain Model:
--Aggiunta di setPolicy
-
-ATTENZIONE PER FARE LA PROVA HO DOVUTO SETTARE TUTTO CHE PUNTAVA A POLICY COME COMMENTO. DA SISTEMARE
- */
-
 public class City {
 
     private String name;
@@ -19,6 +12,7 @@ public class City {
         //Ho impostato il budget iniziale a 1000
         this.state = new CityState(1000);
         this.activePolicy = null;
+        this.currentTick = 0;
         
     }
 //--------------------------- METODI GESTIONE ENTITA' ------------------------------
