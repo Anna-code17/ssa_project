@@ -35,7 +35,7 @@ public class Controller {
     }
     
     public int getCurrentTick() {
-        return tickEngine.getCurrentTick();
+        return  city.getCurrentTick();
     }
     
     //alcune opzioni per gestire l'interfaccia visiva
