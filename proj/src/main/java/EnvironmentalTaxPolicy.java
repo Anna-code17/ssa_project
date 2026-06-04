@@ -12,12 +12,7 @@ public class EnvironmentalTaxPolicy implements Policy {
     public int getPercentBudget() {
         return -15;
     }
-    
-    @Override
-    public int getPercentPopulation() {
-        return 0;
-    }
-    
+   
     @Override
     public int getPercentPollution() {
         return -15;
