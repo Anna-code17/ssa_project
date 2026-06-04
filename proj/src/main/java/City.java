@@ -10,14 +10,16 @@ public class City {
     private String name;
     private CityGrid grid;
     private CityState state;
-    //private Policy activePolicy;
+    private Policy activePolicy;
+    private int currentTick;
 
     public City(String name, int size) {
         this.name = name;
         this.grid = new CityGrid(size);
         //Ho impostato il budget iniziale a 1000
         this.state = new CityState(1000);
-        //this.activePolicy = null;
+        this.activePolicy = null;
+        
     }
 //--------------------------- METODI GESTIONE ENTITA' ------------------------------
 
@@ -67,9 +69,20 @@ public class City {
     public CityState getState() {
         return state;
     }
-/*
+
     public Policy getPolicy() {
         return activePolicy;
+    }
+
+//-----------------------------GESTIONE TICK-----------------------------
+      // ← attributo
+    
+    public void incrementTick() {
+        currentTick++;
+    }
+    
+    public int getCurrentTick() {
+        return currentTick;
     }
 
 // --------------------------- METODI SETTER -----------------------------
@@ -77,6 +90,5 @@ public class City {
     public void setPolicy(Policy policy) {
         this.activePolicy = policy;
     }
-*/
 
 }
