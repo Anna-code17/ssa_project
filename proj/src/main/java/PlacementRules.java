@@ -35,7 +35,7 @@ public class PlacementRules {
             // Uso il metodo di CityGrid isValidPosition per controllare se la cella esiste
                 if (grid.isValidPosition(i, j)) {
                 Cell cell = grid.getCell(i, j);
-                    if (!cell.isEmpty() && ((cell.getEntity()).getName()).equals("PowerPlant")) {
+                    if (!(cell.isEmpty()) && ((cell.getEntity()).getName()).equals("PowerPlant")) {
                     return true;
                     }
                 }

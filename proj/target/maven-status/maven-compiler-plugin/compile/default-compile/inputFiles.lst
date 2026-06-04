@@ -3,7 +3,10 @@
 /home/anna/Scrivania/edids/ssa_project/proj/src/main/java/Road.java
 /home/anna/Scrivania/edids/ssa_project/proj/src/main/java/EffectDTO.java
 /home/anna/Scrivania/edids/ssa_project/proj/src/main/java/ResidentialBuilding.java
+/home/anna/Scrivania/edids/ssa_project/proj/src/main/java/Cell.java
 /home/anna/Scrivania/edids/ssa_project/proj/src/main/java/CommercialBuilding.java
+/home/anna/Scrivania/edids/ssa_project/proj/src/main/java/City.java
+/home/anna/Scrivania/edids/ssa_project/proj/src/main/java/CityState.java
 /home/anna/Scrivania/edids/ssa_project/proj/src/main/java/Park.java
 /home/anna/Scrivania/edids/ssa_project/proj/src/main/java/Infrastructure.java
 /home/anna/Scrivania/edids/ssa_project/proj/src/main/java/es.java
@@ -11,3 +14,4 @@
 /home/anna/Scrivania/edids/ssa_project/proj/src/main/java/PlaceableEntity.java
 /home/anna/Scrivania/edids/ssa_project/proj/src/main/java/EffectLoader.java
 /home/anna/Scrivania/edids/ssa_project/proj/src/main/java/Effect.java
+/home/anna/Scrivania/edids/ssa_project/proj/src/main/java/CityGrid.java
