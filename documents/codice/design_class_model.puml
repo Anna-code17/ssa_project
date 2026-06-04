@@ -113,17 +113,26 @@ class Road {
 
 interface Policy {
   + getName(): String
-  + policyEffect(sumCurrentEffects: Effect): Effect
+  + getPercentBudget() : int
+  + getPercentPopulation() : int
+  + getPercentPollution() : int
+  + getPercentHappiness() : int
 }
 
 class EnvironmentalTaxPolicy {
   + getName(): String
-  + policyEffect(sumCurrentEffects: Effect): Effect
+  + getPercentBudget() : int
+  + getPercentPopulation() : int
+  + getPercentPollution() : int
+  + getPercentHappiness() : int
 }
 
 class IndustrialExpansionPolicy{
-   + getName(): String
-  + policyEffect(sumCurrentEffects: Effect): Effect
+  + getName(): String
+  + getPercentBudget() : int
+  + getPercentPopulation() : int
+  + getPercentPollution() : int
+  + getPercentHappiness() : int
 }
 
 ' ======================
