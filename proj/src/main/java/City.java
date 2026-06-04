@@ -75,7 +75,6 @@ public class City {
     }
 
 //-----------------------------GESTIONE TICK-----------------------------
-      // ← attributo
     
     public void incrementTick() {
         currentTick++;
