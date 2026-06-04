@@ -1,7 +1,17 @@
 public interface Policy {
+    
     String getName();
-    int getPercentBudget();
-    int getPercentPopulation();
-    int getPercentPollution();
-    int getPercentHappiness();
+    
+    default int getPercentBudget() { 
+        return 0; 
+    }
+    default int getPercentPopulation() { 
+        return 0; 
+    }
+    default int getPercentPollution() { 
+        return 0; 
+    }
+    default int getPercentHappiness() { 
+        return 0; 
+    }
 }
