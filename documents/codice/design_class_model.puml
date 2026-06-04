@@ -126,7 +126,6 @@ interface Policy {
 class EnvironmentalTaxPolicy {
   + getName(): String
   + getPercentBudget() : int
-  + getPercentPopulation() : int
   + getPercentPollution() : int
   + getPercentHappiness() : int
 }
@@ -134,7 +133,6 @@ class EnvironmentalTaxPolicy {
 class IndustrialExpansionPolicy{
   + getName(): String
   + getPercentBudget() : int
-  + getPercentPopulation() : int
   + getPercentPollution() : int
   + getPercentHappiness() : int
 }
