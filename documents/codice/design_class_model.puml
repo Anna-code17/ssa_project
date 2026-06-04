@@ -112,20 +112,19 @@ class Road {
 }
 
 interface Policy {
-  + getEffects(): Effect
   + getName(): String
+  + policyEffect(sumCurrentEffects: Effect): Effect
 }
 
-class EnvironmentalTaxPolicy{
-  - effects : Effect
-  + EnvironmentalTaxPolicy()
+class EnvironmentalTaxPolicy {
+  + getName(): String
+  + policyEffect(sumCurrentEffects: Effect): Effect
 }
 
 class IndustrialExpansionPolicy{
-  - effects : Effect
-  + IndustrialExpansionPolicy()
+   + getName(): String
+  + policyEffect(sumCurrentEffects: Effect): Effect
 }
-
 
 ' ======================
 'Simulation
