@@ -17,6 +17,7 @@ class City {
   + getGrid(): CityGrid
   + getState(): CityState
   + getPolicy(): Policy
+  + setPolicy(): void
  
 }
 
