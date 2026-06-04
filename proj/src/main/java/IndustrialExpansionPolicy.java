@@ -11,12 +11,7 @@ public class IndustrialExpansionPolicy implements Policy {
     public int getPercentBudget() {
         return 10;
     }
-    
-    @Override
-    public int getPercentPopulation() {
-        return 0;
-    }
-    
+
     @Override
     public int getPercentPollution() {
         return 15;
