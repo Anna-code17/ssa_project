@@ -9,11 +9,14 @@ class City {
   - grid: CityGrid
   - state: CityState
   - activePolicy: Policy
+  - currentTick: int
   + City(name: String, size: int)
   + placeEntity( x: int, y: int, entity: PlaceableEntity): boolean
   + placeBuilding( x: int, y: int , entity: Building): boolean
   + placeInfrastructure( x: int, y: int , entity: Infrastructure): boolean
   + removeEntity(x: int, y: int): void
+  + incrementTick() : void
+  + getCurrentTick() : int
   + getGrid(): CityGrid
   + getState(): CityState
   + getPolicy(): Policy
