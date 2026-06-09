@@ -16,7 +16,7 @@ public class PlacementRules {
     }
     
     //Verifica se un'infrastruttura può essere posizionata
-    public static boolean canPlaceInfrastructure(Infrastructure infrastructure, CityGrid grid, int x, int y) {
+       public static boolean canPlaceInfrastructure(Infrastructure infrastructure, CityGrid grid, int x, int y) {
         return grid.isEmpty(x, y);
     }
     

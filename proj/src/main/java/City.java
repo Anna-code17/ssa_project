@@ -33,7 +33,7 @@ public class City {
 
     // Posizionamento Building e valutazione rispetto delle PlacementRules
     public boolean placeBuilding(int x, int y, Building building) {
-        if (PlacementRules.canPlaceBuilding(building, city.getGrid(), x, y)) {
+        if (PlacementRules.canPlaceBuilding(building, this.grid , x, y)) {
             return  this.grid.place(x, y, building);
         }
         return false;
@@ -41,7 +41,7 @@ public class City {
     
     // Posizionamento Infrastructure e valutazione rispetto delle PlacementRules
     public boolean placeInfrastructure(int x, int y, Infrastructure infrastructure) {
-        if (PlacementRules.canPlaceInfrastructure(infrastructure, city.getGrid(), x, y)) {
+        if (PlacementRules.canPlaceInfrastructure(infrastructure,this.grid, x, y)) {
             return this.grid.place(x, y, infrastructure);
         }
         return false;
@@ -64,7 +64,7 @@ public class City {
         return state;
     }
 
-    public Policy getPolicy() {
+    public Policy getActivePolicy() {
         return activePolicy;
     }
 
