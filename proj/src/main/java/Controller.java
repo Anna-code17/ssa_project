@@ -2,8 +2,8 @@ public class Controller {
     private City city;
     private TickEngine tickEngine;
     
-    public Controller(int gridSize) {
-        this.city = new City("MyCity", gridSize);
+    public Controller(String cityName, int gridSize) {
+        this.city = new City(cityName, gridSize);
         this.tickEngine = new TickEngine();
     }
     
@@ -49,5 +49,9 @@ public class Controller {
     
     public CityGrid getGrid() {
         return city.getGrid();
+    }
+    
+    public String getCityName() {
+        return city.getName();
     }
 }
