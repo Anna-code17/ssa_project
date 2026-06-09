@@ -144,7 +144,7 @@ class IndustrialExpansionPolicy{
 class Controller {
   - city: City
   - tickEngine: TickEngine
-  + Controller(gridSize: int) 
+  + Controller(cityName: String, gridSize: int) 
   + placeEntity( x: int, y: int, entity: PlaceableEntity): boolean
   + removeEntity(x: int, y: int): void
   + applyPolicy(policy: Policy): void 
@@ -155,6 +155,7 @@ class Controller {
   + getCityState(): CityState
   + getGrid(): CityGrid 
   + getActivePolicy() : Policy
+  + getCityName(): String
 }
 
 class PlacementRules{
