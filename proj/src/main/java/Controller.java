@@ -20,11 +20,11 @@ public class Controller {
     // ---------------------------POLICY ------------------------------
     
     public void applyPolicy(Policy policy) {
-        city.setPolicy(policy);
+        city.setActivePolicy(policy);
     }
     
     public void deactivatePolicy() {
-        city.setPolicy(null);
+        city.setActivePolicy(null);
     }
     
     // --------------------------- SIMULAZIONE ------------------------------
