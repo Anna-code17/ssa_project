@@ -1,3 +1,8 @@
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+
 public class City {
 
     private String name;
@@ -15,6 +20,9 @@ public class City {
         this.currentTick = 0;
         
     }
+
+    public City () { }
+    
 //--------------------------- METODI GESTIONE ENTITA' ------------------------------
 
      public boolean placeEntity(int x, int y, PlaceableEntity entity) {
