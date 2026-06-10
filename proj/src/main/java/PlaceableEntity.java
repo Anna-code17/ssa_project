@@ -1,12 +1,23 @@
-/*
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 
-In questa classe sono stati aggiunti rispetto al design model:
-1)Dal momento che la variabile dell'oggetto si chiama nome, ho cambiato da getType a getName
-2)Inserito un getEffect() e getType()
-3)inserito setEffect()
-4)  Inserito un to string per far vedere tutte le informazioni che contiene un oggetto
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 
-*/ 
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "type"
+)
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = ResidentialBuilding.class, name = "ResidentialBuilding"),
+    @JsonSubTypes.Type(value = IndustrialBuilding.class, name = "IndustrialBuilding"),
+    @JsonSubTypes.Type(value = CommercialBuilding.class, name = "CommercialBuilding"),
+    @JsonSubTypes.Type(value = PowerPlant.class, name = "PowerPlant"),
+    @JsonSubTypes.Type(value = Park.class, name = "Park"),
+    @JsonSubTypes.Type(value = Road.class, name = "Road")
+}) 
 
 public abstract class PlaceableEntity {
     
