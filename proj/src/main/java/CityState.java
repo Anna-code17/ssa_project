@@ -1,7 +1,8 @@
-/*
-Modifiche rispetto al design class model:
-- sovrascrizione del metodo toString. 
- */
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+
 
 public class CityState 
 {
