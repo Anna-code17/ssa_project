@@ -1,3 +1,8 @@
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+
 public class IndustrialExpansionPolicy implements Policy {
 
     /* IndustrialExpansionPolicy aumenta del 10% il budget, del 15% l'inquinamento e diminuisce la 
