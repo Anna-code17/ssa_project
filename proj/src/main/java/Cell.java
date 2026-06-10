@@ -1,7 +1,7 @@
-/*
-modifiche sul domain model:
-Aggiunti i metodi per fare il get delle coordinate x e y
-*/ 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 
 public class Cell {
 
@@ -18,6 +18,8 @@ public class Cell {
         this.entity = null;
     }
 
+    //costruttore vuoto necessario per poter utilizzare jackson. 
+    public Cell() { }
 
 // ------------------ METODI PER LA MODIFICAZIONE E CONTROLLO dello stato di una cella ------------
 
