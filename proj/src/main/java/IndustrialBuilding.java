@@ -2,7 +2,10 @@ public class IndustrialBuilding extends Building {
 
     public IndustrialBuilding() {
         super("IndustrialBuilding");
-        this.effects = EffectLoader.load("industrialBuilding.json");
+        this.effects = JsonManager.loadFromResources(
+        "effects/industrialBuilding.json",
+        Effect.class
+        );
     }
 
     @Override
