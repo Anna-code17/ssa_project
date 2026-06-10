@@ -1,11 +1,7 @@
-/*
-Aggiunti rispetto al design model:
-- getSize (Potrebbe essere utile per fare il debugging)
-- aggiunto occupiedCount
--Aggiunto clearGrid
-- Aggiunto isFull
--Aggiunta sovrascrizione del metodo to string
-*/ 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 
 public class CityGrid {
 
@@ -27,6 +23,8 @@ public class CityGrid {
             }
         }
     }
+
+	public CityGrid () { }
 
 //---------------------- METODI PER MODIFICARE LA GRIGLIA -----------------------------
 
