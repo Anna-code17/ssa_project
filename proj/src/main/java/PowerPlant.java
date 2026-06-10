@@ -2,7 +2,10 @@ public class PowerPlant extends Infrastructure {
 
     public PowerPlant() {
         super("PowerPlant");
-        this.effects = EffectLoader.load("powerPlant.json");
+        this.effects = JsonManager.loadFromResources(
+        "effects/powerPlant.json",
+        Effect.class
+        );
     }
 
     @Override
@@ -10,3 +13,4 @@ public class PowerPlant extends Infrastructure {
         return "W";
     }
 }
+
