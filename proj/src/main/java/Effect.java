@@ -1,10 +1,7 @@
-/*
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 
-Ho aggiunto di nuovo a questa classe, rispetto al domain model , tutti i corrispettivi metodi setter E l'override del metodo toString della classe string. 
-Idea, mi piacerebbe che invece di print effects, si potesse utilizzare il toString. e' puramente per scelta stilistica perchè tutti sanno che cosa ci si deve aspettare da un toString se applicato ad un oggetto, ovvero una descrizione testuale. 
-
-*/
-
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 
 public class Effect {
 
@@ -21,12 +18,8 @@ public class Effect {
         this.happiness = happiness;
     }
 
-    //effetto di default. nullo
-
-    public Effect()
-    {
-        this(0, 0, 0, 0);
-    }
+    
+    public Effect() { }
 
     //-------------------------------- METODI GETTER -----------------------------------
 
