@@ -8,6 +8,9 @@ import java.lang.reflect.Method;
 
 public class UserInterface extends JFrame {
 
+    private static final String VIEW_GRID = "VIEW_GRID";
+    private static final String VIEW_BUILD = "VIEW_BUILD";
+
     private final Controller controller;
 
     private JLabel cityValue;
@@ -26,6 +29,26 @@ public class UserInterface extends JFrame {
     private JTextArea selectedEffectsArea;
 
     private JPanel gridPanel;
+    private JPanel statePanel;
+
+    private CardLayout centerCardLayout;
+    private JPanel centerCardPanel;
+
+    private boolean buildMode = false;
+    private boolean waitingForCellSelection = false;
+    private int selectedBuildX = -1;
+    private int selectedBuildY = -1;
+    private String selectedBuildType = null;
+
+    private JList<String> buildEntityList;
+    private JLabel buildCellValue;
+    private JLabel buildPreviewNameValue;
+    private JLabel buildPreviewTypeValue;
+    private JTextArea buildPreviewEffectsArea;
+
+    private JButton buildButton;
+    private JButton confirmBuildButton;
+    private JButton cancelBuildButton;
 
     public UserInterface(Controller controller) {
         if (controller == null) {
@@ -52,7 +75,7 @@ public class UserInterface extends JFrame {
         setContentPane(root);
 
         root.add(buildHeader(), BorderLayout.NORTH);
-        root.add(buildCenter(), BorderLayout.CENTER);
+        root.add(buildCenterContainer(), BorderLayout.CENTER);
         root.add(buildFooter(), BorderLayout.SOUTH);
     }
 
@@ -64,7 +87,7 @@ public class UserInterface extends JFrame {
         title.setFont(new Font("SansSerif", Font.BOLD, 28));
         title.setForeground(new Color(33, 37, 41));
 
-        JLabel subtitle = new JLabel("MVC view: city state + grid + details");
+        JLabel subtitle = new JLabel("MVC view: city state + grid + build mode");
         subtitle.setFont(new Font("SansSerif", Font.PLAIN, 14));
         subtitle.setForeground(new Color(108, 117, 125));
 
@@ -79,17 +102,44 @@ public class UserInterface extends JFrame {
         return header;
     }
 
-    private JComponent buildCenter() {
+    private JComponent buildCenterContainer() {
         JPanel center = new JPanel(new BorderLayout(16, 16));
         center.setOpaque(false);
 
-        center.add(buildStatePanel(), BorderLayout.WEST);
+        statePanel = buildStatePanel();
+        centerCardLayout = new CardLayout();
+        centerCardPanel = new JPanel(centerCardLayout);
+        centerCardPanel.setOpaque(false);
+
+        centerCardPanel.add(buildGridView(), VIEW_GRID);
+        centerCardPanel.add(buildBuildView(), VIEW_BUILD);
+        centerCardLayout.show(centerCardPanel, VIEW_GRID);
+
+        center.add(statePanel, BorderLayout.WEST);
+        center.add(centerCardPanel, BorderLayout.CENTER);
+
+        return center;
+    }
+
+    private JComponent buildGridView() {
+        JPanel center = new JPanel(new BorderLayout(16, 16));
+        center.setOpaque(false);
+
         center.add(buildGridAndDetailsPanel(), BorderLayout.CENTER);
 
         return center;
     }
 
-    private JComponent buildStatePanel() {
+    private JComponent buildBuildView() {
+        JPanel center = new JPanel(new BorderLayout(16, 16));
+        center.setOpaque(false);
+
+        center.add(buildBuildPanel(), BorderLayout.CENTER);
+
+        return center;
+    }
+
+    private JPanel buildStatePanel() {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(320, 0));
         panel.setBackground(Color.WHITE);
@@ -263,6 +313,114 @@ public class UserInterface extends JFrame {
         return panel;
     }
 
+    private JComponent buildBuildPanel() {
+        JPanel panel = new JPanel(new BorderLayout(12, 12));
+        panel.setBackground(Color.WHITE);
+        panel.setBorder(BorderFactory.createCompoundBorder(
+                new LineBorder(new Color(220, 225, 230), 1, true),
+                new EmptyBorder(16, 16, 16, 16)
+        ));
+
+        JLabel title = new JLabel("Build Mode");
+        title.setFont(new Font("SansSerif", Font.BOLD, 18));
+        panel.add(title, BorderLayout.NORTH);
+
+        JPanel topInfo = new JPanel();
+        topInfo.setOpaque(false);
+        topInfo.setLayout(new BoxLayout(topInfo, BoxLayout.Y_AXIS));
+
+        buildCellValue = new JLabel("Selected cell: click an empty cell on the grid");
+        buildCellValue.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        topInfo.add(buildCellValue);
+        topInfo.add(Box.createVerticalStrut(6));
+
+        JLabel chooseLabel = new JLabel("Choose an entity");
+        chooseLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
+        topInfo.add(chooseLabel);
+
+        panel.add(topInfo, BorderLayout.WEST);
+
+        JPanel selectionPanel = new JPanel(new BorderLayout(10, 10));
+        selectionPanel.setOpaque(false);
+        selectionPanel.setPreferredSize(new Dimension(250, 0));
+
+        DefaultListModel<String> model = new DefaultListModel<>();
+        model.addElement("Park");
+        model.addElement("Road");
+        model.addElement("PowerPlant");
+        model.addElement("ResidentialBuilding");
+        model.addElement("CommercialBuilding");
+        model.addElement("IndustrialBuilding");
+
+        buildEntityList = new JList<>(model);
+        buildEntityList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        buildEntityList.setVisibleRowCount(6);
+        buildEntityList.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                String selected = buildEntityList.getSelectedValue();
+                if (selected != null) {
+                    updateBuildPreview(selected);
+                    updateBuildConfirmState();
+                }
+            }
+        });
+
+        selectionPanel.add(new JScrollPane(buildEntityList), BorderLayout.CENTER);
+        panel.add(selectionPanel, BorderLayout.CENTER);
+
+        JPanel previewPanel = new JPanel();
+        previewPanel.setOpaque(false);
+        previewPanel.setLayout(new BorderLayout(8, 8));
+        previewPanel.setPreferredSize(new Dimension(340, 0));
+
+        JLabel previewTitle = new JLabel("Entity Preview");
+        previewTitle.setFont(new Font("SansSerif", Font.BOLD, 16));
+        previewPanel.add(previewTitle, BorderLayout.NORTH);
+
+        JPanel previewInfo = new JPanel();
+        previewInfo.setOpaque(false);
+        previewInfo.setLayout(new BoxLayout(previewInfo, BoxLayout.Y_AXIS));
+
+        buildPreviewNameValue = new JLabel("Name: -");
+        buildPreviewTypeValue = new JLabel("Type: -");
+        buildPreviewNameValue.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        buildPreviewTypeValue.setFont(new Font("SansSerif", Font.PLAIN, 14));
+
+        buildPreviewEffectsArea = new JTextArea(8, 18);
+        buildPreviewEffectsArea.setEditable(false);
+        buildPreviewEffectsArea.setLineWrap(true);
+        buildPreviewEffectsArea.setWrapStyleWord(true);
+        buildPreviewEffectsArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
+        buildPreviewEffectsArea.setText("Select an entity to see its effects.");
+
+        previewInfo.add(buildPreviewNameValue);
+        previewInfo.add(Box.createVerticalStrut(4));
+        previewInfo.add(buildPreviewTypeValue);
+        previewInfo.add(Box.createVerticalStrut(8));
+        previewInfo.add(new JScrollPane(buildPreviewEffectsArea));
+
+        previewPanel.add(previewInfo, BorderLayout.CENTER);
+        panel.add(previewPanel, BorderLayout.EAST);
+
+        JPanel bottomButtons = new JPanel(new FlowLayout(FlowLayout.RIGHT, 12, 0));
+        bottomButtons.setOpaque(false);
+
+        confirmBuildButton = new JButton("Confirm");
+        cancelBuildButton = new JButton("Cancel");
+        styleButton(confirmBuildButton);
+        styleButton(cancelBuildButton);
+
+        confirmBuildButton.addActionListener(e -> confirmBuild());
+        cancelBuildButton.addActionListener(e -> cancelBuild());
+
+        bottomButtons.add(confirmBuildButton);
+        bottomButtons.add(cancelBuildButton);
+        panel.add(bottomButtons, BorderLayout.SOUTH);
+
+        updateBuildConfirmState();
+        return panel;
+    }
+
     private JComponent buildFooter() {
         JPanel footer = new JPanel(new BorderLayout());
         footer.setOpaque(false);
@@ -278,18 +436,22 @@ public class UserInterface extends JFrame {
         JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 12, 0));
         right.setOpaque(false);
 
+        buildButton = new JButton("Build");
         JButton refreshButton = new JButton("Refresh");
         JButton nextTickButton = new JButton("Advance Tick");
 
+        styleButton(buildButton);
         styleButton(refreshButton);
         styleButton(nextTickButton);
 
+        buildButton.addActionListener(e -> enterBuildMode());
         refreshButton.addActionListener(e -> refresh());
         nextTickButton.addActionListener(e -> {
             controller.nextTick();
             refresh();
         });
 
+        right.add(buildButton);
         right.add(refreshButton);
         right.add(nextTickButton);
 
@@ -304,11 +466,63 @@ public class UserInterface extends JFrame {
         button.setBorder(new EmptyBorder(10, 16, 10, 16));
     }
 
+    private void enterBuildMode() {
+
+        buildMode = true;
+        waitingForCellSelection = true;
+
+        selectedBuildX = -1;
+        selectedBuildY = -1;
+        selectedBuildType = null;
+
+        buildEntityList.clearSelection();
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Select an empty cell on the grid."
+        );
+
+        updateBuildConfirmState();
+    }
+
+    private void exitBuildMode() {
+        buildMode = false;
+        waitingForCellSelection = false;
+        selectedBuildX = -1;
+        selectedBuildY = -1;
+        selectedBuildType = null;
+        buildEntityList.clearSelection();
+        buildCellValue.setText("Selected cell: -");
+        buildPreviewNameValue.setText("Name: -");
+        buildPreviewTypeValue.setText("Type: -");
+        buildPreviewEffectsArea.setText("Select an entity to see its effects.");
+        centerCardLayout.show(centerCardPanel, VIEW_GRID);
+        updateFooterButtonsForBuildMode();
+        updateBuildConfirmState();
+        refreshGrid();
+        refreshState();
+    }
+
     private void refresh() {
+        if (!SwingUtilities.isEventDispatchThread()) {
+            SwingUtilities.invokeLater(this::refresh);
+            return;
+        }
+
         refreshState();
         refreshGrid();
-        refreshSelectedDetails(null);
+
+        if (!buildMode) {
+            refreshSelectedDetails(null);
+        }
+
+        updateFooterButtonsForBuildMode();
+        updateBuildConfirmState();
+
+        getContentPane().revalidate();
+        getContentPane().repaint();
     }
+
 
     private void refreshState() {
         City city = controller.getCity();
@@ -390,6 +604,15 @@ public class UserInterface extends JFrame {
             tile.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    if (buildMode) {
+                        JOptionPane.showMessageDialog(
+                                UserInterface.this,
+                                "Select an empty cell to build.",
+                                "Invalid cell",
+                                JOptionPane.WARNING_MESSAGE
+                        );
+                        return;
+                    }
                     refreshSelectedDetails(entity);
                 }
             });
@@ -399,6 +622,35 @@ public class UserInterface extends JFrame {
             tile.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    if (buildMode && waitingForCellSelection) {
+
+                        selectedBuildX = x;
+                        selectedBuildY = y;
+                        selectedBuildType = null;
+
+                        waitingForCellSelection = false;
+
+                        buildCellValue.setText(
+                                "Selected cell: (" + x + ", " + y + ")"
+                        );
+
+                        buildPreviewNameValue.setText("Name: -");
+                        buildPreviewTypeValue.setText("Type: -");
+                        buildPreviewEffectsArea.setText(
+                                "Select an entity to see its effects."
+                        );
+
+                        buildEntityList.clearSelection();
+
+                        centerCardLayout.show(
+                                centerCardPanel,
+                                VIEW_BUILD
+                        );
+
+                        updateBuildConfirmState();
+
+                        return;
+                    }
                     refreshSelectedDetails(null);
                 }
             });
@@ -420,6 +672,68 @@ public class UserInterface extends JFrame {
         selectedTypeValue.setText("Type: " + safeString(entity.getType()));
         selectedEffectsArea.setText(readEffects(entity));
         selectedEffectsArea.setCaretPosition(0);
+    }
+
+    private void updateBuildPreview(String selectedType) {
+        selectedBuildType = selectedType;
+
+        PlaceableEntity preview = createPreviewEntity(selectedType);
+
+        if (preview == null) {
+            buildPreviewNameValue.setText("Name: -");
+            buildPreviewTypeValue.setText("Type: -");
+            buildPreviewEffectsArea.setText("No preview available.");
+            updateBuildConfirmState();
+            return;
+        }
+
+        buildPreviewNameValue.setText("Name: " + safeString(preview.getName()));
+        buildPreviewTypeValue.setText("Type: " + safeString(preview.getType()));
+        buildPreviewEffectsArea.setText(readEffects(preview));
+        buildPreviewEffectsArea.setCaretPosition(0);
+
+        updateBuildConfirmState();
+    }
+
+    private PlaceableEntity createPreviewEntity(String selectedType) {
+        if (selectedType == null) {
+            return null;
+        }
+
+        return switch (selectedType) {
+            case "Park" -> new Park();
+            case "Road" -> new Road();
+            case "PowerPlant" -> new PowerPlant();
+            case "ResidentialBuilding" -> new ResidentialBuilding();
+            case "CommercialBuilding" -> new CommercialBuilding();
+            case "IndustrialBuilding" -> new IndustrialBuilding();
+            default -> null;
+        };
+    }
+
+    private PlaceableEntity createEntityForBuild(String selectedType) {
+        return createPreviewEntity(selectedType);
+    }
+
+    private void updateBuildConfirmState() {
+
+        if (confirmBuildButton != null) {
+            confirmBuildButton.setEnabled(
+                    buildMode
+                            && !waitingForCellSelection
+                            && selectedBuildX >= 0
+                            && selectedBuildY >= 0
+                            && selectedBuildType != null
+            );
+        }
+
+        if (cancelBuildButton != null) {
+            cancelBuildButton.setEnabled(buildMode);
+        }
+
+        if (buildButton != null) {
+            buildButton.setEnabled(!buildMode);
+        }
     }
 
     private void showActivePolicyDetails() {
@@ -580,4 +894,74 @@ public class UserInterface extends JFrame {
         refresh();
     }
 
+    public void confirmBuild() {
+        if (!buildMode) {
+            return;
+        }
+
+        if (selectedBuildX < 0 || selectedBuildY < 0) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Select an empty cell first.",
+                    "Build mode",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
+        if (selectedBuildType == null) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Select an entity first.",
+                    "Build mode",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
+        PlaceableEntity entity = createEntityForBuild(selectedBuildType);
+        if (entity == null) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Unknown entity selected.",
+                    "Build mode",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        }
+
+        boolean placed = controller.placeEntity(selectedBuildX, selectedBuildY, entity);
+        if (!placed) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Cannot place the selected entity in that cell.",
+                    "Build mode",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
+        exitBuildMode();
+        refresh();
+    }
+
+    public void cancelBuild() {
+        if (!buildMode) {
+            return;
+        }
+        exitBuildMode();
+        refresh();
+    }
+
+    private void updateFooterButtonsForBuildMode() {
+        if (buildButton != null) {
+            buildButton.setEnabled(!buildMode);
+        }
+        if (confirmBuildButton != null) {
+            confirmBuildButton.setEnabled(buildMode);
+        }
+        if (cancelBuildButton != null) {
+            cancelBuildButton.setEnabled(buildMode);
+        }
+    }
 }
