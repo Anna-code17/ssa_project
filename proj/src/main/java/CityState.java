@@ -49,6 +49,13 @@ public class CityState
                 ", happiness=" + happiness +
                 '}';
     }
+    //resetta i parametri alle condizioni iniziali
+    public void clear() {
+    this.budget = 1000;      
+    this.population = 0;
+    this.pollution = 0;
+    this.happiness = 0;
+}
 
 // ------------------------------- METODI GETTER -----------------------------------
 
