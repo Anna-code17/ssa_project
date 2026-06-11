@@ -92,4 +92,12 @@ public class City {
         this.activePolicy = policy;
     }
 
+    //Reset completo della città 
+    public void reset() {
+    this.grid.clearGrid(); //griglia
+    this.state.clear();    //stato
+    this.activePolicy = null; //policy
+    this.currentTick = 0; //tick
+}
+
 }
