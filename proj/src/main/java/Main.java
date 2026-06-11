@@ -12,9 +12,9 @@ public class Main {
         //input valore dimensione griglia
         int gridSize;
         do {
-            System.out.print("Dimensione griglia (2-10): ");
+            System.out.print("Dimensione griglia (2-20): ");
             gridSize = scanner.nextInt();
-        } while (gridSize < 2 || gridSize > 10);
+        } while (gridSize < 2 || gridSize > 20);
         
         scanner.close();
         
