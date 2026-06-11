@@ -51,6 +51,7 @@ class CityState {
   - happiness: int  
   + CityState(initialBudget: int)
   + applyEffects(effects: Effect): void
+  + clear() : void
   + getBudget(): int
   + getPopulation(): int
   + getPollution(): int
