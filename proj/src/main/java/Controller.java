@@ -37,6 +37,11 @@ public class Controller {
     public int getCurrentTick() {
         return  city.getCurrentTick();
     }
+
+    //reset della simulazione
+    public void resetCity() {
+    city.reset();
+   }
     
     //alcune opzioni per gestire l'interfaccia visiva
     public City getCity() {
