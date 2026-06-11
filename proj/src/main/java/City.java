@@ -88,7 +88,7 @@ public class City {
 
 // --------------------------- METODI SETTER -----------------------------
 
-    public void setPolicy(Policy policy) {
+    public void setActivePolicy(Policy policy) {
         this.activePolicy = policy;
     }
 

@@ -1,9 +1,15 @@
 CityState.class
 TickEngine.class
+UserInterface$2.class
+SaveManager.class
+Main.class
 Policy.class
 Controller.class
 CityGrid.class
 City.class
+UserInterface$1.class
+JsonManager.class
+UserInterface.class
 Cell.class
 EnvironmentalTaxPolicy.class
 IndustrialExpansionPolicy.class
