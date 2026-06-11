@@ -5,6 +5,7 @@ public class ResidentialBuilding extends Building {
         this.effects = JsonManager.loadFromResources(
         "effects/residentialBuilding.json",
         Effect.class
+         );
     }
 
     //metodo per ottenere il simbolo della entita' sulla griglia
