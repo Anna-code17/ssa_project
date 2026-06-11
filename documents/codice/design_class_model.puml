@@ -151,6 +151,7 @@ class Controller {
   + applyPolicy(policy: Policy): void 
   + deactivatePolicy(): void 
   + nextTick(): void
+  + resetCity() : void
   + getCurrentTick(): int
   + getCity(): City
   + getCityState(): CityState
