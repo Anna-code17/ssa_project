@@ -199,6 +199,13 @@ class SaveManager {
   + load(filepath: String): City
 }
 
+class JsonManager {
+  - mapper : ObjectMapper
+  + loadFromResources (path: String, clazz: Class<T>) : <T> T
+  + save(object: Object, path: String): void
+  + load(path: String, clazz: Class<T>): <T> T
+}
+
 ' ======================
 ' Structural Relations
 ' ======================
@@ -235,6 +242,7 @@ Controller --> City
 TickEngine --> City
 SaveManager --> City
 Controller ..> PlacementRules
+SaveManager --> JsonManager
 
 ' ======================
 ' Notes
