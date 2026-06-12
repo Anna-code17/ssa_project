@@ -23,6 +23,7 @@ public class CityState
         this.happiness = 0;
     }
 
+    public CityState() { }
 // -------------------------- METODI PER EFFETTUARE OPERAZIONI SULLE METRICHE CITTA'------------------------
 
     //applica un effetto dato in input andando a modificare i valori delle variabili 
