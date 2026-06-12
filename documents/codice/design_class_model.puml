@@ -11,16 +11,18 @@ class City {
   - activePolicy: Policy
   - currentTick: int
   + City(name: String, size: int)
+  + City ()
   + placeEntity( x: int, y: int, entity: PlaceableEntity): boolean
   + placeBuilding( x: int, y: int , entity: Building): boolean
   + placeInfrastructure( x: int, y: int , entity: Infrastructure): boolean
   + removeEntity(x: int, y: int): void
-  + incrementTick() : void
-  + getCurrentTick() : int
+  + getName() : String
   + getGrid(): CityGrid
   + getState(): CityState
-  + getPolicy(): Policy
-  + setPolicy(): void
+  + getActivePolicy(): Policy
+  + incrementTick() : void
+  + getCurrentTick() : int
+  + setActivePolicy(): void
   + reset() : void
 }
 
@@ -28,9 +30,16 @@ class CityGrid {
   - size: int
   - cells: Cell[][]
   + CityGrid(size: int)
+  + CityGrid()
   + place(x: int, y: int, entity: PlaceableEntity): boolean
   + remove(x: int, y: int): void
+  + clearGrid() : void
   + getCell(x: int, y: int): Cell
+  + getOccupiedCount () : int
+  + isValidPosition(x: int, y: int) : boolean
+  + toString () : String
+  + isFull() : boolean
+  + isEmpty(x: int, y: int) : boolean 
 }
 
 class Cell {
@@ -38,10 +47,14 @@ class Cell {
   - y: int
   - entity: PlaceableEntity  
   + Cell(x: int, y: int)
+  + Cell ()
   + isEmpty(): boolean
   + placeEntity(entity: PlaceableEntity): void
   + getEntity(): PlaceableEntity
   + clear(): void
+  + getEntity() : PlaceableEntity
+  + getX() : int
+  + getY() : int
 }
 
 class CityState {
@@ -50,6 +63,7 @@ class CityState {
   - pollution: int
   - happiness: int  
   + CityState(initialBudget: int)
+  + CityState ()
   + applyEffects(effects: Effect): void
   + clear() : void
   + getBudget(): int
@@ -68,14 +82,25 @@ class Effect {
   + getPopulation(): int
   + getPollution(): int
   + getHappiness(): int
-  + printEffects() : String 
+  + setBudget(budget: int): void
+  + setPopulation(population: int): void
+  + setPollution(pollution: int): void
+  + setHappiness(happines: int): void
+  + toString() : String 
 }
 
 abstract class PlaceableEntity {
   # name: String
-  # effects: Effect  
+  # effects: Effect
+  # type: String  
   + PlaceableEntity(name: String)
+  + PlaceableEntity(name: String, type: String)
+  + getName(): String
+  + getEffects(): Effect
   + getType(): String
+  + getSymbol(): String
+  + setEffects(effects: Effect)
+  + toString(): String 
 }
 
 abstract class Building {
@@ -151,8 +176,8 @@ class Controller {
   + applyPolicy(policy: Policy): void 
   + deactivatePolicy(): void 
   + nextTick(): void
-  + resetCity() : void
   + getCurrentTick(): int
+  + resetCity() : void
   + getCity(): City
   + getCityState(): CityState
   + getGrid(): CityGrid 
@@ -166,9 +191,7 @@ class PlacementRules{
   + canPlaceInfrastructure( infrastructure: Infrastructure, grid : CityGrid, x : int, y : int) : boolean
 }
 class TickEngine {
-  - currentTick: int
   + advanceTick(city: City): void
-  + getCurrentTick(): int
 }
 
 class SaveManager {
