@@ -55,6 +55,11 @@ public class Controller {
     public CityGrid getGrid() {
         return city.getGrid();
     }
+
+    public Policy getActivePolicy()
+    {
+        return city.getActivePolicy();
+    }
     
     public String getCityName() {
         return city.getName();
