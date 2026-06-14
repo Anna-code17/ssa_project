@@ -5,6 +5,7 @@ left to right direction
 ' Classes
 ' ======================
 class City {
+  - MAX_BUDGET_20*20 : int
   - name: String
   - grid: CityGrid
   - state: CityState
@@ -70,6 +71,7 @@ class CityState {
   + getPopulation(): int
   + getPollution(): int
   + getHappiness(): int
+  + setPopulation() : void
 }
 
 class Effect {
