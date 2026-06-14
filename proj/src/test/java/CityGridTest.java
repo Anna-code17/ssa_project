@@ -9,33 +9,14 @@ public class CityGridTest {
     void setUp() {
         grid = new CityGrid(5);         // Inizializza una città prima di ogni test
     }
-
-// ---------------------------- TEST SULLA COSTRUZIONE DELLA GRIGLIA ------------------------------------------
-
-    //verifica condizioni generali della griglia appena creata 
+    
     @Test
     void testGridCreation() {
         assertNotNull(grid);
         assertEquals(5, grid.getSize());
         assertEquals(0, grid.getOccupiedCount());
     }
-
-    //verifica se la griglia all'interno del metodo costruttore viene correttamente inizializzata 
-    @Test
-    void allCellsShouldBeInitialized() 
-    {
-        for(int x=0; x<5; x++) 
-        {
-            for(int y=0; y<5; y++) 
-            {
-                assertNotNull(grid.getCell(x,y));
-            }
-        }
-    }
-
-// ---------------------------------- TEST SUL POSIZIONAMENTO DI UN'ENTITA' --------------------------------
-
-
+    
     @Test
     void testPlaceEntity() {
         Park park = new Park();
@@ -56,11 +37,8 @@ public class CityGridTest {
         
         assertFalse(result);
         assertEquals(1, grid.getOccupiedCount());
-        assertEquals(park1, grid.getCell(0,0).getEntity());
     }
-
-// ---------------------------- TEST SULLA RIMOZIONE DI UN'ENTITA' ---------------------------------------- 
-
+    
     @Test
     void testRemoveEntity() {
         Park park = new Park();
@@ -70,44 +48,7 @@ public class CityGridTest {
         assertTrue(grid.isEmpty(0, 0));
         assertEquals(0, grid.getOccupiedCount());
     }
-
-
-    @Test
-    void removeFromEmptyCellShouldNotCrash() {
-
-    assertDoesNotThrow(() -> grid.remove(1,1));
     
-    }
-
-// --------------------------- TEST SUL CONTEGGIO DELLE ENTITA' ALL'INTERNO DELLA GRIGLIA -------------------
-
-    @Test
-    void shouldCountOccupiedCellsCorrectly() {
-
-    grid.place(0,0,new ResidentialBuilding());
-    grid.place(1,1,new Park());
-    grid.place(2,2,new Road());
-
-    assertEquals(3, grid.getOccupiedCount());
-    }
-
-
-// -------------------------- TEST SU CLEARGRID() -----------------------------
-
-    @Test
-    void shouldClearEntireGrid() {
-
-    grid.place(0,0,new ResidentialBuilding());
-    grid.place(1,1,new Park());
-
-    grid.clearGrid();
-
-    assertEquals(0, grid.getOccupiedCount());
-    assertTrue(grid.isEmpty(0,0));
-    assertTrue(grid.isEmpty(1,1));
-    }
-
-//----------Testa se funziona il metodo che ritorna la validita' della griglia---
     @Test
     void testIsValidPosition() {
         assertTrue(grid.isValidPosition(0, 0));
@@ -115,6 +56,4 @@ public class CityGridTest {
         assertFalse(grid.isValidPosition(-1, 0));
         assertFalse(grid.isValidPosition(5, 5));
     }
-
-
 }

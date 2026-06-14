@@ -15,9 +15,9 @@ public class TickEngine {
         }
 
         int tbudget = 0;
+        int tpopulation = 0;
         int tpollution = 0;
         int thappiness = 0;
-        int currentPopulation = 0; 
 
         // Somma gli effetti di tutte le entità presenti nella griglia
         for (int x = 0; x < grid.getSize(); x++) {
@@ -34,39 +34,39 @@ public class TickEngine {
                 Effect effect = entity.getEffects();
 
                 tbudget += effect.getBudget();
+                tpopulation += effect.getPopulation();
                 tpollution += effect.getPollution();
                 thappiness += effect.getHappiness();
-
-                currentPopulation += effect.getPopulation();
             }
         }
 
         // Applica la policy ai totali
         if (policy != null) {
 
-            tbudget += tbudget * policy.getPercentBudget() / 100;
-
-            currentPopulation +=
-                    currentPopulation * policy.getPercentPopulation() / 100;
-
-            tpollution +=
-                    tpollution * policy.getPercentPollution() / 100;
-
-            thappiness +=
-                    thappiness * policy.getPercentHappiness() / 100;
+            tbudget     = applyPolicyPercent(tbudget, policy.getPercentBudget());
+            tpopulation = applyPolicyPercent(tpopulation, policy.getPercentPopulation());
+            tpollution  = applyPolicyPercent(tpollution, policy.getPercentPollution());
+            thappiness  = applyPolicyPercent(thappiness, policy.getPercentHappiness());
         }
 
         Effect totalEffect = new Effect(
                 tbudget,
-                0, // la popolazione non viene applicata come incremento
+                tpopulation,
                 tpollution,
                 thappiness
         );
 
         state.applyEffects(totalEffect);
 
-         state.setPopulation(currentPopulation);
-
         city.incrementTick();
+    }
+
+    private int applyPolicyPercent(int value, int percent) {
+
+        if (value >= 0) {
+            return value + value * percent / 100;
+        }
+
+        return value + Math.abs(value) * percent / 100;
     }
 }
