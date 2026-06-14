@@ -34,9 +34,10 @@ public class TickEngine {
                 Effect effect = entity.getEffects();
 
                 tbudget += effect.getBudget();
-                tpopulation += effect.getPopulation();
                 tpollution += effect.getPollution();
                 thappiness += effect.getHappiness();
+
+                currentPopulation += effect.getPopulation();
             }
         }
 
