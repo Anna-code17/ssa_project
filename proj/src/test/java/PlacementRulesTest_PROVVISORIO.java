@@ -96,4 +96,7 @@ public class PlacementRulesTest {
         assertFalse(city.placeEntity(5, 0, new Park()));
         assertFalse(city.placeEntity(0, 5, new Park()));
     }
-}*/ DA RIVEDERE!!!!!
+}
+DA RIVEDERE!!!!!
+
+*/ 
