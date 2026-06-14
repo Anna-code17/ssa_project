@@ -15,7 +15,7 @@ public class TickEngine {
         }
 
         int tbudget = 0;
-        int tpopulation = 0;
+        int currentPopulation = 0;
         int tpollution = 0;
         int thappiness = 0;
 
@@ -34,9 +34,10 @@ public class TickEngine {
                 Effect effect = entity.getEffects();
 
                 tbudget += effect.getBudget();
-                tpopulation += effect.getPopulation();
                 tpollution += effect.getPollution();
                 thappiness += effect.getHappiness();
+
+                currentPopulation += effect.getPopulation();
             }
         }
 
@@ -44,20 +45,20 @@ public class TickEngine {
         if (policy != null) {
 
             tbudget     = applyPolicyPercent(tbudget, policy.getPercentBudget());
-            tpopulation = applyPolicyPercent(tpopulation, policy.getPercentPopulation());
+            currentPopulation = applyPolicyPercent(currentPopulation, policy.getPercentPopulation());
             tpollution  = applyPolicyPercent(tpollution, policy.getPercentPollution());
             thappiness  = applyPolicyPercent(thappiness, policy.getPercentHappiness());
         }
 
         Effect totalEffect = new Effect(
                 tbudget,
-                tpopulation,
+                0,
                 tpollution,
                 thappiness
         );
 
         state.applyEffects(totalEffect);
-
+        state.setPopulation(currentPopulation);
         city.incrementTick();
     }
 
