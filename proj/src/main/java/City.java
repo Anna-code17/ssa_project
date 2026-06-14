@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 
 public class City {
 
+    private static final int MAX_BUDGET_20X20 = 10000;
     private String name;
     private CityGrid grid;
     private CityState state;
@@ -15,7 +16,7 @@ public class City {
         this.name = name;
         this.grid = new CityGrid(size);
         //Ho impostato il budget iniziale a 1000
-        this.state = new CityState(1000);
+        this.state = new CityState(calculateMaxBudget());
         this.activePolicy = null;
         this.currentTick = 0;
         
@@ -98,6 +99,15 @@ public class City {
     this.state.clear();    //stato
     this.activePolicy = null; //policy
     this.currentTick = 0; //tick
-}
+    }
+
+// --------------------------- METODO PER MANIPOLARE IL BUDGET -----------------
+    
+    private int calculateMaxBudget() 
+    {
+        //20 utilizzato come numero perche' e' la massima grandezza della griglia  
+        int size = grid.getSize();
+        return (MAX_BUDGET_20X20 * size * size) / (20 * 20);
+    }
 
 }
