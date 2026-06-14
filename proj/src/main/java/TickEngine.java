@@ -15,9 +15,9 @@ public class TickEngine {
         }
 
         int tbudget = 0;
-        int tpopulation = 0;
         int tpollution = 0;
         int thappiness = 0;
+        int currentPopulation = 0; 
 
         // Somma gli effetti di tutte le entità presenti nella griglia
         for (int x = 0; x < grid.getSize(); x++) {
@@ -45,8 +45,8 @@ public class TickEngine {
 
             tbudget += tbudget * policy.getPercentBudget() / 100;
 
-            tpopulation +=
-                    tpopulation * policy.getPercentPopulation() / 100;
+            currentPopulation +=
+                    currentPopulation * policy.getPercentPopulation() / 100;
 
             tpollution +=
                     tpollution * policy.getPercentPollution() / 100;
@@ -57,12 +57,14 @@ public class TickEngine {
 
         Effect totalEffect = new Effect(
                 tbudget,
-                tpopulation,
+                0, // la popolazione non viene applicata come incremento
                 tpollution,
                 thappiness
         );
 
         state.applyEffects(totalEffect);
+
+         state.setPopulation(currentPopulation);
 
         city.incrementTick();
     }
