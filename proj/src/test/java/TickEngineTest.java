@@ -34,23 +34,18 @@ public class TickEngineTest {
         Park park = new Park();
         city.placeEntity(0, 0, park);
         
-        // Salva i valori iniziali
-        int beforeHappiness = city.getState().getHappiness();
-        int beforePollution = city.getState().getPollution();
+        // Setto i valori iniziali
         int beforeBudget = city.getState().getBudget();
+        int beforePollution = city.getState().getPollution();
+        int beforeHappiness = city.getState().getHappiness();
         
         tickEngine.advanceTick(city);
         
-        // Park dovrebbe aumentare felicità e ridurre inquinamento
-        assertNotEquals(beforeHappiness, city.getState().getHappiness());
-        assertNotEquals(beforePollution, city.getState().getPollution());
-        
-        // Verifica che felicità sia aumentata e inquinamento diminuito
-        assertTrue(city.getState().getHappiness() > beforeHappiness);
-        assertTrue(city.getState().getPollution() < beforePollution);
-        
-        // Budget potrebbe non cambiare con Park
-        assertEquals(beforeBudget, city.getState().getBudget());
+        // budget=-150, population=0, pollution=-15, happiness=20
+        assertEquals(beforeBudget - 150, city.getState().getBudget());
+        assertEquals(0, city.getState().getPopulation());
+        assertEquals(beforePollution - 15, city.getState().getPollution());
+        assertEquals(beforeHappiness + 20, city.getState().getHappiness());
     }
     
     @Test
@@ -58,12 +53,18 @@ public class TickEngineTest {
         PowerPlant plant = new PowerPlant();
         city.placeEntity(0, 0, plant);
         
+       // Setto i valori iniziali
         int beforeBudget = city.getState().getBudget();
+        int beforePollution = city.getState().getPollution();
+        int beforeHappiness = city.getState().getHappiness();
         
         tickEngine.advanceTick(city);
-        
-        // PowerPlant dovrebbe aumentare il budget
-        assertTrue(city.getState().getBudget() > beforeBudget);
+
+        // budget=-400, population=0, pollution=15, happiness=-5
+        assertEquals(beforeBudget - 400, city.getState().getBudget());
+        assertEquals(0, city.getState().getPopulation());
+        assertEquals(beforePollution + 15, city.getState().getPollution());
+        assertEquals(beforeHappiness - 5, city.getState().getHappiness());
     }
     
     @Test
@@ -75,12 +76,19 @@ public class TickEngineTest {
         city.placeEntity(1, 1, plant);  // Centrale in posizione centrale
         city.placeEntity(1, 2, house);  // Casa vicina alla centrale
         
-        int beforePopulation = city.getState().getPopulation();
+       // Setto i valori iniziali
+        int beforeBudget = city.getState().getBudget();
+        int beforePollution = city.getState().getPollution();
+        int beforeHappiness = city.getState().getHappiness();
         
         tickEngine.advanceTick(city);
         
-        // ResidentialBuilding dovrebbe aumentare la popolazione
-        assertTrue(city.getState().getPopulation() > beforePopulation);
+        // ResidentialBuilding: budget=-100, population=0, pollution=5, happiness=8
+        // PowerPlant : budget=-400, population=0, pollution=15, happiness=-5
+        // Somma degli effetti:  budget= -500, pollution= +20, happiness= +3
+        assertEquals(beforeBudget - 500, city.getState().getBudget());
+        assertEquals(beforePollution + 20, city.getState().getPollution());
+        assertEquals(beforeHappiness + 3, city.getState().getHappiness());
     }
     
     @Test
@@ -88,14 +96,18 @@ public class TickEngineTest {
         CommercialBuilding commercial = new CommercialBuilding();
         city.placeEntity(0, 0, commercial);
         
+        // Setto i valori iniziali
         int beforeBudget = city.getState().getBudget();
+        int beforePollution = city.getState().getPollution();
         int beforeHappiness = city.getState().getHappiness();
         
         tickEngine.advanceTick(city);
         
-        // CommercialBuilding dovrebbe aumentare budget e felicità
-        assertTrue(city.getState().getBudget() > beforeBudget);
-        assertTrue(city.getState().getHappiness() > beforeHappiness);
+        // budget=-180, population=0, pollution=9, happiness=5
+        assertEquals(beforeBudget - 180, city.getState().getBudget());
+        assertEquals(0, city.getState().getPopulation());
+        assertEquals(beforePollution + 9, city.getState().getPollution());
+        assertEquals(beforeHappiness + 5, city.getState().getHappiness());
     }
     
     @Test
@@ -103,14 +115,18 @@ public class TickEngineTest {
         IndustrialBuilding industrial = new IndustrialBuilding();
         city.placeEntity(0, 0, industrial);
         
+        // Setto i valori iniziali
         int beforeBudget = city.getState().getBudget();
         int beforePollution = city.getState().getPollution();
+        int beforeHappiness = city.getState().getHappiness();
         
         tickEngine.advanceTick(city);
         
-        // IndustrialBuilding aumenta budget ma anche inquinamento
-        assertTrue(city.getState().getBudget() > beforeBudget);
-        assertTrue(city.getState().getPollution() > beforePollution);
+        // budget=-250, population=0, pollution=20, happiness=-10
+        assertEquals(beforeBudget - 250, city.getState().getBudget());
+        assertEquals(0, city.getState().getPopulation());
+        assertEquals(beforePollution + 20, city.getState().getPollution());
+        assertEquals(beforeHappiness - 10, city.getState().getHappiness());
     }
     
     @Test
@@ -118,13 +134,19 @@ public class TickEngineTest {
         Road road = new Road();
         city.placeEntity(0, 0, road);
         
+       // Setto i valori iniziali
+        int beforeBudget = city.getState().getBudget();
+        int beforePollution = city.getState().getPollution();
         int beforeHappiness = city.getState().getHappiness();
-        
+                
         tickEngine.advanceTick(city);
         
-        // Road dovrebbe aumentare la felicità
-        assertTrue(city.getState().getHappiness() > beforeHappiness);
-    }
+        // road.json: budget=-20, population=0, pollution=0, happiness=2
+  
+        assertEquals(beforeBudget - 20, city.getState().getBudget());
+        assertEquals(0, city.getState().getPopulation());
+        assertEquals(0, city.getState().getPollution());
+        assertEquals(beforeHappiness + 2, city.getState().getHappiness());    }
     
     @Test
     void testAdvanceTickWithMultipleEntities() {
@@ -134,46 +156,61 @@ public class TickEngineTest {
         city.placeEntity(0, 0, park);
         city.placeEntity(0, 1, plant);
         
+        // Setto i valori iniziali
         int beforeBudget = city.getState().getBudget();
         int beforePollution = city.getState().getPollution();
-        int beforeHappiness = city.getState().getHappiness();
+        int beforeHappiness = city.getState().getHappiness();     
         
         tickEngine.advanceTick(city);
-        
-        // Devono esserci cambiamenti in più metriche
-        assertNotEquals(beforeBudget, city.getState().getBudget());
-        assertNotEquals(beforePollution, city.getState().getPollution());
-        assertNotEquals(beforeHappiness, city.getState().getHappiness());
+
+        // Park: budget=-150, population=0, pollution=-15, happiness=20
+        // PowerPlant: budget=-400, population=0, pollution=15, happiness=-5
+        // Somma degli effetti: budget=-550, pollution=0, happiness=+15
+        assertEquals(beforeBudget - 550, city.getState().getBudget());
+        assertEquals(0, city.getState().getPopulation());
+        assertEquals(beforePollution + 0, city.getState().getPollution());
+        assertEquals(beforeHappiness + 15, city.getState().getHappiness());
     }
     
     @Test
     void testAdvanceTickIncreasesTickCounter() {
         int beforeTick = city.getCurrentTick();
         tickEngine.advanceTick(city);
-        int afterTick = city.getCurrentTick();
-        
-        assertEquals(beforeTick + 1, afterTick);
+        assertEquals(beforeTick + 1, city.getCurrentTick());
     }
     
     @Test
     void testAdvanceTickWithEnvironmentalTaxPolicy() {
-        // Posiziona un edificio che produce budget
+        // Posiziona un edificio per avere degli effetti attivi
         PowerPlant plant = new PowerPlant();
         city.placeEntity(0, 0, plant);
         
         // Attiva policy ambientale
         city.setActivePolicy(new EnvironmentalTaxPolicy());
         
+        // Setto i valori iniziali
         int beforeBudget = city.getState().getBudget();
         int beforePollution = city.getState().getPollution();
+        int beforeHappiness = city.getState().getHappiness();
         
         tickEngine.advanceTick(city);
         
-        // Policy ambientale riduce budget e inquinamento
-        // Il budget potrebbe comunque aumentare, ma meno del normale
-        // L'inquinamento dovrebbe essere ridotto
-        assertTrue(city.getState().getPollution() < beforePollution + plant.getEffects().getPollution());
-    }
+        //Calcolo l'effetto di powerPlant da solo
+        // PowerPlant: budget=-400, pollution=15, happiness=-5
+        int basePollution = beforePollution + 15;
+        int baseHappiness = beforeHappiness - 5;
+        int baseBudget = beforeBudget - 400;
+
+        //calcolo la modifica legata all'azione della policy
+        // EnvironmentalTaxPolicy: budget=-15%, pollution=-15%, happiness=+10%
+        int expectedBudget = (int)(baseBudget * 0.85);
+        int expectedPollution = (int)(basePollution * 0.85);
+        int expectedHappiness = (int)(baseHappiness * 1.1);
+        
+        assertEquals(expectedBudget, city.getState().getBudget());
+        assertEquals(0, city.getState().getPopulation());  
+        assertEquals(expectedPollution, city.getState().getPollution());
+        assertEquals(expectedHappiness, city.getState().getHappiness());    }
     
     @Test
     void testAdvanceTickWithIndustrialExpansionPolicy() {
@@ -183,14 +220,29 @@ public class TickEngineTest {
         
         // Attiva policy industriale
         city.setActivePolicy(new IndustrialExpansionPolicy());
-        
+         
+        // Setto i valori iniziali
         int beforeBudget = city.getState().getBudget();
         int beforePollution = city.getState().getPollution();
+        int beforeHappiness = city.getState().getHappiness();   
         
         tickEngine.advanceTick(city);
+
+        //calcolo la modifica legata all'azione della policy
+        // industrialBuilding: budget=-250, pollution=20, happiness=-10
+        int baseBudget = beforeBudget - 250;
+        int basePollution = beforePollution + 20;
+        int baseHappiness = beforeHappiness - 10;
         
-        // Policy industriale aumenta budget e inquinamento più del normale
-        assertTrue(city.getState().getBudget() > beforeBudget);
-        assertTrue(city.getState().getPollution() > beforePollution);
+        // IndustrialExpansionPolicy: budget=+10%, pollution=+15%, happiness=-5%
+        //calcolo la modifica legata all'azione della policy
+        int expectedBudget = (int)(baseBudget * 1.10);
+        int expectedPollution = (int)(basePollution * 1.15);
+        int expectedHappiness = (int)(baseHappiness * 0.95);
+        
+        assertEquals(expectedBudget, city.getState().getBudget());
+        assertEquals(0, city.getState().getPopulation());  
+        assertEquals(expectedPollution, city.getState().getPollution());
+        assertEquals(expectedHappiness, city.getState().getHappiness());
     }
 }
