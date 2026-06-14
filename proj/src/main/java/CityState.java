@@ -76,5 +76,12 @@ public class CityState
         return happiness;
     }
 
+    // ------------------------------- METODI SETTER ----------------------------------
+
+    public void setPopulation(int population)
+    {
+        this.population = population;
+    }
+
 
 }
