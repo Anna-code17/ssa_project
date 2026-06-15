@@ -10,12 +10,14 @@ public class CityState
     private int population;
     private int pollution;
     private int happiness;
+    private int initialBudget; 
 
 //--------------------------- COSTRUTTORE ------------------------------------------
 
 
     public CityState(int initialBudget) {
         this.budget = initialBudget;
+        this.initialBudget = initialBudget;
         this.population = 0;
         this.pollution = 0;
         this.happiness = 0;
@@ -50,7 +52,7 @@ public class CityState
     }
     //resetta i parametri alle condizioni iniziali
     public void clear() {
-    this.budget = 1000;      
+    this.budget = this.initialBudget;
     this.population = 0;
     this.pollution = 0;
     this.happiness = 0;
