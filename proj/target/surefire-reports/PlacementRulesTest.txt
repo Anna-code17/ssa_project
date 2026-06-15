@@ -1,0 +1,15 @@
+-------------------------------------------------------------------------------
+Test set: PlacementRulesTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.060 s <<< FAILURE! -- in PlacementRulesTest
+PlacementRulesTest.testOutOfBoundsPlacement -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.IllegalArgumentException: Invalid position
+	at CityGrid.isEmpty(CityGrid.java:138)
+	at PlacementRules.canPlaceInfrastructure(PlacementRules.java:20)
+	at City.placeInfrastructure(City.java:61)
+	at City.placeEntity(City.java:37)
+	at PlacementRulesTest.testOutOfBoundsPlacement(PlacementRulesTest.java:75)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
