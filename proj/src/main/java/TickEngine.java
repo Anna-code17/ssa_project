@@ -9,12 +9,13 @@ public class TickEngine {
         CityGrid grid = city.getGrid();
         CityState state = city.getState();
         Policy policy = city.getActivePolicy();
+        final int MAX_BUDGET = city.getMaxBudget();
 
         if (grid == null || state == null) {
             throw new IllegalStateException("City must have a valid grid and state");
         }
 
-        int tbudget = 0;
+        int currentBudget = 0;
         int currentPopulation = 0;
         int tpollution = 0;
         int thappiness = 0;
@@ -33,7 +34,7 @@ public class TickEngine {
                 PlaceableEntity entity = cell.getEntity();
                 Effect effect = entity.getEffects();
 
-                tbudget += effect.getBudget();
+                currentBudget += effect.getBudget();
                 tpollution += effect.getPollution();
                 thappiness += effect.getHappiness();
 
@@ -44,14 +45,14 @@ public class TickEngine {
         // Applica la policy ai totali
         if (policy != null) {
 
-            tbudget     = applyPolicyPercent(tbudget, policy.getPercentBudget());
+            currentBudget = applyPolicyPercent(currentBudget, policy.getPercentBudget());
             currentPopulation = applyPolicyPercent(currentPopulation, policy.getPercentPopulation());
             tpollution  = applyPolicyPercent(tpollution, policy.getPercentPollution());
             thappiness  = applyPolicyPercent(thappiness, policy.getPercentHappiness());
         }
 
         Effect totalEffect = new Effect(
-                tbudget,
+                0,
                 0,
                 tpollution,
                 thappiness
@@ -59,6 +60,9 @@ public class TickEngine {
 
         state.applyEffects(totalEffect);
         state.setPopulation(currentPopulation);
+        //gestione del budget
+        currentBudget = MAX_BUDGET + currentBudget; //si somma perche' current budget e' negativo 
+        state.setBudget(currentBudget);
         city.incrementTick();
     }
 

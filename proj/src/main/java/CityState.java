@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 
 public class CityState 
 {
-
-    // Avrebbe senso rendere tutto questo una variabile effect? Da valutare 
     private int budget;
     private int population;
     private int pollution;
@@ -82,6 +80,13 @@ public class CityState
     {
         this.population = population;
     }
+    
+    public void setBudget(int budget)
+    {
+        this.budget = budget;
+    }
+    
+    
 
 
 }

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 
 public class City {
 
-    private static final int MAX_BUDGET_20X20 = 10000;
+    private static final int MAX_BUDGET_20X20 = 100000;
     private String name;
     private CityGrid grid;
     private CityState state;
@@ -19,7 +19,6 @@ public class City {
         this.state = new CityState(calculateMaxBudget());
         this.activePolicy = null;
         this.currentTick = 0;
-        
     }
 
     public City () { }
@@ -75,6 +74,11 @@ public class City {
 
     public Policy getActivePolicy() {
         return activePolicy;
+    }
+    
+    public int getMaxBudget()
+    {
+    	return calculateMaxBudget();
     }
 
 //-----------------------------GESTIONE TICK-----------------------------
