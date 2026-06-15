@@ -132,11 +132,12 @@ public boolean isFull()
     return occupiedCount == size * size ;
 }
 
-//mostra se la griglia non e' occupata in una certa posizione 
-public boolean isEmpty(int x, int y)
-{
-	 return cells[x][y].isEmpty();
+// Mostra se la griglia non e' occupata in una certa posizione 
+public boolean isEmpty(int x, int y) {
+    if (!isValidPosition(x, y)) {
+       throw new IllegalArgumentException("Invalid position");
+    }
+    return cells[x][y].isEmpty();
 }
-
 
 }
