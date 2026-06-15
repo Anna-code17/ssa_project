@@ -1,6 +1,7 @@
 {
-  "budget": -180,
+  "budget": 60,
   "population": 0,
   "pollution": 9,
-  "happiness": 5
+  "happiness": 5,
+  "buildCost": -200
 }
