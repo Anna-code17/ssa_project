@@ -15,7 +15,6 @@ public class City {
     public City(String name, int size) {
         this.name = name;
         this.grid = new CityGrid(size);
-        //Ho impostato il budget iniziale a 1000
         this.state = new CityState(calculateMaxBudget());
         this.activePolicy = null;
         this.currentTick = 0;
