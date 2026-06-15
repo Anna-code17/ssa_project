@@ -61,8 +61,8 @@ public class TickEngine {
         state.applyEffects(totalEffect);
         state.setPopulation(currentPopulation);
         //gestione del budget
-        currentBudget = MAX_BUDGET + currentBudget; //si somma perche' current budget e' negativo 
-        state.setBudget(currentBudget);
+        int newBudget = state.getBudget() + currentBudget; //si somma perche' current budget e' negativo 
+        state.setBudget(newBudget);
         city.incrementTick();
     }
 
