@@ -5,20 +5,30 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 
 public class Effect {
 
-    private int budget;
+    private int budget; // effetto ricorrente
     private int population;
     private int pollution;
     private int happiness;
+    private int buildCost;      // costo di costruzione
 
-    public Effect(int budget, int population, int pollution, int happiness) 
-    {
+    // costruttore con buildCost = 0
+    public Effect(int budget, int population, int pollution, int happiness) {
         this.budget = budget;
         this.population = population;
         this.pollution = pollution;
         this.happiness = happiness;
+        this.buildCost = 0;// default buildCost = 0
     }
 
-    
+       // costruttore con buildCost diverso da 0
+    public Effect(int budget, int population, int pollution, int happiness, int buildCost) {
+        this.budget = budget;
+        this.population = population;
+        this.pollution = pollution;
+        this.happiness = happiness;
+        this.buildCost = buildCost;
+    }
+
     public Effect() { }
 
     //-------------------------------- METODI GETTER -----------------------------------
@@ -38,6 +48,9 @@ public class Effect {
     public int getHappiness() {
         return happiness;
     }
+     public int getBuildCost() { 
+        return buildCost; 
+    }  
 
     //------------------------------- METODI SETTER -----------------------------------
 
@@ -56,6 +69,9 @@ public class Effect {
     public void setHappiness(int happiness) {
         this.happiness = happiness;
     }
+ public void setBuildCost(int buildCost) { 
+        this.buildCost = buildCost; 
+    }  
 
     //------------------------------- VISUALIZZAZIONE EFFETTI -------------------------
 
@@ -65,7 +81,7 @@ public class Effect {
                 "\nBudget=" + budget +
                 "\nNopulation=" + population +
                 "\nPollution=" + pollution +
-                "\nHappiness=" + happiness
-                ;
+                "\nHappiness=" + happiness +
+                "\nBuildCost=" + buildCost;
     }
 }
