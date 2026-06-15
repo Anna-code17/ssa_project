@@ -25,19 +25,29 @@ public class City {
     
 //--------------------------- METODI GESTIONE ENTITA' ------------------------------
 
-     public boolean placeEntity(int x, int y, PlaceableEntity entity) {
-    String type = entity.getName(); //la tipologia di edificio è salvata in name
+    public boolean placeEntity(int x, int y, PlaceableEntity entity) {
+    String type = entity.getName();
     
-    //distinguo Buildings e Infrastructures in base al tipo
-        if (type.equals("ResidentialBuilding") || 
+    // Verifica se la posizione è valida e se può essere posizionato
+    boolean canPlace;
+    if (type.equals("ResidentialBuilding") || 
         type.equals("IndustrialBuilding") || 
         type.equals("CommercialBuilding")) {
-            return placeBuilding(x, y, (Building)entity);
-        } 
-        else {
-            return placeInfrastructure(x, y, (Infrastructure)entity);
-        }
+        canPlace = placeBuilding(x, y, (Building)entity);
+    } else {
+        canPlace = placeInfrastructure(x, y, (Infrastructure)entity);
     }
+    
+    if (canPlace) {
+        // Applica il costo di costruzione una sola volta
+        Effect effects = entity.getEffects();
+        if (effects != null && effects.getBuildCost() != 0) {
+            state.setBudget(state.getBudget() + effects.getBuildCost());
+        }
+        return true;
+    }
+    return false;
+}
 
     // Posizionamento Building e valutazione rispetto delle PlacementRules
     public boolean placeBuilding(int x, int y, Building building) {
