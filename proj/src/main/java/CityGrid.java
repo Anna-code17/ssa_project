@@ -127,11 +127,6 @@ public String toString() {
     return sb.toString();
 }
 
-public boolean isFull()
-{
-    return occupiedCount == size * size ;
-}
-
 // Mostra se la griglia non e' occupata in una certa posizione 
 public boolean isEmpty(int x, int y) {
     if (!isValidPosition(x, y)) {

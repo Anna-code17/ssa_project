@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: CompleteTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.315 s <<< FAILURE! -- in CompleteTest
-CompleteTest.shouldSaveAndLoadFullCityState -- Time elapsed: 1.237 s <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.078 s <<< FAILURE! -- in CompleteTest
+CompleteTest.shouldSaveAndLoadFullCityState -- Time elapsed: 0.977 s <<< ERROR!
 java.lang.RuntimeException: 
 com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "empty" (class Cell), not marked as ignorable (3 known properties: "x", "y", "entity"])
  at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 9, column: 21] (through reference chain: City["grid"]->CityGrid["cells"]->java.lang.Object[][0]->java.lang.Object[][0]->Cell["empty"])

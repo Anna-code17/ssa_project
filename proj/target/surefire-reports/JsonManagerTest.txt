@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: JsonManagerTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.942 s <<< FAILURE! -- in JsonManagerTest
-JsonManagerTest.shouldSaveAndLoadCity -- Time elapsed: 0.749 s <<< ERROR!
+Tests run: 4, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 1.194 s <<< FAILURE! -- in JsonManagerTest
+JsonManagerTest.shouldSaveAndLoadCity -- Time elapsed: 0.964 s <<< ERROR!
 java.lang.RuntimeException: 
 com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "empty" (class Cell), not marked as ignorable (3 known properties: "x", "y", "entity"])
  at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 9, column: 21] (through reference chain: City["grid"]->CityGrid["cells"]->java.lang.Object[][0]->java.lang.Object[][0]->Cell["empty"])
@@ -34,7 +34,7 @@ Caused by: com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unr
 	at JsonManager.load(JsonManager.java:42)
 	... 4 more
 
-JsonManagerTest.shouldPersistGridEntity -- Time elapsed: 0.063 s <<< ERROR!
+JsonManagerTest.shouldPersistGridEntity -- Time elapsed: 0.047 s <<< ERROR!
 java.lang.RuntimeException: 
 com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "empty" (class Cell), not marked as ignorable (3 known properties: "x", "y", "entity"])
  at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 9, column: 21] (through reference chain: City["grid"]->CityGrid["cells"]->java.lang.Object[][0]->java.lang.Object[][0]->Cell["empty"])
@@ -66,7 +66,7 @@ Caused by: com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unr
 	at JsonManager.load(JsonManager.java:42)
 	... 4 more
 
-JsonManagerTest.shouldLoadFromResources -- Time elapsed: 0.011 s <<< ERROR!
+JsonManagerTest.shouldLoadFromResources -- Time elapsed: 0.009 s <<< ERROR!
 java.lang.RuntimeException: File non trovato: city.json
 	at JsonManager.loadFromResources(JsonManager.java:18)
 	at JsonManagerTest.shouldLoadFromResources(JsonManagerTest.java:39)
