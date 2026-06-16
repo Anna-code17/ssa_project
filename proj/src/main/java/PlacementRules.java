@@ -2,7 +2,7 @@ public class PlacementRules {
     
     //Verifica se un edificio può essere posizionato
     
-   public static boolean canPlaceBuilding(PlaceableEntity entity, CityGrid grid, int x, int y) {
+   public static boolean canPlaceBuilding(Building entity, CityGrid grid, int x, int y) {
     if (!grid.isEmpty(x, y)) {
         return false;
     }
