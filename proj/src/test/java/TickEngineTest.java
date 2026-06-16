@@ -204,5 +204,20 @@ public class TickEngineTest {
         assertEquals(23, city.getState().getPollution());
         assertEquals(-10, city.getState().getHappiness());
     }
+
+    @Test
+    void testBuildCostNotAppliedOnTick() {
+        City city = new City("Test", 3);
+        Park park = new Park(); // buildCost = -200, budget = -50
+        
+        city.placeEntity(0, 0, park);
+        int afterBuild = city.getState().getBudget(); // 2250 - 200 = 2050
+        
+        tickEngine.advanceTick(city);
+        
+        // buildCost non deve essere applicato di nuovo
+        // Solo effetto ricorrente del Park: budget=-50
+        assertEquals(afterBuild - 50, city.getState().getBudget());
+    }
 }
    
