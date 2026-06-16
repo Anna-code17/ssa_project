@@ -130,7 +130,7 @@ public String toString() {
 // Mostra se la griglia non e' occupata in una certa posizione 
 public boolean isEmpty(int x, int y) {
     if (!isValidPosition(x, y)) {
-       throw new IllegalArgumentException("Invalid position");
+       return true;
     }
     return cells[x][y].isEmpty();
 }
