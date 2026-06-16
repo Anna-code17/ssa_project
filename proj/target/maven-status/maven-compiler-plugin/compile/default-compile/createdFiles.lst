@@ -19,7 +19,6 @@ Controller.class
 PlaceableEntity.class
 CityGrid.class
 City.class
-es.class
 UserInterface$1.class
 JsonManager.class
 BuildSession.class

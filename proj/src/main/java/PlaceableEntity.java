@@ -21,24 +21,17 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 
 public abstract class PlaceableEntity {
     
-    protected String name;
+    //protected String name;
     protected Effect effects;
-    protected String type;
 
 // il nome da inserire corrisponde con il tipo di edificio che si puo' costruire
-    public PlaceableEntity(String name) {
-        this.name = name;
-    }
+    public PlaceableEntity( ) { }
 
-    public PlaceableEntity(String name, String type) {
-        this.name = name;
-        this.type = type;
-    }
 
 //------------------------------- Metodi getter --------------------------------
     
     public String getName() {
-        return name;
+        return getClass().getSimpleName();
     }
 
     public Effect getEffects() {
@@ -47,7 +40,7 @@ public abstract class PlaceableEntity {
 
     public String getType()
     {
-        return type;
+        return getClass().getSuperclass().getSimpleName();
     }
 
 //------------------------------- Metodi setter --------------------------------
@@ -61,7 +54,7 @@ public abstract class PlaceableEntity {
     @Override
     public String toString() 
     {
-        return  effects.toString() + "Entity:\nName: " + name + " \nType: " + type;
+        return  effects.toString() + "Entity:\nName: " + getName() + " \nType: " + getType();
     }
 //------------------------------- METODO ASTRATTO PER RICAVARE IL SIMBOLO DELL'ENTITA' --------------------
     

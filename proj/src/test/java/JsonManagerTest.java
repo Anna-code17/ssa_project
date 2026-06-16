@@ -53,6 +53,7 @@ public class JsonManagerTest {
 
         city.placeEntity(1, 1, new CommercialBuilding());
 
+        /* 
 	System.out.println("stampo entita'"+
     	city.getGrid()
         .getCell(1,1)
@@ -63,14 +64,14 @@ public class JsonManagerTest {
 	System.out.println(city.getGrid().getCell(1,1).getEntity());
 	System.out.println(city.getGrid().getCell(1,1).getX());
 	System.out.println(city.getGrid().getCell(1,1).getY());
-
+        */
 
         Path file = tempDir.resolve("grid.json");
 
         JsonManager.save(city, file.toString());
 
-	String json = Files.readString(file);
-	System.out.println(json);
+	    //String json = Files.readString(file);
+	    //System.out.println(json);
 
 
         City loaded = JsonManager.load(file.toString(), City.class);

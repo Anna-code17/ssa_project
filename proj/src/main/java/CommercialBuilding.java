@@ -1,7 +1,7 @@
 public class CommercialBuilding extends Building 
 {
         public CommercialBuilding() {
-        super("CommercialBuilding");
+        super();
         this.effects = JsonManager.loadFromResources(
         "effects/commercialBuilding.json",
         Effect.class

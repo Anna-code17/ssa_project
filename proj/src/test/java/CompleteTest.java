@@ -1,7 +1,8 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
 import java.nio.file.Path;
+import java.nio.file.Files;
+import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,22 +13,23 @@ public class CompleteTest {
     Path tempDir;
 
     @Test
-    void shouldSaveAndLoadFullCityState() {
+    void shouldSaveAndLoadFullCityState() throws IOException {
 
         
         // ---------------------------------------- 1. CREAZIONE CITY-------------------------------------
        
-        City city = new City("MegaCity", 20);
+        City city = new City("MegaCity", 4);
 
         // ---------------------------------------- 2. ENTITÀ (tutti i tipi)------------------------------
+	
+	    city.placeEntity(0, 0, new PowerPlant());
+        city.placeEntity(0, 1, new ResidentialBuilding());
+        city.placeEntity(0, 2, new CommercialBuilding());
+        city.placeEntity(0, 3, new IndustrialBuilding());
 
-        city.placeBuilding(1, 1, new ResidentialBuilding());
-        city.placeBuilding(2, 2, new CommercialBuilding());
-        city.placeBuilding(3, 3, new IndustrialBuilding());
-
-        city.placeInfrastructure(4, 4, new Road());
-        city.placeInfrastructure(5, 5, new Park());
-        city.placeInfrastructure(6, 6, new PowerPlant());
+        city.placeEntity(1, 1, new Road());
+        city.placeEntity(1, 2, new Park());
+        
 
         // ----------------------------------------- 3. POLICY -------------------------------------------
 
@@ -49,8 +51,11 @@ public class CompleteTest {
         boolean saved = saveManager.save(city, file.toString());
 
         assertTrue(saved);
+    	
         
-        
+        String json = Files.readString(file);
+	    System.out.println(json);        
+
 
         // ----------------------------------------- 6. LOAD ---------------------------------------------
 
@@ -66,34 +71,34 @@ public class CompleteTest {
  	//punto e 8 e 9 sono focalizzati se è stato mantenuto correttamente il tipo di oggetti       
         assertInstanceOf(
             ResidentialBuilding.class,
-            loaded.getGrid().getCell(1, 1).getEntity()
+            loaded.getGrid().getCell(0, 1).getEntity()
         );
 
         assertInstanceOf(
             CommercialBuilding.class,
-            loaded.getGrid().getCell(2, 2).getEntity()
+            loaded.getGrid().getCell(0, 2).getEntity()
         );
 
         assertInstanceOf(
             IndustrialBuilding.class,
-            loaded.getGrid().getCell(3, 3).getEntity()
+            loaded.getGrid().getCell(0, 3).getEntity()
         );
 
         // ----------------------------------------- 9. CHECK INFRASTRUCTURE -------------------------------
 
         assertInstanceOf(
             Road.class,
-            loaded.getGrid().getCell(4, 4).getEntity()
+            loaded.getGrid().getCell(1, 1).getEntity()
         );
 
         assertInstanceOf(
             Park.class,
-            loaded.getGrid().getCell(5, 5).getEntity()
+            loaded.getGrid().getCell(1, 2).getEntity()
         );
 
         assertInstanceOf(
             PowerPlant.class,
-            loaded.getGrid().getCell(6, 6).getEntity()
+            loaded.getGrid().getCell(0, 0).getEntity()
         );
 
         // -------------------------------------------- 10. CHECK POLICY ------------------------------------- 

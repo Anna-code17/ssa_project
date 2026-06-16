@@ -35,9 +35,9 @@ public class City {
     boolean result;
 
     if (entity instanceof Building building) {
-        result = grid.place(x, y, building);
+        result = placeBuilding(x, y, building);
     } else if (entity instanceof Infrastructure infrastructure) {
-        result = grid.place(x, y, infrastructure);
+        result = placeInfrastructure(x, y, infrastructure);
     } else {
         return false;
     }

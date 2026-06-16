@@ -1,7 +1,7 @@
 public class Road extends Infrastructure {
 
     public Road() {
-        super("Road");
+        super();
         this.effects = JsonManager.loadFromResources(
         "effects/road.json",
         Effect.class

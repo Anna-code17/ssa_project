@@ -1,16 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: CompleteTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.625 s <<< FAILURE! -- in CompleteTest
-CompleteTest.shouldSaveAndLoadFullCityState -- Time elapsed: 0.579 s <<< FAILURE!
-org.opentest4j.AssertionFailedError: Unexpected null value, expected: <ResidentialBuilding> but was: <null>
-	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
-	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-	at org.junit.jupiter.api.AssertInstanceOf.assertInstanceOf(AssertInstanceOf.java:49)
-	at org.junit.jupiter.api.AssertInstanceOf.assertInstanceOf(AssertInstanceOf.java:31)
-	at org.junit.jupiter.api.Assertions.assertInstanceOf(Assertions.java:3583)
-	at CompleteTest.shouldSaveAndLoadFullCityState(CompleteTest.java:67)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.552 s -- in CompleteTest

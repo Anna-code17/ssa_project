@@ -1,4 +1,4 @@
-import java.util.Scanner;
+/*import java.util.Scanner;
 public class es
 {
    public static void main(String[] args) 
@@ -115,3 +115,4 @@ System.out.println(cityG);
     }
 
 }
+*/

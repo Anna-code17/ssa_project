@@ -1,7 +1,7 @@
 public class PowerPlant extends Infrastructure {
 
     public PowerPlant() {
-        super("PowerPlant");
+        super();
         this.effects = JsonManager.loadFromResources(
         "effects/powerPlant.json",
         Effect.class

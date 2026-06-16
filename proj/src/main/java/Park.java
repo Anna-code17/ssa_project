@@ -1,7 +1,7 @@
 public class Park extends Infrastructure {
 
     public Park() {
-        super("Park");
+        super();
         this.effects = JsonManager.loadFromResources(
         "effects/park.json",
         Effect.class

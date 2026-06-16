@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="PlacementRulesTest" time="0.035" tests="8" errors="0" skipped="0" failures="2">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="PlacementRulesTest" time="0.038" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -13,7 +13,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="GB"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/anna/ssa_project/proj/target/surefire/surefirebooter-20260616122012803_3.jar /home/anna/ssa_project/proj/target/surefire 2026-06-16T12-20-12_678-jvmRun1 surefire-20260616122012803_1tmp surefire_0-20260616122012803_2tmp"/>
+    <property name="sun.java.command" value="/home/anna/ssa_project/proj/target/surefire/surefirebooter-20260616145406667_3.jar /home/anna/ssa_project/proj/target/surefire 2026-06-16T14-54-06_506-jvmRun1 surefire-20260616145406667_1tmp surefire_0-20260616145406667_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/anna/ssa_project/proj/target/test-classes:/home/anna/ssa_project/proj/target/classes:/home/anna/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.0/jackson-databind-2.17.0.jar:/home/anna/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.0/jackson-annotations-2.17.0.jar:/home/anna/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.0/jackson-core-2.17.0.jar:/home/anna/.m2/repository/net/bytebuddy/byte-buddy/1.14.9/byte-buddy-1.14.9.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/home/anna/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/anna/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/home/anna/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/home/anna/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -28,7 +28,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/anna/ssa_project/proj/target/surefire/surefirebooter-20260616122012803_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/anna/ssa_project/proj/target/surefire/surefirebooter-20260616145406667_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.11+10-1-24.04.2-Ubuntu"/>
     <property name="user.name" value="anna"/>
@@ -54,38 +54,12 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testResidentialAtMaxDistance" classname="PlacementRulesTest" time="0.002"/>
-  <testcase name="testPlacementAtBoundary" classname="PlacementRulesTest" time="0.002"/>
+  <testcase name="testResidentialAtMaxDistance" classname="PlacementRulesTest" time="0.005"/>
+  <testcase name="testPlacementAtBoundary" classname="PlacementRulesTest" time="0.003"/>
   <testcase name="testNonRestrictedEntities" classname="PlacementRulesTest" time="0.003"/>
-  <testcase name="testResidentialOnOccupiedCell" classname="PlacementRulesTest" time="0.002"/>
-  <testcase name="testOutOfBoundsPlacement" classname="PlacementRulesTest" time="0.002"/>
-  <testcase name="testResidentialWithoutPowerPlant" classname="PlacementRulesTest" time="0.006">
-    <failure message="expected: &lt;false&gt; but was: &lt;true&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
-	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
-	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-	at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
-	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
-	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:31)
-	at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:231)
-	at PlacementRulesTest.testResidentialWithoutPowerPlant(PlacementRulesTest.java:17)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-]]></failure>
-  </testcase>
-  <testcase name="testResidentialTooFarFromPowerPlant" classname="PlacementRulesTest" time="0.004">
-    <failure message="expected: &lt;false&gt; but was: &lt;true&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
-	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
-	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-	at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
-	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
-	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:31)
-	at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:231)
-	at PlacementRulesTest.testResidentialTooFarFromPowerPlant(PlacementRulesTest.java:32)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-]]></failure>
-  </testcase>
-  <testcase name="testResidentialNearPowerPlant" classname="PlacementRulesTest" time="0.002"/>
+  <testcase name="testResidentialOnOccupiedCell" classname="PlacementRulesTest" time="0.003"/>
+  <testcase name="testOutOfBoundsPlacement" classname="PlacementRulesTest" time="0.003"/>
+  <testcase name="testResidentialWithoutPowerPlant" classname="PlacementRulesTest" time="0.002"/>
+  <testcase name="testResidentialTooFarFromPowerPlant" classname="PlacementRulesTest" time="0.003"/>
+  <testcase name="testResidentialNearPowerPlant" classname="PlacementRulesTest" time="0.005"/>
 </testsuite>
