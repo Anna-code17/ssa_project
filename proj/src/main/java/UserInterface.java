@@ -91,6 +91,8 @@ public class UserInterface extends JFrame {
         statePanel=new StatePanel();
 
         statePanel.getActivePolicyButton().addActionListener(e -> showPolicySelector());
+        statePanel.getSaveButton().addActionListener(e -> saveCity());
+        statePanel.getLoadButton().addActionListener(e -> loadCity());
 
         centerCardLayout = new CardLayout();
         centerCardPanel = new JPanel(centerCardLayout);
@@ -625,12 +627,42 @@ public class UserInterface extends JFrame {
         }
 
         if (buildPanel != null) {
-            buildPanel.getConfirmButton()
-                    .setEnabled(buildSession.isActive());
+            buildPanel.getConfirmButton().setEnabled(buildSession.isActive());
 
-            buildPanel.getCancelButton()
-                    .setEnabled(buildSession.isActive());
+            buildPanel.getCancelButton().setEnabled(buildSession.isActive());
         }
+    }
+
+    private void saveCity() {
+
+        JFileChooser chooser = new JFileChooser();
+        int result = chooser.showSaveDialog(this);
+        if (result != JFileChooser.APPROVE_OPTION) {
+            return;}
+
+        boolean saved = controller.saveCity(chooser.getSelectedFile().getAbsolutePath());
+
+        JOptionPane.showMessageDialog(this, saved ? "City saved successfully." : "Error while saving.");
+    }
+
+
+    private void loadCity() {
+
+        JFileChooser chooser = new JFileChooser();
+
+        int result = chooser.showOpenDialog(this);
+
+        if (result != JFileChooser.APPROVE_OPTION) {
+            return;}
+
+        boolean loaded = controller.loadCity(chooser.getSelectedFile().getAbsolutePath());
+
+        if (!loaded) {JOptionPane.showMessageDialog(this, "Error while loading.");
+
+            return;
+        }
+
+        refresh();
     }
 
 

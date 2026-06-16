@@ -16,6 +16,8 @@ public class StatePanel extends JPanel {
 
     private JLabel activePolicyValue;
     private JButton activePolicyButton;
+    private JButton saveButton;
+    private JButton loadButton;
 
     public StatePanel() {
 
@@ -69,7 +71,33 @@ public class StatePanel extends JPanel {
 
         add(activePolicyButton);
         add(Box.createVerticalStrut(18));
+
         add(buildLegend());
+
+        add(Box.createVerticalStrut(16));
+
+        saveButton = new JButton("Save");
+        loadButton = new JButton("Load");
+
+        saveButton.setFocusPainted(false);
+        loadButton.setFocusPainted(false);
+
+        saveButton.setFont(new Font("SansSerif", Font.BOLD, 14));
+        loadButton.setFont(new Font("SansSerif", Font.BOLD, 14));
+
+        saveButton.setBorder(new EmptyBorder(10, 16, 10, 16));
+        loadButton.setBorder(new EmptyBorder(10, 16, 10, 16));
+
+        saveButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+        loadButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        saveButton.setMaximumSize(new Dimension(140, 40));
+        loadButton.setMaximumSize(new Dimension(140, 40));
+
+        add(saveButton);
+        add(Box.createVerticalStrut(8));
+        add(loadButton);
+
         add(Box.createVerticalGlue());
     }
 
@@ -167,5 +195,12 @@ public class StatePanel extends JPanel {
 
     public JButton getActivePolicyButton() {
         return activePolicyButton;
+    }
+    public JButton getSaveButton() {
+        return saveButton;
+    }
+
+    public JButton getLoadButton() {
+        return loadButton;
     }
 }

@@ -1,10 +1,12 @@
 public class Controller {
     private City city;
     private TickEngine tickEngine;
+    private SaveManager SaveLoad;
     
     public Controller(String cityName, int gridSize) {
         this.city = new City(cityName, gridSize);
         this.tickEngine = new TickEngine();
+        this.SaveLoad= new SaveManager();
     }
     
     // -------------------------- ENTITÀ ------------------------------
@@ -64,4 +66,21 @@ public class Controller {
     public String getCityName() {
         return city.getName();
     }
+
+    // -------------- GESTIONE SALVATAGGI-----------------------
+    public boolean saveCity(String filepath) {
+        return SaveLoad.save(city, filepath);
+    }
+
+    public boolean loadCity(String filepath) {
+        City loadedCity = SaveLoad.load(filepath);
+        if (loadedCity == null) {
+            return false;}
+
+        this.city = loadedCity;
+
+        return true;
+    }
+
+
 }
