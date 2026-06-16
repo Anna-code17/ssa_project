@@ -4,7 +4,7 @@ autonumber
 actor User
 
 boundary UI
-control PlacementController
+control Controller
 entity City
 entity CityGrid
 entity Cell
@@ -14,22 +14,23 @@ User -> UI : selectEntity(entity)
 User -> UI : selectCell(x, y)
 User -> UI : confirmPlacement()
 
-UI -> PlacementController : placeEntity(entity, x, y)
+UI -> Controller : placeEntity(entity, x, y)
 
-PlacementController -> City : getGrid()
-City --> PlacementController : CityGrid
+Controller -> City : placeEntity(entity, x, y)
+City -> CityGrid : place(x, y, entity)
+CityGrid -> Cell : placeEntity(entity)
 
-PlacementController -> CityGrid : getCell(x, y)
-CityGrid --> PlacementController : Cell
-
-PlacementController -> Cell : isEmpty()
-
-opt Cell is free
-    PlacementController -> Cell : place(entity)
-    PlacementController -> UI : placementSuccess()
+alt Cell is free
+    Cell --> CityGrid : success
+    CityGrid --> City : success
+    City --> Controller : success
+    Controller -> UI : placementSuccess()
 end
 
-opt Cell is occupied
-    PlacementController -> UI : showPlacementError()
+alt Cell is occupied
+    Cell --> CityGrid : failed (occupied)
+    CityGrid --> City : placement failed
+    City --> Controller : failed
+    Controller -> UI : showPlacementError()
 end
 @enduml 
