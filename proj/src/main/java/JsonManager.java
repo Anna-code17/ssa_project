@@ -1,11 +1,27 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.*;
-
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
 public class JsonManager {
 
     private static final ObjectMapper mapper = new ObjectMapper();
+    static 
+    {
+        mapper.setVisibility(
+        mapper.getSerializationConfig()
+            .getDefaultVisibilityChecker()
+            .withFieldVisibility(JsonAutoDetect.Visibility.ANY)
+            .withGetterVisibility(JsonAutoDetect.Visibility.NONE)
+            .withIsGetterVisibility(JsonAutoDetect.Visibility.NONE)
+            .withSetterVisibility(JsonAutoDetect.Visibility.NONE)
+            .withCreatorVisibility(JsonAutoDetect.Visibility.NONE)
+        );
 
+        mapper.configure(
+        com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+        false
+        );
+    }
 
     // Caricamento da resources (per gli effects)
     public static <T> T loadFromResources(String path, Class<T> clazz) {

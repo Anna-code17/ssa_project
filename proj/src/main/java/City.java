@@ -1,5 +1,6 @@
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import java.io.*;
 
 @JsonAutoDetect(
     fieldVisibility = JsonAutoDetect.Visibility.ANY,
@@ -29,38 +30,37 @@ public class City {
 //--------------------------- METODI GESTIONE ENTITA' ------------------------------
 
     public boolean placeEntity(int x, int y, PlaceableEntity entity) {
-    //Controlla se la posizione selezionata è in griglia
-    if (!grid.isValidPosition(x, y)) {
+
+    if (!grid.isValidPosition(x, y)) return false;
+
+    boolean result;
+
+    if (entity instanceof Building building) {
+        result = grid.place(x, y, building);
+    } else if (entity instanceof Infrastructure infrastructure) {
+        result = grid.place(x, y, infrastructure);
+    } else {
         return false;
     }
-    String type = entity.getName();
-    
-    // Verifica se la posizione è valida e se può essere posizionato
-    boolean canPlace;
-    if (type.equals("ResidentialBuilding") || 
-        type.equals("IndustrialBuilding") || 
-        type.equals("CommercialBuilding")) {
-        canPlace = placeBuilding(x, y, (Building)entity);
-    } else {
-        canPlace = placeInfrastructure(x, y, (Infrastructure)entity);
-    }
-    
-    if (canPlace) {
-        // Applica il costo di costruzione una sola volta
+
+    if (result) {
         Effect effects = entity.getEffects();
         if (effects != null && effects.getBuildCost() != 0) {
             state.setBudget(state.getBudget() + effects.getBuildCost());
         }
-        return true;
     }
-    return false;
-}
+
+    return result;
+    }
+    
 
     // Posizionamento Building e valutazione rispetto delle PlacementRules
     public boolean placeBuilding(int x, int y, Building building) {
+        
         if (PlacementRules.canPlaceBuilding(building, this.grid , x, y)) {
-            return  this.grid.place(x, y, building);
+            return this.grid.place(x, y, building);
         }
+
         return false;
     }
     

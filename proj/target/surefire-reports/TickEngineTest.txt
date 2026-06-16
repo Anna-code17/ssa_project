@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: TickEngineTest
 -------------------------------------------------------------------------------
-Tests run: 11, Failures: 9, Errors: 0, Skipped: 0, Time elapsed: 0.348 s <<< FAILURE! -- in TickEngineTest
-TickEngineTest.testAdvanceTickWithIndustrialBuilding -- Time elapsed: 0.025 s <<< FAILURE!
+Tests run: 11, Failures: 9, Errors: 0, Skipped: 0, Time elapsed: 0.059 s <<< FAILURE! -- in TickEngineTest
+TickEngineTest.testAdvanceTickWithIndustrialBuilding -- Time elapsed: 0.006 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <1750> but was: <2110>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -15,7 +15,7 @@ org.opentest4j.AssertionFailedError: expected: <1750> but was: <2110>
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-TickEngineTest.testAdvanceTickWithResidentialBuilding -- Time elapsed: 0.028 s <<< FAILURE!
+TickEngineTest.testAdvanceTickWithResidentialBuilding -- Time elapsed: 0.004 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <1250> but was: <1690>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -28,7 +28,7 @@ org.opentest4j.AssertionFailedError: expected: <1250> but was: <1690>
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-TickEngineTest.testAdvanceTickWithCommercialBuilding -- Time elapsed: 0.029 s <<< FAILURE!
+TickEngineTest.testAdvanceTickWithCommercialBuilding -- Time elapsed: 0.004 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <1870> but was: <2110>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -41,7 +41,7 @@ org.opentest4j.AssertionFailedError: expected: <1870> but was: <2110>
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-TickEngineTest.testAdvanceTickWithPark -- Time elapsed: 0.013 s <<< FAILURE!
+TickEngineTest.testAdvanceTickWithPark -- Time elapsed: 0.003 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <1900> but was: <2000>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -54,7 +54,7 @@ org.opentest4j.AssertionFailedError: expected: <1900> but was: <2000>
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-TickEngineTest.testAdvanceTickWithRoad -- Time elapsed: 0.007 s <<< FAILURE!
+TickEngineTest.testAdvanceTickWithRoad -- Time elapsed: 0.004 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <2180> but was: <2195>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -67,7 +67,7 @@ org.opentest4j.AssertionFailedError: expected: <2180> but was: <2195>
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-TickEngineTest.testAdvanceTickWithIndustrialExpansionPolicy -- Time elapsed: 0.009 s <<< FAILURE!
+TickEngineTest.testAdvanceTickWithIndustrialExpansionPolicy -- Time elapsed: 0.003 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <1925> but was: <2121>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -93,7 +93,7 @@ org.opentest4j.AssertionFailedError: expected: <1450> but was: <1800>
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-TickEngineTest.testAdvanceTickWithEnvironmentalTaxPolicy -- Time elapsed: 0.006 s <<< FAILURE!
+TickEngineTest.testAdvanceTickWithEnvironmentalTaxPolicy -- Time elapsed: 0.003 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <1232> but was: <1793>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -106,7 +106,7 @@ org.opentest4j.AssertionFailedError: expected: <1232> but was: <1793>
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-TickEngineTest.testAdvanceTickWithMultipleEntities -- Time elapsed: 0.012 s <<< FAILURE!
+TickEngineTest.testAdvanceTickWithMultipleEntities -- Time elapsed: 0.003 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <1100> but was: <1550>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)

@@ -1,7 +1,8 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
 import java.nio.file.Path;
+import java.nio.file.Files;
+import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -46,15 +47,31 @@ public class JsonManagerTest {
     }
 
     @Test
-    void shouldPersistGridEntity() {
+    void shouldPersistGridEntity() throws IOException {
 
-        City city = new City("GridCity", 10);
+        City city = new City("GridCity", 4);
 
-        city.placeBuilding(1, 1, new ResidentialBuilding());
+        city.placeEntity(1, 1, new CommercialBuilding());
+
+	System.out.println("stampo entita'"+
+    	city.getGrid()
+        .getCell(1,1)
+        .getEntity()
+	+ "\n");
+	
+	System.out.println("provo a prendere la cella " + city.getGrid().getCell(1,1));
+	System.out.println(city.getGrid().getCell(1,1).getEntity());
+	System.out.println(city.getGrid().getCell(1,1).getX());
+	System.out.println(city.getGrid().getCell(1,1).getY());
+
 
         Path file = tempDir.resolve("grid.json");
 
         JsonManager.save(city, file.toString());
+
+	String json = Files.readString(file);
+	System.out.println(json);
+
 
         City loaded = JsonManager.load(file.toString(), City.class);
 
@@ -63,3 +80,4 @@ public class JsonManagerTest {
         );
     }
 }
+

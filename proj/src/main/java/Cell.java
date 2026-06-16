@@ -1,5 +1,6 @@
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import java.io.*;
 
 @JsonAutoDetect(
     fieldVisibility = JsonAutoDetect.Visibility.ANY,
@@ -40,6 +41,7 @@ public class Cell {
         }
         
         this.entity = entity;
+
         return true;
     }
 
