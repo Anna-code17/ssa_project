@@ -25,6 +25,10 @@ public class City {
 //--------------------------- METODI GESTIONE ENTITA' ------------------------------
 
     public boolean placeEntity(int x, int y, PlaceableEntity entity) {
+    //Controlla se la posizione selezionata è in griglia
+    if (!grid.isValidPosition(x, y)) {
+        return false;
+    }
     String type = entity.getName();
     
     // Verifica se la posizione è valida e se può essere posizionato
