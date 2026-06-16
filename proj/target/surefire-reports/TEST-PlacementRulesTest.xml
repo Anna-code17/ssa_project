@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="PlacementRulesTest" time="0.097" tests="8" errors="1" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="PlacementRulesTest" time="0.098" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/home/anna/temp/ssa_project/proj/target/test-classes:/home/anna/temp/ssa_project/proj/target/classes:/home/anna/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.0/jackson-databind-2.17.0.jar:/home/anna/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.0/jackson-annotations-2.17.0.jar:/home/anna/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.0/jackson-core-2.17.0.jar:/home/anna/.m2/repository/net/bytebuddy/byte-buddy/1.14.9/byte-buddy-1.14.9.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/home/anna/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/anna/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/home/anna/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/home/anna/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:"/>
+    <property name="java.class.path" value="/home/anna/ssa_project/proj/target/test-classes:/home/anna/ssa_project/proj/target/classes:/home/anna/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.0/jackson-databind-2.17.0.jar:/home/anna/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.0/jackson-annotations-2.17.0.jar:/home/anna/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.0/jackson-core-2.17.0.jar:/home/anna/.m2/repository/net/bytebuddy/byte-buddy/1.14.9/byte-buddy-1.14.9.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/home/anna/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/anna/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/home/anna/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/home/anna/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:"/>
     <property name="java.vm.vendor" value="Ubuntu"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://ubuntu.com/"/>
@@ -13,9 +13,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="GB"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/anna/temp/ssa_project/proj/target/surefire/surefirebooter-20260615222553105_3.jar /home/anna/temp/ssa_project/proj/target/surefire 2026-06-15T22-25-52_947-jvmRun1 surefire-20260615222553105_1tmp surefire_0-20260615222553105_2tmp"/>
+    <property name="sun.java.command" value="/home/anna/ssa_project/proj/target/surefire/surefirebooter-20260616105000503_3.jar /home/anna/ssa_project/proj/target/surefire 2026-06-16T10-50-00_259-jvmRun1 surefire-20260616105000503_1tmp surefire_0-20260616105000503_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/home/anna/temp/ssa_project/proj/target/test-classes:/home/anna/temp/ssa_project/proj/target/classes:/home/anna/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.0/jackson-databind-2.17.0.jar:/home/anna/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.0/jackson-annotations-2.17.0.jar:/home/anna/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.0/jackson-core-2.17.0.jar:/home/anna/.m2/repository/net/bytebuddy/byte-buddy/1.14.9/byte-buddy-1.14.9.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/home/anna/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/anna/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/home/anna/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/home/anna/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:"/>
+    <property name="surefire.test.class.path" value="/home/anna/ssa_project/proj/target/test-classes:/home/anna/ssa_project/proj/target/classes:/home/anna/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.0/jackson-databind-2.17.0.jar:/home/anna/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.0/jackson-annotations-2.17.0.jar:/home/anna/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.0/jackson-core-2.17.0.jar:/home/anna/.m2/repository/net/bytebuddy/byte-buddy/1.14.9/byte-buddy-1.14.9.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/home/anna/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/anna/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/home/anna/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/home/anna/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/home/anna/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/anna"/>
     <property name="user.language" value="en"/>
@@ -23,12 +23,12 @@
     <property name="java.version.date" value="2026-04-21"/>
     <property name="java.home" value="/usr/lib/jvm/java-21-openjdk-amd64"/>
     <property name="file.separator" value="/"/>
-    <property name="basedir" value="/home/anna/temp/ssa_project/proj"/>
+    <property name="basedir" value="/home/anna/ssa_project/proj"/>
     <property name="java.vm.compressedOopsMode" value="32-bit"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/anna/temp/ssa_project/proj/target/surefire/surefirebooter-20260615222553105_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/anna/ssa_project/proj/target/surefire/surefirebooter-20260616105000503_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.11+10-1-24.04.2-Ubuntu"/>
     <property name="user.name" value="anna"/>
@@ -42,7 +42,7 @@
     <property name="java.vendor.url.bug" value="https://bugs.launchpad.net/ubuntu/+source/openjdk-21"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="java.version" value="21.0.11"/>
-    <property name="user.dir" value="/home/anna/temp/ssa_project/proj"/>
+    <property name="user.dir" value="/home/anna/ssa_project/proj"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="native.encoding" value="UTF-8"/>
@@ -54,23 +54,12 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testResidentialAtMaxDistance" classname="PlacementRulesTest" time="0.003"/>
-  <testcase name="testPlacementAtBoundary" classname="PlacementRulesTest" time="0.049"/>
-  <testcase name="testNonRestrictedEntities" classname="PlacementRulesTest" time="0.01"/>
-  <testcase name="testResidentialOnOccupiedCell" classname="PlacementRulesTest" time="0.003"/>
-  <testcase name="testOutOfBoundsPlacement" classname="PlacementRulesTest" time="0.004">
-    <error message="Invalid position" type="java.lang.IllegalArgumentException"><![CDATA[java.lang.IllegalArgumentException: Invalid position
-	at CityGrid.isEmpty(CityGrid.java:133)
-	at PlacementRules.canPlaceInfrastructure(PlacementRules.java:20)
-	at City.placeInfrastructure(City.java:61)
-	at City.placeEntity(City.java:37)
-	at PlacementRulesTest.testOutOfBoundsPlacement(PlacementRulesTest.java:75)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-]]></error>
-  </testcase>
-  <testcase name="testResidentialWithoutPowerPlant" classname="PlacementRulesTest" time="0.008"/>
-  <testcase name="testResidentialTooFarFromPowerPlant" classname="PlacementRulesTest" time="0.003"/>
-  <testcase name="testResidentialNearPowerPlant" classname="PlacementRulesTest" time="0.002"/>
+  <testcase name="testResidentialAtMaxDistance" classname="PlacementRulesTest" time="0.009"/>
+  <testcase name="testPlacementAtBoundary" classname="PlacementRulesTest" time="0.01"/>
+  <testcase name="testNonRestrictedEntities" classname="PlacementRulesTest" time="0.013"/>
+  <testcase name="testResidentialOnOccupiedCell" classname="PlacementRulesTest" time="0.007"/>
+  <testcase name="testOutOfBoundsPlacement" classname="PlacementRulesTest" time="0.007"/>
+  <testcase name="testResidentialWithoutPowerPlant" classname="PlacementRulesTest" time="0.005"/>
+  <testcase name="testResidentialTooFarFromPowerPlant" classname="PlacementRulesTest" time="0.005"/>
+  <testcase name="testResidentialNearPowerPlant" classname="PlacementRulesTest" time="0.003"/>
 </testsuite>

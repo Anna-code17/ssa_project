@@ -42,7 +42,7 @@ public class JsonManagerTest {
         );
 
         assertNotNull(city);
-        assertEquals("Roma", city.getName());
+        assertEquals("MyCity", city.getName());
     }
 
     @Test
