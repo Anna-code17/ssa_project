@@ -1,18 +1,14 @@
 # ssa_project
 
-## APPUNTI DA MODIFICARE SULLO STATO DEL PROGETTO
+## APPUNTI DA MODIFICARE SULLO STATO DEL PROGETTO 
 
-ATTENZIONE: DA SISTEMARE IL FILE POM. Non è stata messa la gestione del main messo in esecuzione di default. Il codice è sulla parte del codice del readme
-
-<configuration>
-	<mainClass>Main</mainClass>
-</configuration>
-
-# Specificazioni sui documenti fatti fino ad ora
-
-----> domain class ha funzionalità da aggiungere. Le funzionalità da aggiungere sono specificate all'inizio delle classi. Consigliato eseguire comunque un secondo controllo. 
-
-----> Mancano da caricare codice e file formato .md del domain model e del design class model. 
-
----> Da ricordare di fare update delle immagini a fine progetto. 
-
+- Finire la GUI
+- Revisionare gli acceptance criteria/quello che c'è su jira
+- revisionare i codici UML
+- aggiornare le immagini di tutti i grafici aggiunti
+- aggiungere il domain model 
+- commentare un pochetto di più il codice 
+- eliminare la ridondanza nelle classi sul livello di accesso di json
+- creare doc di system test su gira (I report di unit test dovrebbero essere quelli che sono nella cartella proj/target/surefire-reports)
+- sono finite le classi cu cui bisognava fare il testing giusto?
+- creare un documento sul come poter utilizzare/installare
