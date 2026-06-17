@@ -13,58 +13,82 @@ participant "City Simulation System" as System
 User -> System : launchApplication()
 System --> User : displayUI(cityState, cityGrid)
 
-loop while simulation is running
+loop While simulation is running
 
-  opt Create new entity
-    User -> System : createEntity(entityType, position)
-    System -> System : validatePlacement(position, entityType)
+    opt Place Entity
+        User -> System : placeEntity(entityType, position)
+        System -> System : validatePlacement()
 
-    opt placement allowed
-      System -> System : addEntityToGrid()
-      System --> User : entityCreated()
-      System --> User : updateGrid()
+        alt Placement allowed
+            System -> System : addEntityToGrid()
+            System --> User : updateGrid()
+            System --> User : updateState()
 
-    else placement not allowed
-      System --> User : showError("Invalid placement")
+        else Placement not allowed
+            System --> User : showError("Invalid placement")
+        end
     end
-  end
 
-  opt Remove entity
-    User -> System : removeEntity(position)
-    System -> System : removeEntityFromGrid()
-    System --> User : entityRemoved()
-    System --> User : updateGrid()
-  end
+    opt Remove Entity
+        User -> System : removeEntity(position)
+        System -> System : removeEntityFromGrid()
+        System --> User : updateGrid()
+        System --> User : updateState()
+    end
 
-  opt Activate policy
-    User -> System : activatePolicy(policy)
-    System -> System : applyPolicy(policy)
-    System --> User : policyActivated()
-    System --> User : updateUI()
-  end
+    opt Activate Policy
+        User -> System : activatePolicy(policy)
+        System -> System : applyPolicy()
+        System --> User : updateUI()
+    end
 
-  opt Advance time
-    User -> System : advanceTick()
-    System -> System : scanGridAndApplyEffects()
-    System -> System : updateCityState()
-    System --> User : cityStateUpdated()
-    System --> User : updateUI()
-  end
+    opt Deactivate Policy
+        User -> System : deactivatePolicy()
+        System -> System : removePolicy()
+        System --> User : updateUI()
+    end
 
-  opt Save simulation
-    User -> System : saveCityState()
-    System -> System : saveSimulation()
-    System --> User : saveConfirmed()
-  end
+    opt Advance Tick
+        User -> System : advanceTick()
+        System -> System : scanGridAndApplyEffects()
+        System -> System : updateCityState()
+        System --> User : updateUI()
+    end
 
-  opt Reset simulation
-    User -> System : resetSimulation()
-    System -> System : resetSimulationState()
-    System --> User : resetConfirmed()
-    System --> User : updateUI()
-  end
+    opt Save Simulation
+        User -> System : saveCityState()
+        System -> System : saveSimulationToFile()
+
+        alt Save successful
+            System --> User : saveConfirmed()
+        else Save failed
+            System --> User : showError("Save failed")
+        end
+    end
+
+    opt Load Simulation
+        User -> System : loadCityState()
+        System -> System : loadSimulationFromFile()
+
+        alt Load successful
+            System --> User : updateUI()
+        else Load failed
+            System --> User : showError("Load failed")
+        end
+
+    end
+
+    opt Reset Simulation
+        User -> System : resetSimulation()
+        System -> System : resetSimulationState()
+        System --> User : updateUI()
+    end
 
 end
+
+User -> System : closeApplication()
+System --> User : applicationClosed()
+
 @enduml
 
 ```
@@ -80,9 +104,8 @@ end
 autonumber
 
 actor User
-
 boundary UI
-control PlacementController
+control Controller
 entity City
 entity CityGrid
 entity Cell
@@ -92,24 +115,26 @@ User -> UI : selectEntity(entity)
 User -> UI : selectCell(x, y)
 User -> UI : confirmPlacement()
 
-UI -> PlacementController : placeEntity(entity, x, y)
+UI -> Controller : placeEntity(entity, x, y)
 
-PlacementController -> City : getGrid()
-City --> PlacementController : CityGrid
+Controller -> City : placeEntity(entity, x, y)
+City -> CityGrid : place(x, y, entity)
+CityGrid -> Cell : placeEntity(entity)
 
-PlacementController -> CityGrid : getCell(x, y)
-CityGrid --> PlacementController : Cell
-
-PlacementController -> Cell : isEmpty()
-
-opt Cell is free
-    PlacementController -> Cell : place(entity)
-    PlacementController -> UI : placementSuccess()
+alt Cell is free
+    Cell --> CityGrid : success
+    CityGrid --> City : success
+    City --> Controller : success
+    Controller -> UI : placementSuccess()
 end
 
-opt Cell is occupied
-    PlacementController -> UI : showPlacementError()
+alt Cell is occupied
+    Cell --> CityGrid : failed (occupied)
+    CityGrid --> City : placement failed
+    City --> Controller : failed
+    Controller -> UI : showPlacementError()
 end
+
 @enduml 
 
 ```
@@ -126,23 +151,23 @@ autonumber
 actor User
 
 boundary UI
-control PolicyController
+control Controller
 entity City
 collections Policy
 
 User -> UI : selectPolicy(policy)
 User -> UI : confirmActivation()
 
-UI -> PolicyController : applyPolicy(policy)
+UI -> Controller : applyPolicy(policy)
 
-PolicyController -> City : addPolicy(policy)
+Controller -> City : setActivePolicy(policy)
 
 opt Policy successfully added
-    PolicyController -> UI : policyApplied()
+    Controller -> UI : policyApplied()
 end
 
 opt Policy already active
-    PolicyController -> UI : showPolicyError()
+    Controller -> UI : showPolicyError()
 end
 @enduml
 
@@ -159,9 +184,8 @@ autonumber
 actor User
 
 boundary UI
-control TickController
+control Controller
 entity TickEngine
-entity RuleEngine
 entity City
 entity CityGrid
 entity Cell
@@ -170,9 +194,9 @@ entity CityState
 collections Policy
 
 User -> UI : advanceTick()
-UI -> TickController : advanceTick()
+UI -> Controller : nextTick()
 
-TickController -> TickEngine : advanceTick(city)
+Controller -> TickEngine : advanceTick(city)
 
 TickEngine -> City : getGrid()
 City --> TickEngine : grid
@@ -183,37 +207,41 @@ City --> TickEngine : state
 TickEngine -> City : getActivePolicy()
 City --> TickEngine : policy
 
-TickEngine -> RuleEngine : processTick(grid, state, policy)
-
-RuleEngine -> CityGrid : getCells()
-CityGrid --> RuleEngine : cells
-
 loop for each Cell
 
-    RuleEngine -> Cell : getEntity()
-    Cell --> RuleEngine : entity
+    TickEngine -> CityGrid : getCell(x, y)
+    CityGrid --> TickEngine : cell
+
+    TickEngine -> Cell : getEntity()
+    Cell --> TickEngine : entity
 
     opt Cell has an entity
 
-        RuleEngine -> PlaceableEntity : getEffect()
-        PlaceableEntity --> RuleEngine : effect
+        TickEngine -> PlaceableEntity : getEffects()
+        PlaceableEntity --> TickEngine : effect
 
-        opt Active policy exists
-
-            RuleEngine -> Policy : modify(effect)
-            Policy --> RuleEngine : modifiedEffect
-
-            RuleEngine -> CityState : apply(modifiedEffect)
-
-        end
-
-        opt No active policy
-
-            RuleEngine -> CityState : apply(effect)
-
-        end
+        TickEngine -> TickEngine : sumEffects(budget, pollution, happiness, population)
 
     end
+
+end
+
+opt Active policy exists
+
+    TickEngine -> TickEngine : applyPolicyPercent(effects, policy)
+
+end
+
+TickEngine -> CityState : applyEffects(totalEffect)
+TickEngine -> CityState : setPopulation(currentPopulation)
+TickEngine -> CityState : setBudget(newBudget)
+
+TickEngine -> City : incrementTick()
+
+TickEngine -> UI : refreshUI()
+UI --> User : cityStateUpdated()
+
+@enduml
 
 end
 
@@ -235,29 +263,38 @@ autonumber
 actor User
 
 boundary UI
-control SaveController
+control Controller
 entity SaveManager
 entity City
 database SaveRepository
 
 User -> UI : saveGame()
 
-UI -> SaveController : saveGame()
+UI -> Controller : saveGame()
 
-SaveController -> SaveManager : save(city)
+Controller -> SaveManager : save(city, filepath)
 
-SaveManager -> City : getSaveData()
-City --> SaveManager : saveData
+SaveManager -> JsonManager : save(city, filepath)
 
-SaveManager -> SaveRepository : write(saveData)
-SaveRepository --> SaveManager : saved
+JsonManager -> City : serialize()
+City --> JsonManager : jsonData
 
-SaveManager --> SaveController : saveCompleted()
+JsonManager -> SaveRepository : write(jsonData)
+SaveRepository --> JsonManager : written
 
-SaveController --> UI : showSaveSuccess()
+JsonManager --> SaveManager : success
 
+opt save successful
+SaveManager --> Controller: true
+Controller --> UI : showSaveSuccess()
 UI --> User : save confirmed
+end
 
+opt save failed
+SaveManager --> Controller: false
+Controller --> UI : showSaveError()
+UI --> User : show error
+end
 @enduml
 ```
 
