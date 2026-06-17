@@ -4,16 +4,16 @@ autonumber
 actor User
 
 boundary UI
-control SaveController
+control Controller
 entity SaveManager
 entity City
 database SaveRepository
 
 User -> UI : saveGame()
 
-UI -> SaveController : saveGame()
+UI -> Controller : saveGame()
 
-SaveController -> SaveManager : save(city)
+Controller -> SaveManager : save(city)
 
 SaveManager -> City : getSaveData()
 City --> SaveManager : saveData
@@ -21,9 +21,9 @@ City --> SaveManager : saveData
 SaveManager -> SaveRepository : write(saveData)
 SaveRepository --> SaveManager : saved
 
-SaveManager --> SaveController : saveCompleted()
+SaveManager --> Controller : saveCompleted()
 
-SaveController --> UI : showSaveSuccess()
+Controller --> UI : showSaveSuccess()
 
 UI --> User : save confirmed
 
