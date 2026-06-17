@@ -25,13 +25,15 @@ SaveRepository --> JsonManager : written
 
 JsonManager --> SaveManager : success
 
-alt save successful
+opt save successful
 SaveManager --> Controller: true
 Controller --> UI : showSaveSuccess()
 UI --> User : save confirmed
+end
 
-alt save failed
+opt save failed
 SaveManager --> Controller: false
 Controller --> UI : showSaveError()
 UI --> User : show error
+end
 @enduml
