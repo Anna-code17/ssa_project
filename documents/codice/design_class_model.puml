@@ -259,7 +259,7 @@ City "0..1" o-- "0..1" Policy : activates
 
 CityGrid "1" *-- "1..*" Cell : composed of
 Cell "0..1" -- "0..1" PlaceableEntity : hosts
-PlaceableEntity "1" *-- "1" Effect : produces
+PlaceableEntity "1" --> "1" Effect : produces
 
 ' ======================
 ' Inheritance
@@ -280,14 +280,18 @@ Policy <|.. EnvironmentalTaxPolicy
 Policy <|.. IndustrialExpansionPolicy
 
 City ..> PlacementRules : uses
-Controller --> City
-Controller o-- TickEngine
-TickEngine --> City
+Controller --> City : manages
+Controller o-- TickEngine : uses
+Controller --> BuildSession : uses
+Controller --> SaveManager : uses
+
+TickEngine --> City : advances
 TickEngine ..> CityGrid : uses
 TickEngine ..> CityState : updates
 PlacementRules ..> CityGrid : uses
-SaveManager --> JsonManager
-SaveManager --> City
+PlacementRules ..> PlaceableEntity : validates
+SaveManager --> JsonManager : uses
+SaveManager --> City : saves
 BuildSession --> InteractionMode
 
 ' ======================
