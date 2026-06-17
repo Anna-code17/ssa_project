@@ -5,56 +5,79 @@ participant "City Simulation System" as System
 User -> System : launchApplication()
 System --> User : displayUI(cityState, cityGrid)
 
-loop while simulation is running
+loop While simulation is running
 
-  opt Create new entity
-    User -> System : createEntity(entityType, position)
-    System -> System : validatePlacement(position, entityType)
+    opt Place Entity
+        User -> System : placeEntity(entityType, position)
+        System -> System : validatePlacement()
 
-    opt placement allowed
-      System -> System : addEntityToGrid()
-      System --> User : entityCreated()
-      System --> User : updateGrid()
+        alt Placement allowed
+            System -> System : addEntityToGrid()
+            System --> User : updateGrid()
+            System --> User : updateState()
 
-    else placement not allowed
-      System --> User : showError("Invalid placement")
+        else Placement not allowed
+            System --> User : showError("Invalid placement")
+        end
     end
-  end
 
-  opt Remove entity
-    User -> System : removeEntity(position)
-    System -> System : removeEntityFromGrid()
-    System --> User : entityRemoved()
-    System --> User : updateGrid()
-  end
+    opt Remove Entity
+        User -> System : removeEntity(position)
+        System -> System : removeEntityFromGrid()
+        System --> User : updateGrid()
+        System --> User : updateState()
+    end
 
-  opt Activate policy
-    User -> System : activatePolicy(policy)
-    System -> System : applyPolicy(policy)
-    System --> User : policyActivated()
-    System --> User : updateUI()
-  end
+    opt Activate Policy
+        User -> System : activatePolicy(policy)
+        System -> System : applyPolicy()
+        System --> User : updateUI()
+    end
 
-  opt Advance time
-    User -> System : advanceTick()
-    System -> System : scanGridAndApplyEffects()
-    System -> System : updateCityState()
-    System --> User : cityStateUpdated()
-    System --> User : updateUI()
-  end
+    opt Deactivate Policy
+        User -> System : deactivatePolicy()
+        System -> System : removePolicy()
+        System --> User : updateUI()
+    end
 
-  opt Save simulation
-    User -> System : saveCityState()
-    System -> System : saveSimulation()
-    System --> User : saveConfirmed()
-  end
+    opt Advance Tick
+        User -> System : advanceTick()
+        System -> System : scanGridAndApplyEffects()
+        System -> System : updateCityState()
+        System --> User : updateUI()
+    end
 
-  opt Reset simulation
-    User -> System : resetSimulation()
-    System -> System : resetSimulationState()
-    System --> User : resetConfirmed()
-    System --> User : updateUI()
-  end
+    opt Save Simulation
+        User -> System : saveCityState()
+        System -> System : saveSimulationToFile()
+
+        alt Save successful
+            System --> User : saveConfirmed()
+        else Save failed
+            System --> User : showError("Save failed")
+        end
+    end
+
+    opt Load Simulation
+        User -> System : loadCityState()
+        System -> System : loadSimulationFromFile()
+
+        alt Load successful
+            System --> User : updateUI()
+        else Load failed
+            System --> User : showError("Load failed")
+        end
+    end
+
+    opt Reset Simulation
+        User -> System : resetSimulation()
+        System -> System : resetSimulationState()
+        System --> User : updateUI()
+    end
 
 end
+
+User -> System : closeApplication()
+System --> User : applicationClosed()
+
 @enduml
