@@ -3,6 +3,7 @@ autonumber
 
 actor User
 
+boundary UI
 control Controller
 entity TickEngine
 entity City
