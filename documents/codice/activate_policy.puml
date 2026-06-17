@@ -11,15 +11,15 @@ collections Policy
 User -> UI : selectPolicy(policy)
 User -> UI : confirmActivation()
 
-UI -> PolicyController : applyPolicy(policy)
+UI -> Controller : applyPolicy(policy)
 
-PolicyController -> City : addPolicy(policy)
+Controller -> City : setActivePolicy(policy)
 
 opt Policy successfully added
-    PolicyController -> UI : policyApplied()
+    Controller -> UI : policyApplied()
 end
 
 opt Policy already active
-    PolicyController -> UI : showPolicyError()
+    Controller -> UI : showPolicyError()
 end
 @enduml
