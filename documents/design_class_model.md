@@ -3,7 +3,315 @@
 ![design_class_model.png](img/diagrams/design_class_model.png)
 
 ```plantuml
+@startuml
+left to right direction
 
+' ======================
+' Classes
+' ======================
+class City {
+  - MAX_BUDGET_20X20 : int
+  - name: String
+  - grid: CityGrid
+  - state: CityState
+  - activePolicy: Policy
+  - currentTick: int
+  + City(name: String, size: int)
+  + City ()
+  + placeEntity( x: int, y: int, entity: PlaceableEntity): boolean
+  + placeBuilding( x: int, y: int , entity: Building): boolean
+  + placeInfrastructure( x: int, y: int , entity: Infrastructure): boolean
+  + removeEntity(x: int, y: int): void
+  + getName() : String
+  + getGrid(): CityGrid
+  + getState(): CityState
+  + getActivePolicy(): Policy
+  + incrementTick() : void
+  + getCurrentTick() : int
+  + setActivePolicy(policy: Policy): void
+  + reset() : void
+}
+
+class CityGrid {
+  - size: int
+  - cells: Cell[][]
+  - occupiedCount: int
+  + CityGrid(size: int)
+  + CityGrid()
+  + place(x: int, y: int, entity: PlaceableEntity): boolean
+  + remove(x: int, y: int): void
+  + clearGrid() : void
+  + getCell(x: int, y: int): Cell
+  + getOccupiedCount () : int
+  + getSize(): int
+  + isValidPosition(x: int, y: int) : boolean
+  + toString () : String
+  + isFull() : boolean
+  + isEmpty(x: int, y: int) : boolean 
+}
+
+class Cell {
+  - x: int
+  - y: int
+  - entity: PlaceableEntity  
+  + Cell(x: int, y: int)
+  + Cell ()
+  + isEmpty(): boolean
+  + placeEntity(entity: PlaceableEntity): void
+  + getEntity(): PlaceableEntity
+  + clear(): void
+  + getX() : int
+  + getY() : int
+}
+
+class CityState {
+  - budget: int
+  - population: int
+  - pollution: int
+  - happiness: int  
+  - initialBudget: int
+  + CityState(initialBudget: int)
+  + CityState ()
+  + applyEffects(effects: Effect): void
+  + clear() : void
+  + getBudget(): int
+  + getPopulation(): int
+  + getPollution(): int
+  + getHappiness(): int
+  + setPopulation(population: int): void
+  + setBudget(budget: int): void
+  + toString(): String
+}
+
+class Effect {
+  - budget: int
+  - population: int
+  - pollution: int
+  - happiness: int
+  - buildCost: int
+  + Effect(budget: int, population: int, pollution: int, happiness: int)
+  + Effect(budget: int, population: int, pollution: int, happiness: int, buildCost: int)
+  + Effect()
+  + getBudget(): int
+  + getPopulation(): int
+  + getPollution(): int
+  + getHappiness(): int
+  + getBuildCost(): int
+  + setBudget(budget: int): void
+  + setPopulation(population: int): void
+  + setPollution(pollution: int): void
+  + setHappiness(happiness: int): void
+  + setBuildCost(buildCost: int): void
+  + toString(): String
+}
+
+abstract class PlaceableEntity {
+  # name: String
+  # effects: Effect
+  # type: String  
+  + PlaceableEntity(name: String)
+  + PlaceableEntity(name: String, type: String)
+  + getName(): String
+  + getEffects(): Effect
+  + getType(): String
+  + {abstract} getSymbol(): String
+  + setEffects(effects: Effect)
+  + toString(): String 
+}
+
+abstract class Building {
+  + Building(name: String)
+}
+
+class ResidentialBuilding {
+  + ResidentialBuilding()
+  + getSymbol(): String
+}
+
+class IndustrialBuilding {
+  + IndustrialBuilding()
+  + getSymbol(): String
+}
+
+class CommercialBuilding {
+  + CommercialBuilding()
+  + getSymbol(): String
+}
+
+abstract class Infrastructure {
+  + Infrastructure(name: String)
+}
+
+class PowerPlant {
+  + PowerPlant()
+  + getSymbol(): String
+}
+
+class Park {
+  + Park()
+  + getSymbol(): String
+}
+
+class Road {
+  + Road()
+  + getSymbol(): String
+}
+
+interface Policy {
+  + getName(): String
+  + getPercentBudget() : int
+  + getPercentPopulation() : int
+  + getPercentPollution() : int
+  + getPercentHappiness() : int
+}
+
+class EnvironmentalTaxPolicy {
+  + getName(): String
+  + getPercentBudget() : int
+  + getPercentPollution() : int
+  + getPercentHappiness() : int
+}
+
+class IndustrialExpansionPolicy{
+  + getName(): String
+  + getPercentBudget() : int
+  + getPercentPollution() : int
+  + getPercentHappiness() : int
+}
+
+' ======================
+'Simulation
+' ======================
+
+class Controller {
+  - city: City
+  - tickEngine: TickEngine
+  + Controller(cityName: String, gridSize: int) 
+  + placeEntity( x: int, y: int, entity: PlaceableEntity): boolean
+  + removeEntity(x: int, y: int): void
+  + applyPolicy(policy: Policy): void 
+  + deactivatePolicy(): void 
+  + nextTick(): void
+  + getCurrentTick(): int
+  + resetCity() : void
+  + getCity(): City
+  + getCityState(): CityState
+  + getGrid(): CityGrid 
+  + getActivePolicy() : Policy
+  + getCityName(): String
+}
+
+class PlacementRules{
+  - hasPowerPlantNearby( grid: CityGrid, x : int, y : int) : boolean
+  + canPlaceBuilding( entity : Building, grid : CityGrid, x : int, y : int) : boolean
+  + canPlaceInfrastructure( entity: Infrastructure, grid : CityGrid, x : int, y : int) : boolean
+}
+
+class TickEngine {
+  + advanceTick(city: City): void
+  - applyPolicyPercent(value: int, percent: int): int
+}
+
+class SaveManager {
+  + save(city: City, filepath: String): boolean
+  + load(filepath: String): City
+}
+
+class JsonManager {
+  - mapper : ObjectMapper
+  + {static} loadFromResources(path: String, clazz: Class<T>): T
+  + {static} save(object: Object, path: String): void
+  + {static} load(path: String, clazz: Class<T>): T
+}
+
+class BuildSession {
+  - mode: InteractionMode
+  - waitingForCellSelection: boolean
+  - selectedX: int
+  - selectedY: int
+  - selectedType: String
+  + BuildSession()
+  + startBuild(): void
+  + startRemove(): void
+  + reset(): void
+  + cancel(): void
+  + isActive(): boolean
+  + isBuildMode(): boolean
+  + isRemoveMode(): boolean
+  + isWaitingForCellSelection(): boolean
+  + selectCell(x: int, y: int): void
+  + setSelectedType(type: String): void
+  + getSelectedType(): String
+  + getSelectedX(): int
+  + getSelectedY(): int
+  + canConfirm(): boolean
+}
+
+enum InteractionMode {
+  NORMAL
+  BUILD
+  REMOVE
+}
+
+' ======================
+' Structural Relations
+' ======================
+
+City "1" *-- "1" CityGrid : contains
+City "1" *-- "1" CityState : owns
+City "0..1" o-- "0..1" Policy : activates
+
+
+CityGrid "1" *-- "1..*" Cell : composed of
+Cell "0..1" -- "0..1" PlaceableEntity : hosts
+PlaceableEntity "1" *-- "1" Effect : produces
+
+' ======================
+' Inheritance
+' ======================
+
+PlaceableEntity <|-- Building
+PlaceableEntity <|-- Infrastructure
+
+Building <|-- ResidentialBuilding
+Building <|-- IndustrialBuilding
+Building <|-- CommercialBuilding
+
+Infrastructure <|-- PowerPlant
+Infrastructure <|-- Park
+Infrastructure <|-- Road
+
+Policy <|.. EnvironmentalTaxPolicy
+Policy <|.. IndustrialExpansionPolicy
+
+City ..> PlacementRules : uses
+Controller --> City
+Controller o-- TickEngine
+TickEngine --> City
+TickEngine ..> CityGrid : uses
+TickEngine ..> CityState : updates
+PlacementRules ..> CityGrid : uses
+SaveManager --> JsonManager
+SaveManager --> City
+BuildSession --> InteractionMode
+
+' ======================
+' Notes
+' ======================
+
+note right of Effect
+Represents modifications
+applied to the CityState
+(e.g. population,
+pollution, budget).
+end note
+
+note bottom of Policy
+Policies alter the way
+simulation effects are
+applied during a tick.
+end note
+@enduml
 
 
 
