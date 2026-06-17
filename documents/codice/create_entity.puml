@@ -32,4 +32,5 @@ alt Cell is occupied
     City --> Controller : failed
     Controller -> UI : showPlacementError()
 end
+
 @enduml 
