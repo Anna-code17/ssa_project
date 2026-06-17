@@ -4,7 +4,7 @@ autonumber
 actor User
 
 boundary UI
-control PolicyController
+control Controller
 entity City
 collections Policy
 
