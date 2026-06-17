@@ -11,6 +11,7 @@ usecase "Create Entity" as UC_Create
 usecase "Remove Entity" as UC_Remove
 usecase "Validate Placement Rules" as UC_Validate
 usecase "Apply City Policy" as UC_ApplyPol
+usecase "Deactivate Policy" as UC_Deactivate
 usecase "Save City State" as UC_Save
 usecase "Load city state" as UC_Load
 }
@@ -28,5 +29,8 @@ User --> UC_Remove
 ' ==== Dipendences =====
 
 UC_Create .> UC_Validate : <<include>>
+UC_Save <|-- UC_Load : <<extend>>
+UC_Deactivate .> UC_ApplyPol : <<extend>>
+UC_Reset .> UC_Save : <<extend>>
 
 @enduml
