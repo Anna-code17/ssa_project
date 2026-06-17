@@ -1,6 +1,6 @@
 # Use Case Diagram
 
-![use_case_model.png](img/diagrams/use_case_model.png)
+![use_case_diagram.png](img/diagrams/use_case_diagram.png)
 
 ```plantuml
 
@@ -10,28 +10,20 @@ left to right direction
 actor User
 
 rectangle "City Simulation System" {
-
 usecase "View City Grid" as UC_View
-
 usecase "Advance Simulation Tick" as UC_Tick
-
 usecase "Reset Simulation" as UC_Reset
-
 usecase "Create Entity" as UC_Create
-
 usecase "Remove Entity" as UC_Remove
-
 usecase "Validate Placement Rules" as UC_Validate
-
 usecase "Apply City Policy" as UC_ApplyPol
-
+usecase "Deactivate Policy" as UC_Deactivate
 usecase "Save City State" as UC_Save
-
 usecase "Load city state" as UC_Load
-
 }
 
 ' ===== User interactions ===== 
+
 User --> UC_View 
 User --> UC_Tick 
 User --> UC_Reset 
@@ -44,7 +36,9 @@ User --> UC_Remove
 ' ==== Dipendences =====
 
 UC_Create .> UC_Validate : <<include>>
+UC_Save <|-- UC_Load : <<extend>>
+UC_Deactivate .> UC_ApplyPol : <<extend>>
+UC_Reset .> UC_Save : <<extend>>
 
 @enduml
-
 ```
