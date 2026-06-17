@@ -13,18 +13,25 @@ User -> UI : saveGame()
 
 UI -> Controller : saveGame()
 
-Controller -> SaveManager : save(city)
+Controller -> SaveManager : save(city, filepath)
 
-SaveManager -> City : getSaveData()
-City --> SaveManager : saveData
+SaveManager -> JsonManager : save(city, filepath)
 
-SaveManager -> SaveRepository : write(saveData)
-SaveRepository --> SaveManager : saved
+JsonManager -> City : serialize()
+City --> JsonManager : jsonData
 
-SaveManager --> Controller : saveCompleted()
+JsonManager -> SaveRepository : write(jsonData)
+SaveRepository --> JsonManager : written
 
+JsonManager --> SaveManager : success
+
+alt save successful
+SaveManager --> Controller: true
 Controller --> UI : showSaveSuccess()
-
 UI --> User : save confirmed
 
+alt save failed
+SaveManager --> Controller: false
+Controller --> UI : showSaveError()
+UI --> User : show error
 @enduml
