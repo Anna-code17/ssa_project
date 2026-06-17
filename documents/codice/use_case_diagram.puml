@@ -17,6 +17,7 @@ usecase "Load city state" as UC_Load
 }
 
 ' ===== User interactions ===== 
+
 User --> UC_View 
 User --> UC_Tick 
 User --> UC_Reset 
