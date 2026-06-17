@@ -3,10 +3,8 @@ autonumber
 
 actor User
 
-boundary UI
-control TickController
+control Controller
 entity TickEngine
-entity RuleEngine
 entity City
 entity CityGrid
 entity Cell
@@ -15,9 +13,9 @@ entity CityState
 collections Policy
 
 User -> UI : advanceTick()
-UI -> TickController : advanceTick()
+UI -> Controller : nextTick()
 
-TickController -> TickEngine : advanceTick(city)
+Controller -> TickEngine : advanceTick(city)
 
 TickEngine -> City : getGrid()
 City --> TickEngine : grid
@@ -28,37 +26,41 @@ City --> TickEngine : state
 TickEngine -> City : getActivePolicy()
 City --> TickEngine : policy
 
-TickEngine -> RuleEngine : processTick(grid, state, policy)
-
-RuleEngine -> CityGrid : getCells()
-CityGrid --> RuleEngine : cells
-
 loop for each Cell
 
-    RuleEngine -> Cell : getEntity()
-    Cell --> RuleEngine : entity
+    TickEngine -> CityGrid : getCell(x, y)
+    CityGrid --> TickEngine : cell
+
+    TickEngine -> Cell : getEntity()
+    Cell --> TickEngine : entity
 
     opt Cell has an entity
 
-        RuleEngine -> PlaceableEntity : getEffect()
-        PlaceableEntity --> RuleEngine : effect
+        TickEngine -> PlaceableEntity : getEffects()
+        PlaceableEntity --> TickEngine : effect
 
-        opt Active policy exists
-
-            RuleEngine -> Policy : modify(effect)
-            Policy --> RuleEngine : modifiedEffect
-
-            RuleEngine -> CityState : apply(modifiedEffect)
-
-        end
-
-        opt No active policy
-
-            RuleEngine -> CityState : apply(effect)
-
-        end
+        TickEngine -> TickEngine : sumEffects(budget, pollution, happiness, population)
 
     end
+
+end
+
+opt Active policy exists
+
+    TickEngine -> TickEngine : applyPolicyPercent(effects, policy)
+
+end
+
+TickEngine -> CityState : applyEffects(totalEffect)
+TickEngine -> CityState : setPopulation(currentPopulation)
+TickEngine -> CityState : setBudget(newBudget)
+
+TickEngine -> City : incrementTick()
+
+TickEngine -> UI : refreshUI()
+UI --> User : cityStateUpdated()
+
+@enduml
 
 end
 
