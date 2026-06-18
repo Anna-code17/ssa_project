@@ -11,6 +11,6 @@ public class ResidentialBuilding extends Building {
     //metodo per ottenere il simbolo della entita' sulla griglia
     @Override
     public String getSymbol() {
-        return "R";
+        return "🏠";
     }
 }

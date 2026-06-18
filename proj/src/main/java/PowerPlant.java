@@ -10,7 +10,7 @@ public class PowerPlant extends Infrastructure {
 
     @Override
     public String getSymbol() {
-        return "W";
+        return "☢";
     }
 }
 

@@ -10,6 +10,6 @@ public class Park extends Infrastructure {
     //metodo per stampare l'entita' sulla griglia
     @Override
     public String getSymbol() {
-        return "P";
+        return "🌳";
     }
 }

@@ -10,6 +10,6 @@ public class IndustrialBuilding extends Building {
 
     @Override
     public String getSymbol() {
-        return "I";
+        return "🏭";
     }
 }

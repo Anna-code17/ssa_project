@@ -10,6 +10,6 @@ public class CommercialBuilding extends Building
 
         @Override
         public String getSymbol() {
-        return "C";
+        return "🏪";
         }
 }
