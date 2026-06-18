@@ -89,6 +89,6 @@ public class Controller {
             return false;
         }
         this.city = loadedCity;
-        return true;
+        return true; 
     }
 }
