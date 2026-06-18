@@ -164,6 +164,7 @@ public class TickEngineTest {
         
     @Test
     void testBuildCostNotAppliedOnTick() {
+    //Verifics che buildCost viene applicato solo al posizionamento, non nei tick successivi
         City city = new City("Test", 3);
         Park park = new Park(); // buildCost = -200, budget = -50
         
