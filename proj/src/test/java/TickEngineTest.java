@@ -1,7 +1,8 @@
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-/* Test per TickEngine: verifica l'avanzamento dei tick, gli effetti delle entità e l'applicazione delle policy.*/
+/* Test per TickEngine.
+   Verifica l'avanzamento dei tick, gli effetti delle entità e l'applicazione delle policy.*/
 
 public class TickEngineTest {
     
