@@ -309,7 +309,7 @@ public class UserInterface extends JFrame {
         tile.setOpaque(true);
 
         JLabel symbolLabel = new JLabel(".", SwingConstants.CENTER);
-        symbolLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
+        symbolLabel.setFont(new Font("Segoe UI Emoji", Font.BOLD, 19));
         symbolLabel.setForeground(new Color(33, 37, 41));
 
         if (cell != null && !cell.isEmpty()) {
