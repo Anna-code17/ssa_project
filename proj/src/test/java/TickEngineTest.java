@@ -1,8 +1,8 @@
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-/* Test per TickEngine - motore di simulazione.
-   Verifica l'avanzamento del tick con entità singole, multiple e policy.*/
+/* Test per TickEngine: verifica l'avanzamento dei tick, gli effetti delle entità e l'applicazione delle policy.*/
+
 public class TickEngineTest {
     
     private TickEngine tickEngine;
