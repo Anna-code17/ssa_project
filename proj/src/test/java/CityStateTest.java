@@ -1,7 +1,8 @@
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-/*Test per CityState: verifica gestione delle metriche della città.*/
+/*Test per CityState.
+  Verifica gestione delle metriche della città.*/
 
 public class CityStateTest {
     
