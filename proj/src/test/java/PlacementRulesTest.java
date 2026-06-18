@@ -1,6 +1,11 @@
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+/*Test per PlacementRules.
+  Verifica le regole di posizionamento delle entità:
+  - restrizioni per edifici residenziali (vicinanza a una centrale)
+  - libertà di posizionamento per le altre entità */
+
 public class PlacementRulesTest {
 
     private City city;
@@ -10,7 +15,7 @@ public class PlacementRulesTest {
         city = new City("Test", 5);
     }
 
-    // Test su Residential Buildings
+    // Test su Residential Buildings: devono essere posizionati entro 2 celle da una PowerPlant
 
     @Test
     void testResidentialWithoutPowerPlant() {
@@ -36,7 +41,7 @@ public class PlacementRulesTest {
     void testResidentialAtMaxDistance() {
         city.placeEntity(2, 2, new PowerPlant());
 
-        // distanza massima consentita
+        // Caso limite: casa esattamente alla distanza massima consentita dalla centrale
         assertTrue(city.placeEntity(2, 4, new ResidentialBuilding()));
     }
 
@@ -62,6 +67,7 @@ public class PlacementRulesTest {
 
     @Test
     void testPlacementAtBoundary() {
+        //Verifica il posizionamento ai bordi della griglia: deve funzionare
         city.placeEntity(0, 0, new PowerPlant());
 
         assertTrue(city.placeEntity(0, 1, new ResidentialBuilding()));
@@ -71,7 +77,7 @@ public class PlacementRulesTest {
 
     @Test
     void testOutOfBoundsPlacement() {
-        // Il metodo placeEntity dovrebbe gestire coordinate fuori range
+        // Coordinate fuori dalla griglia: il posizionamento deve essere rifiutato
         assertFalse(city.placeEntity(-1, 0, new Park()));
         assertFalse(city.placeEntity(0, -1, new Park()));
         assertFalse(city.placeEntity(5, 0, new Park()));
