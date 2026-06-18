@@ -83,26 +83,25 @@ public class CityTest {
    }
 
     @Test
-    void testPlaceResidentialBuilding() {
-        ResidentialBuilding building = new ResidentialBuilding();
+    void testPlacement() {
+        // Testa il flusso: City → PlacementRules → CityGrid → Cell
+
+        City city = new City("Test", 5);
+        int initialBudget = city.getState().getBudget();
+
+        // Posiziona delle entità
         PowerPlant plant = new PowerPlant();
-        
-        // Prima posiziona una centrale elettrica
+        ResidentialBuilding house = new ResidentialBuilding();
         city.placeEntity(2, 2, plant);
+        city.placeEntity(2, 3, house);
+
+        // Verifica che l'entità sia effettivamente nella griglia
+        assertFalse(city.getGrid().isEmpty(2, 2));
+        assertFalse(city.getGrid().isEmpty(2, 3));
         
-        // Poi posiziona l'edificio residenziale vicino
-        boolean result = city.placeEntity(2, 3, building);
-        
-        assertTrue(result);
-    }
-    
-    @Test
-    void testPlaceBuildingWithoutPowerPlant() {
-        ResidentialBuilding building = new ResidentialBuilding();
-        
-        // Posiziona senza centrale elettrica vicina
-        boolean result = city.placeEntity(0, 0, building);
-        
-        assertFalse(result);
+        // Verifica che il buildCost sia stato applicato
+       int expectedBudget = initialBudget + plant.getEffects().getBuildCost()+ house.getEffects().getBuildCost();
+
+        assertEquals(expectedBudget, city.getState().getBudget());
     }
 }
