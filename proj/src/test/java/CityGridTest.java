@@ -1,8 +1,9 @@
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-/*Test per CityGrid - gestione della griglia e delle celle.
- Verifica creazione, posizionamento, rimozione e validazione coordinate.*/
+/*Test per CityGrid.
+ Verifica la gestione della griglia e delle celle: 
+ creazione, posizionamento, rimozione e validazione delle coordinate.*/
 
 public class CityGridTest {
     
