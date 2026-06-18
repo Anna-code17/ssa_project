@@ -72,6 +72,17 @@ public class CityTest {
     }
 
     @Test
+    void testDeactivatePolicy() {
+        City city = new City("Test", 5);
+        
+        city.setActivePolicy(new EnvironmentalTaxPolicy());
+        assertNotNull(city.getActivePolicy());
+        
+        city.setActivePolicy(null);
+        assertNull(city.getActivePolicy());
+   }
+
+    @Test
     void testPlaceResidentialBuilding() {
         ResidentialBuilding building = new ResidentialBuilding();
         PowerPlant plant = new PowerPlant();
