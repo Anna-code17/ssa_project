@@ -58,7 +58,7 @@ public class CityTest {
         assertNotEquals(0, city.getState().getHappiness());
         assertNotEquals(6250, city.getState().getBudget()); // budget iniziale per città 5x5 = 6250
 
-        //Applica reset
+        // Esegue il reset della città
         city.reset();
         
            // Verifica reset
