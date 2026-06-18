@@ -11,7 +11,10 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
     @JsonSubTypes.Type(value = EnvironmentalTaxPolicy.class, name = "EnvironmentalTaxPolicy"),
     @JsonSubTypes.Type(value = IndustrialExpansionPolicy.class, name = "IndustrialExpansionPolicy")
 })
-
+    
+/*Interfaccia per le policy applicabili alla città.
+  Le policy possono modificare le statistiche della città tramite variazioni percentuali.*/
+    
 public interface Policy {
     
     String getName();
