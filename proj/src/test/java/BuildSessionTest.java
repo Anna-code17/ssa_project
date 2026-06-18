@@ -12,6 +12,7 @@ public class BuildSessionTest {
     
     @Test
     void testInitialState() {
+        //Verifica stato iniziale: inattivo, nessuna selezione
         assertFalse(session.isActive());
         assertFalse(session.isBuildMode());
         assertFalse(session.isRemoveMode());
@@ -23,6 +24,7 @@ public class BuildSessionTest {
     
     @Test
     void testStartBuildSetsCorrectState() {
+        //Verifica l'avvio della modalità Build: attiva, in attesa di selezione cella
         session.startBuild();
         
         assertTrue(session.isActive());
@@ -37,6 +39,7 @@ public class BuildSessionTest {
     
     @Test
     void testStartRemoveSetsCorrectState() {
+        //Verifica modalità Remove: attiva, non in attesa di selezione cella
         session.startRemove();
         
         assertTrue(session.isActive());
@@ -50,6 +53,7 @@ public class BuildSessionTest {
     
     @Test
     void testSelectCell() {
+        //Verifica che selezione cella memorizza coordinate e aggiorna stato
         session.startBuild();
         session.selectCell(2, 3);
         
@@ -60,11 +64,12 @@ public class BuildSessionTest {
     
     @Test
     void testCanConfirmRequiresAllConditions() {
+        //Verifica che canConfirm() è vero solo con build attivo + cella selezionata + tipo selezionato
         session.startBuild();
-        assertFalse(session.canConfirm()); // no cell, no type
+        assertFalse(session.canConfirm()); //  manca cella e tipo
         
         session.selectCell(2, 3);
-        assertFalse(session.canConfirm()); // no type
+        assertFalse(session.canConfirm()); // manca tipo
         
         session.setSelectedType("Park");
         assertTrue(session.canConfirm()); // tutto OK
@@ -72,14 +77,16 @@ public class BuildSessionTest {
     
     @Test
     void testCancelResetsState() {
+        // Setup sessione 
         session.startBuild();
         session.selectCell(2, 3);
         session.setSelectedType("Park");
-        
         assertTrue(session.canConfirm());
-        
+
+        //Esegue il reset
         session.cancel();
         
+        // Verifica reset
         assertFalse(session.isActive());
         assertEquals(-1, session.getSelectedX());
         assertEquals(-1, session.getSelectedY());
