@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+/* Test per City.
+   Verifica creazione, budget, reset, policy e posizionamento. */
+
 public class CityTest {
     
     private City city;
