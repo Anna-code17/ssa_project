@@ -18,7 +18,7 @@ public class Main {
         
         scanner.close();
         
-        // Avvio interfaccia grafica
+        // Crea il controller e avvia l'interfaccia grafica
         Controller controller = new Controller(cityName, gridSize);
         new UserInterface(controller);
     }
