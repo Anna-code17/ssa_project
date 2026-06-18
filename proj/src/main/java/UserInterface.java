@@ -28,7 +28,7 @@ public class UserInterface extends JFrame {
     private JPanel centerCardPanel;
 
     private JButton buildButton;
-
+    private boolean isFirstBuild = true;
 
     public UserInterface(Controller controller) {
         if (controller == null) {
@@ -215,12 +215,18 @@ public class UserInterface extends JFrame {
 
         buildPanel.clearEntitySelection();
 
+         // Mostra solo la prima volta
+        if (isFirstBuild) {
         JOptionPane.showMessageDialog(
-                this,
-                "Select an empty cell on the grid."
+            this,
+            "Select an empty cell on the grid.",
+            "Build Mode",
+            JOptionPane.INFORMATION_MESSAGE
         );
-
-        updateBuildConfirmState();
+        isFirstBuild = false;
+    }
+    
+    updateBuildConfirmState();
     }
 
     private void enterRemoveMode() {
