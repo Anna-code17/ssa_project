@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+/* Test per TickEngine - motore di simulazione.
+   Verifica l'avanzamento del tick con entità singole, multiple e policy.*/
 public class TickEngineTest {
     
     private TickEngine tickEngine;
@@ -11,7 +13,6 @@ public class TickEngineTest {
         tickEngine = new TickEngine();
         city = new City("TestCity", 3);
     }
-    
 
     @Test
     void testAdvanceTickWithNoEntities() {
@@ -31,6 +32,7 @@ public class TickEngineTest {
     }
     
     // Metodo helper per testare solo entità singole 
+    // Verifica: buildCost (applicato al posizionamento) e effetti ricorrenti (applicati ad ogni tick)
     private void testSingleEntity(PlaceableEntity entity, int x, int y) {
         
         // Setto i valori iniziali
@@ -159,7 +161,23 @@ public class TickEngineTest {
         tickEngine.advanceTick(city);
         assertEquals(beforeTick + 1, city.getCurrentTick());
     }
+        
+    @Test
+    void testBuildCostNotAppliedOnTick() {
+        City city = new City("Test", 3);
+        Park park = new Park(); // buildCost = -200, budget = -50
+        
+        city.placeEntity(0, 0, park);
+        int afterBuild = city.getState().getBudget(); // 2250 - 200 = 2050
+        
+        tickEngine.advanceTick(city);
+        
+        // buildCost non deve essere applicato di nuovo
+        // Solo effetto ricorrente del Park: budget=-50
+        assertEquals(afterBuild - 50, city.getState().getBudget());
+    }
 
+    // Verifica che la policy ambientale modifichi correttamente gli effetti
     @Test
     void testAdvanceTickWithEnvironmentalTaxPolicy() {
         // PowerPlant: budget=-50, pollution=15, happiness=-5, buildCost = -400
@@ -182,6 +200,7 @@ public class TickEngineTest {
         assertEquals(-5, city.getState().getHappiness());
     }
 
+    // Verifica che la policy industriale modifichi correttamente gli effetti
     @Test
     void testAdvanceTickWithIndustrialExpansionPolicy() {
         // IndustrialBuilding: budget=110, pollution=20, happiness=-10, buildCost = -250                
@@ -203,21 +222,6 @@ public class TickEngineTest {
         assertEquals(2121, city.getState().getBudget());
         assertEquals(23, city.getState().getPollution());
         assertEquals(-10, city.getState().getHappiness());
-    }
-
-    @Test
-    void testBuildCostNotAppliedOnTick() {
-        City city = new City("Test", 3);
-        Park park = new Park(); // buildCost = -200, budget = -50
-        
-        city.placeEntity(0, 0, park);
-        int afterBuild = city.getState().getBudget(); // 2250 - 200 = 2050
-        
-        tickEngine.advanceTick(city);
-        
-        // buildCost non deve essere applicato di nuovo
-        // Solo effetto ricorrente del Park: budget=-50
-        assertEquals(afterBuild - 50, city.getState().getBudget());
     }
 }
    
