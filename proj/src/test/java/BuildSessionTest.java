@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+ /*Test per BuildSession.
+   Verifica la gestione dello stato delle modalità costruzione e rimozione.*/
+
 public class BuildSessionTest {
     
     private BuildSession session;
