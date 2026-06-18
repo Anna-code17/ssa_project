@@ -1,8 +1,7 @@
 @startuml
-left to right direction
-
-' DOMAIN MODEL
-
+ ' ======================
+' Classes
+' ======================
 class City 
 class CityGrid 
 class Cell 
