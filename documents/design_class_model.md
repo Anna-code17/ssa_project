@@ -4,7 +4,10 @@
 
 ```plantuml
 @startuml
-left to right direction
+
+top to bottom direction
+skinparam nodesep 10
+skinparam ranksep 10
 
 ' ======================
 ' Classes
