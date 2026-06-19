@@ -84,4 +84,6 @@ note left of ResidentialBuilding
   Necessita di una PowerPlant
   entro 2 celle.
 end note
+
+@enduml
 ```
