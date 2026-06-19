@@ -7,7 +7,7 @@
 @startuml
 
 ' ======================
-' Classes
+' Classi
 ' ======================
 
 class City 
@@ -30,9 +30,9 @@ class IndustrialExpansionPolicy
 class PlacementRules   
 class TickEngine 
 
-' ======================
-' Structural Relations
-' ======================
+' =========================
+' Ereditarietà e Relazioni
+' =========================
 
 City "1" *-- "1" CityGrid : contains
 City "1" *-- "1" CityState : owns
@@ -42,10 +42,6 @@ City "0..1" o-- "0..1" Policy : activates
 CityGrid "1" *-- "1..*" Cell : composed of
 Cell "0..1" -- "0..1" PlaceableEntity : hosts
 PlaceableEntity "1" --> "1" Effect : produces
-
-' ======================
-' Inheritance
-' ======================
 
 PlaceableEntity <|-- Building
 PlaceableEntity <|-- Infrastructure
@@ -70,11 +66,22 @@ PlacementRules ..> CityGrid : uses
 PlacementRules ..> PlaceableEntity : validates
 
 
-note right of Effect
+' =========================
+' Note
+' =========================
+note left of Effect
 Modifiche applicate alla città.
-buildCost applicato una sola volta
-durante il posizionamento.
+Il costo di costruzione viene applicato una
+sola volta durante il posizionamento.
 end note
 
-@enduml
+note top of Policy
+Le policy alterano gli effetti
+delle entità piazzate.
+end note
+
+note left of ResidentialBuilding
+  Necessita di una PowerPlant
+  entro 2 celle.
+end note
 ```
