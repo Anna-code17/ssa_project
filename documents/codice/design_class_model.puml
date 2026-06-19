@@ -5,8 +5,9 @@ skinparam nodesep 10
 skinparam ranksep 10
 
 ' ======================
-' Classes
+' Classi
 ' ======================
+
 class City {
   - MAX_BUDGET_20X20 : int
   - name: String
@@ -15,19 +16,20 @@ class City {
   - activePolicy: Policy
   - currentTick: int
   + City(name: String, size: int)
-  + City ()
-  + placeEntity( x: int, y: int, entity: PlaceableEntity): boolean
-  + placeBuilding( x: int, y: int , entity: Building): boolean
-  + placeInfrastructure( x: int, y: int , entity: Infrastructure): boolean
+  + City()
+  + placeEntity(x: int, y: int, entity: PlaceableEntity): boolean
+  + placeBuilding(x: int, y: int, building: Building): boolean
+  + placeInfrastructure(x: int, y: int, infrastructure: Infrastructure): boolean
   + removeEntity(x: int, y: int): void
-  + getName() : String
+  + getName(): String
   + getGrid(): CityGrid
   + getState(): CityState
   + getActivePolicy(): Policy
-  + incrementTick() : void
-  + getCurrentTick() : int
+  + getMaxBudget(): int
+  + incrementTick(): void
+  + getCurrentTick(): int
   + setActivePolicy(policy: Policy): void
-  + reset() : void
+  + reset(): void
 }
 
 class CityGrid {
@@ -38,40 +40,40 @@ class CityGrid {
   + CityGrid()
   + place(x: int, y: int, entity: PlaceableEntity): boolean
   + remove(x: int, y: int): void
-  + clearGrid() : void
+  + clearGrid(): void
   + getCell(x: int, y: int): Cell
-  + getOccupiedCount () : int
   + getSize(): int
-  + isValidPosition(x: int, y: int) : boolean
-  + toString () : String
-  + isFull() : boolean
-  + isEmpty(x: int, y: int) : boolean 
+  + getOccupiedCount(): int
+  + isValidPosition(x: int, y: int): boolean
+  + isEmpty(x: int, y: int): boolean
+  + isFull(): boolean
+  + toString(): String
 }
 
 class Cell {
   - x: int
   - y: int
-  - entity: PlaceableEntity  
+  - entity: PlaceableEntity
   + Cell(x: int, y: int)
-  + Cell ()
+  + Cell()
   + isEmpty(): boolean
-  + placeEntity(entity: PlaceableEntity): void
-  + getEntity(): PlaceableEntity
+  + placeEntity(entity: PlaceableEntity): boolean
   + clear(): void
-  + getX() : int
-  + getY() : int
+  + getEntity(): PlaceableEntity
+  + getX(): int
+  + getY(): int
 }
 
 class CityState {
   - budget: int
   - population: int
   - pollution: int
-  - happiness: int  
+  - happiness: int
   - initialBudget: int
   + CityState(initialBudget: int)
-  + CityState ()
+  + CityState()
   + applyEffects(effects: Effect): void
-  + clear() : void
+  + clear(): void
   + getBudget(): int
   + getPopulation(): int
   + getPollution(): int
@@ -104,21 +106,22 @@ class Effect {
 }
 
 abstract class PlaceableEntity {
-  # name: String
   # effects: Effect
-  # type: String  
-  + PlaceableEntity(name: String)
-  + PlaceableEntity(name: String, type: String)
+  + PlaceableEntity()
   + getName(): String
   + getEffects(): Effect
   + getType(): String
   + {abstract} getSymbol(): String
-  + setEffects(effects: Effect)
-  + toString(): String 
+  + setEffects(effects: Effect): void
+  + toString(): String
 }
 
 abstract class Building {
-  + Building(name: String)
+  + Building()
+}
+
+abstract class Infrastructure {
+  + Infrastructure()
 }
 
 class ResidentialBuilding {
@@ -136,15 +139,6 @@ class CommercialBuilding {
   + getSymbol(): String
 }
 
-abstract class Infrastructure {
-  + Infrastructure(name: String)
-}
-
-class PowerPlant {
-  + PowerPlant()
-  + getSymbol(): String
-}
-
 class Park {
   + Park()
   + getSymbol(): String
@@ -155,54 +149,58 @@ class Road {
   + getSymbol(): String
 }
 
+class PowerPlant {
+  + PowerPlant()
+  + getSymbol(): String
+}
+
 interface Policy {
   + getName(): String
-  + getPercentBudget() : int
-  + getPercentPopulation() : int
-  + getPercentPollution() : int
-  + getPercentHappiness() : int
+  + getPercentBudget(): int
+  + getPercentPopulation(): int
+  + getPercentPollution(): int
+  + getPercentHappiness(): int
 }
 
 class EnvironmentalTaxPolicy {
   + getName(): String
-  + getPercentBudget() : int
-  + getPercentPollution() : int
-  + getPercentHappiness() : int
+  + getPercentBudget(): int
+  + getPercentPollution(): int
+  + getPercentHappiness(): int
 }
 
-class IndustrialExpansionPolicy{
+class IndustrialExpansionPolicy {
   + getName(): String
-  + getPercentBudget() : int
-  + getPercentPollution() : int
-  + getPercentHappiness() : int
+  + getPercentBudget(): int
+  + getPercentPollution(): int
+  + getPercentHappiness(): int
 }
-
-' ======================
-'Simulation
-' ======================
 
 class Controller {
   - city: City
   - tickEngine: TickEngine
-  + Controller(cityName: String, gridSize: int) 
-  + placeEntity( x: int, y: int, entity: PlaceableEntity): boolean
+  - SaveLoad: SaveManager
+  + Controller(cityName: String, gridSize: int)
+  + placeEntity(x: int, y: int, entity: PlaceableEntity): boolean
   + removeEntity(x: int, y: int): void
-  + applyPolicy(policy: Policy): void 
-  + deactivatePolicy(): void 
+  + applyPolicy(policy: Policy): void
+  + deactivatePolicy(): void
   + nextTick(): void
   + getCurrentTick(): int
-  + resetCity() : void
+  + resetCity(): void
   + getCity(): City
   + getCityState(): CityState
-  + getGrid(): CityGrid 
-  + getActivePolicy() : Policy
+  + getGrid(): CityGrid
+  + getActivePolicy(): Policy
   + getCityName(): String
+  + saveCity(filepath: String): boolean
+  + loadCity(filepath: String): boolean
 }
 
-class PlacementRules{
-  - hasPowerPlantNearby( grid: CityGrid, x : int, y : int) : boolean
-  + canPlaceBuilding( entity : Building, grid : CityGrid, x : int, y : int) : boolean
-  + canPlaceInfrastructure( entity: Infrastructure, grid : CityGrid, x : int, y : int) : boolean
+class PlacementRules {
+  - hasPowerPlantNearby(grid: CityGrid, x: int, y: int): boolean
+  + canPlaceBuilding(entity: Building, grid: CityGrid, x: int, y: int): boolean
+  + canPlaceInfrastructure(entity: Infrastructure, grid: CityGrid, x: int, y: int): boolean
 }
 
 class TickEngine {
@@ -216,7 +214,7 @@ class SaveManager {
 }
 
 class JsonManager {
-  - mapper : ObjectMapper
+  - mapper: ObjectMapper
   + {static} loadFromResources(path: String, clazz: Class<T>): T
   + {static} save(object: Object, path: String): void
   + {static} load(path: String, clazz: Class<T>): T
@@ -251,22 +249,26 @@ enum InteractionMode {
   REMOVE
 }
 
-' ======================
-' Structural Relations
-' ======================
+class PolicyFactory {
+  + {static} getAvailablePolicies(): List<Policy>
+}
+
+class EntityFactory {
+  + {static} create(type: String): PlaceableEntity
+}
+
+' ==========================
+' Ereditarietà e Relazioni
+' =========================
 
 City "1" *-- "1" CityGrid : contains
 City "1" *-- "1" CityState : owns
 City "0..1" o-- "0..1" Policy : activates
 
-
 CityGrid "1" *-- "1..*" Cell : composed of
 Cell "0..1" -- "0..1" PlaceableEntity : hosts
 PlaceableEntity "1" --> "1" Effect : produces
 
-' ======================
-' Inheritance
-' ======================
 
 PlaceableEntity <|-- Building
 PlaceableEntity <|-- Infrastructure
@@ -282,12 +284,16 @@ Infrastructure <|-- Road
 Policy <|.. EnvironmentalTaxPolicy
 Policy <|.. IndustrialExpansionPolicy
 
+City "1" *-- "1" CityGrid : contains
+City "1" *-- "1" CityState : owns
 City ..> PlacementRules : uses
+City "0..1" o-- "0..1" Policy : activates
+CityGrid "1" *-- "1..*" Cell : composed of
+Cell "0..1" -- "0..1" PlaceableEntity : hosts
+PlaceableEntity "1" --> "1" Effect : produces
 Controller --> City : manages
 Controller o-- TickEngine : uses
-Controller --> BuildSession : uses
 Controller --> SaveManager : uses
-
 TickEngine --> City : advances
 TickEngine ..> CityGrid : uses
 TickEngine ..> CityState : updates
@@ -296,21 +302,7 @@ PlacementRules ..> PlaceableEntity : validates
 SaveManager --> JsonManager : uses
 SaveManager --> City : saves
 BuildSession --> InteractionMode
+EntityFactory ..> PlaceableEntity : creates
+PolicyFactory ..> Policy : creates
 
-' ======================
-' Notes
-' ======================
-
-note right of Effect
-Represents modifications
-applied to the CityState
-(e.g. population,
-pollution, budget).
-end note
-
-note bottom of Policy
-Policies alter the way
-simulation effects are
-applied during a tick.
-end note
 @enduml
