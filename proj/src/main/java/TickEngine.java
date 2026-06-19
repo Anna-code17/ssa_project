@@ -52,7 +52,7 @@ public class TickEngine {
         }
 
         Effect totalEffect = new Effect(
-                0,
+                currentBudget,
                 0,
                 tpollution,
                 thappiness
@@ -61,8 +61,8 @@ public class TickEngine {
         state.applyEffects(totalEffect);
         state.setPopulation(currentPopulation);
         //gestione del budget
-        int newBudget = state.getBudget() + currentBudget; //si somma perche' current budget e' negativo 
-        state.setBudget(newBudget);
+        //int newBudget = state.getBudget() + currentBudget; //si somma perche' current budget e' negativo 
+        //state.setBudget(newBudget);
         city.incrementTick();
     }
 
