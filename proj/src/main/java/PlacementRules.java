@@ -1,48 +1,53 @@
-/*Classe che gestisce le regole di posizionamento per le entità nella città.*/
-     
-     public class PlacementRules {
-    
-    //Verifica se un edificio può essere posizionato
-    
-   public static boolean canPlaceBuilding(Building entity, CityGrid grid, int x, int y) {
-    if (!grid.isEmpty(x, y)) {         // La cella deve essere vuota
-        return false;
+/* Classe che gestisce le regole di posizionamento per le entità nella città. */
+
+public class PlacementRules {
+
+    // Verifica se un edificio può essere posizionato
+    public static boolean canPlaceBuilding(Building entity, CityGrid grid, int x, int y) {
+
+        // La cella deve essere vuota
+        if (!grid.isEmpty(x, y)) {
+            return false;
+        }
+
+        // I ResidentialBuilding richiedono una centrale elettrica vicina
+        if (entity instanceof ResidentialBuilding) {
+            return hasNearby(grid, x, y, PowerPlant.class, 2);
+        }
+
+        // Tutti gli altri edifici possono essere piazzati ovunque
+        return true;
     }
-    
-    // Regole specifiche per ResidentialBuilding: deve essere presente una centrale elettrica vicina
-    if (entity.getName().equals("ResidentialBuilding")) {
-        return hasPowerPlantNearby(grid, x, y);
-    }
-    
-    return true;  // Tutti gli altri edifici possono essere posizionati ovunque
-    }
-    
-    //Verifica se un'infrastruttura può essere posizionata (le infrastrutture non hanno restrizioni)
-       public static boolean canPlaceInfrastructure(Infrastructure infrastructure, CityGrid grid, int x, int y) {
+
+    // Verifica se un'infrastruttura può essere posizionata
+    public static boolean canPlaceInfrastructure(Infrastructure infrastructure, CityGrid grid, int x, int y) {
+
         return grid.isEmpty(x, y);
     }
-    
-    //Metodo per verificare se è presente un PowerPlant vicino 
-    //alla cella in cui voglio piazzare il ResidentialBuilding
-    private static boolean hasPowerPlantNearby(CityGrid grid, int x, int y) {
-        // Distanza massima entro cui considero il PowerPlant vicino
-        int distance = 2; 
 
-    //Scansiono tutte le celle adiacenti per controllare se c'è una PowerPlant
+    /**
+     * Verifica se esiste almeno un'entità del tipo richiesto
+     * entro la distanza specificata dalla cella (x,y).
+     */
+    private static boolean hasNearby(CityGrid grid, int x, int y, Class<? extends PlaceableEntity> entityType, int distance) {
+
         for (int i = x - distance; i <= x + distance; i++) {
 
             for (int j = y - distance; j <= y + distance; j++) {
 
-            // Uso il metodo di CityGrid isValidPosition per controllare se la cella esiste
-                if (grid.isValidPosition(i, j)) {
+                if (!grid.isValidPosition(i, j)) {
+                    continue;
+                }
+
                 Cell cell = grid.getCell(i, j);
-                     // Se la cella contiene una centrale elettrica, il ResidentialBuilding può essere posizionato
-                    if (!(cell.isEmpty()) && ((cell.getEntity()).getName()).equals("PowerPlant")) {
-                    return true; 
-                    }
+
+                if (!cell.isEmpty() && entityType.isInstance(cell.getEntity())) {
+
+                    return true;
                 }
             }
-     }
-    return false; // Nessuna centrale trovata
-}
+        }
+
+        return false;
+    }
 }
