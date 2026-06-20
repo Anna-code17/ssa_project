@@ -1,7 +1,8 @@
 {
-    "budget": -5,
-    "population": 0,
-    "pollution": 0,
-    "happiness": 2,
-    "buildCost": -50
-  }
+  "budget": -5,
+  "population": 0,
+  "pollution": 0,
+  "happiness": 2,
+  "buildCost": -50,
+  "placementRule": "Can be placed anywhere on an empty cell."
+}

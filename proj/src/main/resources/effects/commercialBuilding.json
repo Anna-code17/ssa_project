@@ -3,5 +3,6 @@
   "population": 0,
   "pollution": 9,
   "happiness": 5,
-  "buildCost": -200
+  "buildCost": -200,
+  "placementRule": "Can be placed anywhere on an empty cell."
 }

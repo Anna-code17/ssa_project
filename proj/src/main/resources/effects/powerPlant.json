@@ -3,5 +3,6 @@
   "population": 0,
   "pollution": 15,
   "happiness": -5,
-  "buildCost": -400
+  "buildCost": -400,
+  "placementRule": "Can be placed anywhere on an empty cell. Provides energy to residential buildings."
 }
