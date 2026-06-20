@@ -8,7 +8,7 @@
 - aggiornare le immagini di tutti i grafici aggiunti ✔
 - aggiungere il domain model ✔
 - commentare un pochetto di più il codice  ---> Sara ✔(ho commentato tutto il codice che ho scritto)
-- eliminare la ridondanza nelle classi sul livello di accesso di json
+- eliminare la ridondanza nelle classi sul livello di accesso di json ✔
 - ✔ il javadoc temporaneo è pronto , prima della consegna va aggiornato per sicurezza. L'ho caricato in documenti
 - creare doc di system test su gira (I report di unit test dovrebbero essere quelli che sono nella cartella proj/target/surefire-reports)--> in corso
 - sono finite le classi cu cui bisognava fare il testing giusto? ✔
