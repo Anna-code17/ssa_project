@@ -14,7 +14,7 @@
 - sono finite le classi cu cui bisognava fare il testing giusto? ✔
 - creare un documento sul come poter utilizzare/installare ---> in corso
 
-#####DELIVERABLES DA CONSEGNARE:
+## DELIVERABLES DA CONSEGNARE:
 1. un manuale" →2-3 pagine - github     ✔ --> è in documents in versione pdf, date un'occhiata
 2. Definizione di user stories → jira   ✔ ---> ho messo il link a jira in documents
 3. un documento di design → 4-5 pagine - github ✔ ---> è pronto, basta mettere insieme i pezzi
