@@ -25,7 +25,7 @@ public class Cell {
 
     public boolean placeEntity(PlaceableEntity entity) 
     {
-        //controllo se la cella non e' vuota. Se effettivamente e' così, ritorno false
+        //Si controlla se la cella non e' vuota. Se effettivamente e' così, ritorno false
         if (!isEmpty()) {
             return false;
         }

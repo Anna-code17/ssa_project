@@ -7,7 +7,7 @@ public class CityGrid {
 // --------------------------------- METODO COSTRUTTORE -------------------------------
 
     public CityGrid(int size) {
-        //Non immetto il controllo se size < 0, perche' il valore lo decidiamo da dentro il sistema. 
+        //Non si immette il controllo se size < 0, perche' il valore lo decidiamo da dentro il sistema. 
         this.size = size;
         this.cells = new Cell[size][size];
 
@@ -39,8 +39,7 @@ public class CityGrid {
         return result;
     }
 
-
-    // da considerare se bisogna aggiungere dei constraints dati dalle diverse policies 
+ 
     public void remove(int x, int y) {
         //controllo se effettivamente si sta cercando di rimuovere una cella che non esiste
         if (!isValidPosition(x, y)) {
@@ -51,11 +50,10 @@ public class CityGrid {
         cells[x][y].clear();
         occupiedCount--;
         }
-
-        cells[x][y].clear();
         
     }
 	
+    //rimuove tutte le entita' presenti sulla griglia
 	public void clearGrid() {
     	for (int x = 0; x < size; x++) {
         	for (int y = 0; y < size; y++) {
@@ -95,9 +93,12 @@ public class CityGrid {
                y >= 0 && y < size;
     }
 
-//permette di visualizzare la griglia in modo grafico
+
+//Permette di visualizzare la griglia in modo grafico
 @Override
 public String toString() {
+    //e' stato utilizzato StringBuilder al posto di una String per avere un solo buffer mutabile. 
+    //Ovvero, se si fosse utilizzata semplicemente una stringa ad ogni concatenazione viene allocato un nuovo oggetto e viene copiato tutto il contenuto precedente  
     StringBuilder sb = new StringBuilder();
 
     sb.append("CityGrid ")
@@ -122,7 +123,8 @@ public String toString() {
     return sb.toString();
 }
 
-// Mostra se la griglia non e' occupata in una certa posizione 
+
+// Mostra se la griglia e' occupata in una certa posizione 
 public boolean isEmpty(int x, int y) {
     if (!isValidPosition(x, y)) {
        return true;
