@@ -5,6 +5,7 @@ public class Effect {
     private int pollution;
     private int happiness;
     private int buildCost;      // costo di costruzione
+    private String placementRule;
 
     // costruttore con buildCost = 0
     public Effect(int budget, int population, int pollution, int happiness) {
@@ -13,6 +14,7 @@ public class Effect {
         this.pollution = pollution;
         this.happiness = happiness;
         this.buildCost = 0;// default buildCost = 0
+        this.placementRule = "Nessuna regola di posizionamento.";
     }
 
        // costruttore con buildCost diverso da 0
@@ -22,6 +24,17 @@ public class Effect {
         this.pollution = pollution;
         this.happiness = happiness;
         this.buildCost = buildCost;
+        this.placementRule = "Nessuna regola di posizionamento.";
+    }
+
+    // Costruttore completo con placementRule e buildCost diverso da 0
+    public Effect(int budget, int population, int pollution, int happiness, int buildCost, String placementRule) {
+        this.budget = budget;
+        this.population = population;
+        this.pollution = pollution;
+        this.happiness = happiness;
+        this.buildCost = buildCost;
+        this.placementRule = placementRule;
     }
 
     public Effect() { }
@@ -46,7 +59,10 @@ public class Effect {
      public int getBuildCost() { 
         return buildCost; 
     }  
-
+    
+    public String getPlacementRule() {  
+        return placementRule;
+    }
     //------------------------------- METODI SETTER -----------------------------------
 
     public void setBudget(int budget) {
@@ -64,9 +80,13 @@ public class Effect {
     public void setHappiness(int happiness) {
         this.happiness = happiness;
     }
- public void setBuildCost(int buildCost) { 
+    public void setBuildCost(int buildCost) { 
         this.buildCost = buildCost; 
     }  
+    
+    public void setPlacementRule(String placementRule) {  
+        this.placementRule = placementRule;
+    }
 
     //------------------------------- VISUALIZZAZIONE EFFETTI -------------------------
 
@@ -77,6 +97,7 @@ public class Effect {
                 "\nNopulation=" + population +
                 "\nPollution=" + pollution +
                 "\nHappiness=" + happiness +
-                "\nBuildCost=" + buildCost;
+                "\nBuildCost=" + buildCost +
+                "\nPlacement Rule=" + placementRule;
     }
 }
