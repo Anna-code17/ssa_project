@@ -1,8 +1,3 @@
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
-
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-
 public class EnvironmentalTaxPolicy implements Policy {
 
 /* EnvironmentalTaxPolicy aumenta del 10% la felicità, diminuisce del 15% l'inquinamento
