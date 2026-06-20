@@ -1,8 +1,3 @@
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
-
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-
 public class Effect {
 
     private int budget; // effetto ricorrente

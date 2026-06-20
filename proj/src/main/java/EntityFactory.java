@@ -1,4 +1,3 @@
-
 public final class EntityFactory {
 
     private EntityFactory() {
