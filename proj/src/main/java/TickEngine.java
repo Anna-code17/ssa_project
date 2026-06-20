@@ -51,6 +51,7 @@ public class TickEngine {
             thappiness  = applyPolicyPercent(thappiness, policy.getPercentHappiness());
         }
 
+        //genera un nuovo effetto in base ai valori precedentemente calcolati
         Effect totalEffect = new Effect(
                 currentBudget,
                 0,
@@ -60,12 +61,10 @@ public class TickEngine {
 
         state.applyEffects(totalEffect);
         state.setPopulation(currentPopulation);
-        //gestione del budget
-        //int newBudget = state.getBudget() + currentBudget; //si somma perche' current budget e' negativo 
-        //state.setBudget(newBudget);
         city.incrementTick();
     }
 
+    //metodo per poter applicare le policy anche con valori negativi delle percentuali
     private int applyPolicyPercent(int value, int percent) {
 
         if (value >= 0) {
