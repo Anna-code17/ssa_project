@@ -1,7 +1,7 @@
 # Indice:
 
 - [Domain Class Model](#Domain-Class-Model)
-- [Sequence Diagrams](#Sequence-Diagram)
+- [Sequence Diagrams](#Sequence-Diagrams)
 - [Use Case Diagram](#Use-Case-Diagram)
 
 
