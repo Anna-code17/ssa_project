@@ -48,14 +48,11 @@ java -jar city-simulator-1.0-SNAPSHOT.jar
 
 Se il file `.jar` non dovesse funzionare, è possibile ricompilarlo da terminale nella cartella `proj` (dove si trova `pom.xml`):
 
-1. Assicurarsi di trovarsi nella cartella proj (quella contenente il file pom.xml)
-2. Compilare il progetto:
-
+1. Per compilare il progetto, aprire il terminale nella cartella proj e digitare:
 ```bash
 mvn clean compile
 ```
-3. Eseguire il programma:
-
+2. Eseguire il programma con il comando:
 ```bash
 mvn exec:java
 ```
