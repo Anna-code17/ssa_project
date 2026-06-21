@@ -8,7 +8,7 @@ o interfaccia utente (UserInterface), in quanto non fanno parte del dominio.
 (regole di posizionamento e simulazione temporale).
 ```
 ## Codice
-[Vai al codice del Domain Class Model] (diagrams_md/design_class_model.md)
+[Vai al codice del Domain Class Model](diagrams_md/design_class_model.md)
 
 ![domain_class_model.png](img/diagrams/domain_class_model.png)
 
