@@ -10,7 +10,7 @@ o interfaccia utente (UserInterface), in quanto non fanno parte del dominio.
 ## Codice
 [Vai al codice del Domain Class Model](diagrams_md/domain_class_model.md)
 
-#immagine
+### Immagine
 
 ![domain_class_model.png](img/diagrams/domain_class_model.png)
 
@@ -22,13 +22,18 @@ supporto all'interfaccia utente e factory. Il modello fornisce una visione detta
 delle relazioni tra tutti i componenti del sistema.
 ```
 ## Codice
+
 [Vai al codice del Design Class Model](diagrams_md/design_class_model.md)
 
-#immagine
+### Immagine
 
 ![design_class_model.png](img/diagrams/design_class_model.png)
 
 # Sequence diagrams
+
+## Codice
+
+[Vai al codice di tutti i Sequence Diagrams](diagrams_md/System_sequence_diagrams.md)
 
 ## External sequence diagram
 ```
