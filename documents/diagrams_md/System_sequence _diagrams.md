@@ -2,7 +2,7 @@
 
 ## External sequence diagram
 
-![external_sequence_diagram.png](img/diagrams/external_sequence_diagram.png)
+![external_sequence_diagram.png](../../img/diagrams/external_sequence_diagram.png)
 
 ```plantuml
 
@@ -96,7 +96,7 @@ System --> User : applicationClosed()
 
 
 ## Create entity
-![create_entity.png](img/diagrams/create_entity.png)
+![create_entity.png](../../img/diagrams/create_entity.png)
 
 ```plantuml
 
@@ -141,7 +141,7 @@ end
 
 ## Activate Policy
 
-![activate_policy.png](img/diagrams/activate_policy.png)
+![activate_policy.png](../../img/diagrams/activate_policy.png)
 
 ```plantuml
 
@@ -174,7 +174,7 @@ end
 ```
 ## Tick
 
-![tick.png](img/diagrams/tick.png)
+![tick.png](../../img/diagrams/tick.png)
 
 ```plantuml
 
@@ -246,7 +246,7 @@ UI --> User : cityStateUpdated()
 ```
 ## Save City State
 
-![save_city_state.png](img/diagrams/save_city_state.png)
+![save_city_state.png](../../img/diagrams/save_city_state.png)
 
 ```plantuml
 
