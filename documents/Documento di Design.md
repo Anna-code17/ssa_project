@@ -8,7 +8,9 @@ o interfaccia utente (UserInterface), in quanto non fanno parte del dominio.
 (regole di posizionamento e simulazione temporale).
 ```
 ## Codice
-[Vai al codice del Domain Class Model](diagrams_md/design_class_model.md)
+[Vai al codice del Domain Class Model](diagrams_md/domain_class_model.md)
+
+#immagine
 
 ![domain_class_model.png](img/diagrams/domain_class_model.png)
 
@@ -19,6 +21,11 @@ includendo non solo le classi del dominio ma anche i componenti di controllo, pe
 supporto all'interfaccia utente e factory. Il modello fornisce una visione dettagliata
 delle relazioni tra tutti i componenti del sistema.
 ```
+## Codice
+[Vai al codice del Design Class Model](diagrams_md/design_class_model.md)
+
+#immagine
+
 ![design_class_model.png](img/diagrams/design_class_model.png)
 
 # Sequence diagrams
