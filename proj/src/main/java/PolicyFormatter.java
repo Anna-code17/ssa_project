@@ -1,105 +1,73 @@
-
-
 public final class PolicyFormatter {
 
     private PolicyFormatter() {
     }
 
-    public static String getPolicyName(City city) {
-
-        Object policy = getPolicyObject(city);
-
-        if (policy == null) {
-            return null;
-        }
-
-        Object name =
-                UIUtils.invokeNoArgMethod(
-                        policy,
-                        "getName"
-                );
-
-        if (name != null) {
-            return String.valueOf(name);
-        }
-
-        return String.valueOf(policy);
-    }
-
-    public static String getPolicyDetails(City city) {
-
-        Object policy = getPolicyObject(city);
+    /**
+     * Restituisce una descrizione completa della policy.
+     */
+    public static String format(Policy policy) {
 
         if (policy == null) {
-            return null;
+            return "No active policy";
         }
 
         StringBuilder sb = new StringBuilder();
 
-        Object name =
-                UIUtils.invokeNoArgMethod(
-                        policy,
-                        "getName"
-                );
+        sb.append(policy.getName()).append("\n\n");
 
-        Object type =
-                UIUtils.invokeNoArgMethod(
-                        policy,
-                        "getType"
-                );
+        sb.append("Budget: ")
+                .append(policy.getPercentBudget())
+                .append("%\n");
 
-        Object effects =
-                UIUtils.invokeNoArgMethod(
-                        policy,
-                        "getEffects"
-                );
+        sb.append("Population: ")
+                .append(policy.getPercentPopulation())
+                .append("%\n");
 
-        if (name != null) {
-            sb.append("Name: ")
-                    .append(name)
-                    .append("\n");
-        }
+        sb.append("Pollution: ")
+                .append(policy.getPercentPollution())
+                .append("%\n");
 
-        if (type != null) {
-            sb.append("Type: ")
-                    .append(type)
-                    .append("\n");
-        }
-
-        if (effects != null) {
-            sb.append("\nEffects:\n")
-                    .append(effects);
-        }
-
-        if (sb.length() == 0) {
-            sb.append(String.valueOf(policy));
-        }
+        sb.append("Happiness: ")
+                .append(policy.getPercentHappiness())
+                .append("%");
 
         return sb.toString();
     }
 
-    private static Object getPolicyObject(City city) {
+    /**
+     * Restituisce il nome della policy.
+     */
+    public static String getName(Policy policy) {
+
+        if (policy == null) {
+            return "No active policy";
+        }
+
+        return policy.getName();
+    }
+
+    /**
+     * Restituisce il nome della policy attiva della città.
+     */
+    public static String getPolicyName(City city) {
 
         if (city == null) {
-            return null;
+            return "No active policy";
         }
 
-        Object policy =
-                UIUtils.invokeNoArgMethod(
-                        city,
-                        "getActivePolicy"
-                );
+        return getName(city.getActivePolicy());
+    }
 
-        if (policy != null) {
-            return policy;
+    /**
+     * Restituisce la descrizione della policy attiva della città.
+     */
+    public static String getPolicyDetails(City city) {
+
+        if (city == null) {
+            return "No active policy";
         }
 
-        policy =
-                UIUtils.invokeNoArgMethod(
-                        city,
-                        "getPolicy"
-                );
-
-        return policy;
+        return format(city.getActivePolicy());
     }
 }

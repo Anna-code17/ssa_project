@@ -1,10 +1,12 @@
- /*  Gestisce le operazioni di: entità, policy, simulazione, salvataggio.
-     Fa da ponte tra l'interfaccia utente e il modello (City). */
-
+/**
+ * Controller principale dell'applicazione.
+ * Coordina la comunicazione tra UI e modello.
+ */
 public class Controller {
+
     private City city;
-    private TickEngine tickEngine;
-    private SaveManager SaveLoad;
+    private final TickEngine tickEngine;
+    private final SaveManager SaveLoad;
     
     public Controller(String cityName, int gridSize) {
         this.city = new City(cityName, gridSize);

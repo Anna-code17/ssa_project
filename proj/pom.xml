@@ -51,19 +51,6 @@
                 <version>3.2.5</version>
             </plugin>
 
-         <!-- Per poter generare report HTML dei test -->  
-         <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>3.2.5</version>
-         </plugin>
-         
-         <plugin>
-    		<groupId>org.apache.maven.plugins</groupId>
-    		<artifactId>maven-site-plugin</artifactId>
-    		<version>3.12.1</version>
-	</plugin>
-
             <!-- CREA IL JAR ESEGUIBILE CON TUTTE LE DIPENDENZE -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

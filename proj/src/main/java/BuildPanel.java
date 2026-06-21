@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -6,17 +5,29 @@ import java.awt.*;
 
 public class BuildPanel extends JPanel {
 
+    // Messaggio mostrato quando non è selezionata alcuna entità.
+    private static final String DEFAULT_PREVIEW_MESSAGE =
+            "Select an entity to see its effects.";
+
+    // Mostra la cella attualmente selezionata.
     private final JLabel buildCellValue;
 
+    // Lista delle entità disponibili per la costruzione.
     private final JList<String> buildEntityList;
 
+    // Componenti della sezione di anteprima.
     private final JLabel buildPreviewNameValue;
     private final JLabel buildPreviewTypeValue;
     private final JTextArea buildPreviewEffectsArea;
 
+    // Pulsanti di conferma e annullamento.
     private final JButton confirmButton;
     private final JButton cancelButton;
 
+    /**
+     * Costruisce il pannello utilizzato durante
+     * la modalità di costruzione.
+     */
     public BuildPanel() {
 
         setLayout(new BorderLayout(12, 12));
@@ -29,8 +40,10 @@ public class BuildPanel extends JPanel {
 
         JLabel title = new JLabel("Build Mode");
         title.setFont(new Font("SansSerif", Font.BOLD, 18));
+
         add(title, BorderLayout.NORTH);
 
+        // Informazioni sulla cella selezionata.
         JPanel topInfo = new JPanel();
         topInfo.setOpaque(false);
         topInfo.setLayout(new BoxLayout(topInfo, BoxLayout.Y_AXIS));
@@ -52,6 +65,7 @@ public class BuildPanel extends JPanel {
 
         add(topInfo, BorderLayout.WEST);
 
+        // Lista delle entità che possono essere costruite.
         JPanel selectionPanel = new JPanel(new BorderLayout(10, 10));
         selectionPanel.setOpaque(false);
         selectionPanel.setPreferredSize(new Dimension(250, 0));
@@ -67,6 +81,7 @@ public class BuildPanel extends JPanel {
         model.addElement("IndustrialBuilding");
 
         buildEntityList = new JList<>(model);
+
         buildEntityList.setSelectionMode(
                 ListSelectionModel.SINGLE_SELECTION
         );
@@ -80,6 +95,7 @@ public class BuildPanel extends JPanel {
 
         add(selectionPanel, BorderLayout.CENTER);
 
+        // Sezione che mostra l'anteprima dell'entità selezionata.
         JPanel previewPanel = new JPanel();
         previewPanel.setOpaque(false);
         previewPanel.setLayout(new BorderLayout(8, 8));
@@ -126,17 +142,17 @@ public class BuildPanel extends JPanel {
         );
 
         buildPreviewEffectsArea.setText(
-                "Select an entity to see its effects."
+                DEFAULT_PREVIEW_MESSAGE
         );
+
+        JScrollPane scrollPane =
+                new JScrollPane(buildPreviewEffectsArea);
 
         previewInfo.add(buildPreviewNameValue);
         previewInfo.add(Box.createVerticalStrut(4));
         previewInfo.add(buildPreviewTypeValue);
         previewInfo.add(Box.createVerticalStrut(8));
-
-        previewInfo.add(
-                new JScrollPane(buildPreviewEffectsArea)
-        );
+        previewInfo.add(scrollPane);
 
         previewPanel.add(
                 previewInfo,
@@ -145,6 +161,7 @@ public class BuildPanel extends JPanel {
 
         add(previewPanel, BorderLayout.EAST);
 
+        // Pulsanti per confermare o annullare la costruzione.
         JPanel bottomButtons =
                 new JPanel(
                         new FlowLayout(
@@ -165,74 +182,107 @@ public class BuildPanel extends JPanel {
         add(bottomButtons, BorderLayout.SOUTH);
     }
 
+    /**
+     * Ripristina i campi dell'anteprima.
+     */
+    private void resetPreviewLabels() {
+        buildPreviewNameValue.setText("Name: -");
+        buildPreviewTypeValue.setText("Type: -");
+    }
+
+    /**
+     * Restituisce la lista delle entità disponibili.
+     */
     public JList<String> getEntityList() {
         return buildEntityList;
     }
 
+    /**
+     * Restituisce il pulsante di conferma.
+     */
     public JButton getConfirmButton() {
         return confirmButton;
     }
 
+    /**
+     * Restituisce il pulsante di annullamento.
+     */
     public JButton getCancelButton() {
         return cancelButton;
     }
 
+    /**
+     * Deseleziona l'entità attualmente scelta.
+     */
     public void clearEntitySelection() {
         buildEntityList.clearSelection();
     }
 
+    /**
+     * Restituisce il tipo di entità selezionato.
+     */
     public String getSelectedEntityType() {
         return buildEntityList.getSelectedValue();
     }
 
+    /**
+     * Aggiorna la cella selezionata mostrata nella UI.
+     */
     public void setSelectedCell(int x, int y) {
         buildCellValue.setText(
                 "Selected cell: (" + x + ", " + y + ")"
         );
     }
 
+    /**
+     * Rimuove la selezione della cella corrente.
+     */
     public void clearCellSelection() {
         buildCellValue.setText("Selected cell: -");
     }
 
+    /**
+     * Ripristina l'anteprima allo stato iniziale.
+     */
     public void clearPreview() {
 
-        buildPreviewNameValue.setText("Name: -");
-        buildPreviewTypeValue.setText("Type: -");
+        resetPreviewLabels();
 
         buildPreviewEffectsArea.setText(
-                "Select an entity to see its effects."
+                DEFAULT_PREVIEW_MESSAGE
         );
     }
 
+    /**
+     * Mostra un messaggio quando non è disponibile
+     * alcuna anteprima.
+     */
     public void showNoPreview() {
 
-        buildPreviewNameValue.setText("Name: -");
-        buildPreviewTypeValue.setText("Type: -");
+        resetPreviewLabels();
 
         buildPreviewEffectsArea.setText(
                 "No preview available."
         );
     }
 
-
-
+    /**
+     * Mostra i dettagli dell'entità selezionata.
+     */
     public void showPreview(PlaceableEntity entity) {
 
-            buildPreviewNameValue.setText(
-                    "Name: " + UIUtils.safeString(entity.getName())
-            );
+        buildPreviewNameValue.setText(
+                "Name: " + UIUtils.safeString(entity.getName())
+        );
 
-            buildPreviewTypeValue.setText(
-                    "Type: " + UIUtils.safeString(entity.getType())
-            );
+        buildPreviewTypeValue.setText(
+                "Type: " + UIUtils.safeString(entity.getType())
+        );
 
-            buildPreviewEffectsArea.setText(
-                    UIUtils.readEffects(entity)
-            );
+        buildPreviewEffectsArea.setText(
+                UIUtils.readEffects(entity)
+        );
 
-            buildPreviewEffectsArea.setCaretPosition(0);
-        }
-
+        buildPreviewEffectsArea.setCaretPosition(0);
+    }
 }
-
