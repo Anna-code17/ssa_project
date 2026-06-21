@@ -42,7 +42,7 @@ Per avviare l'applicazione, aprire il terminale nella cartella contenente `city-
 
 ```bash
 java -jar city-simulator-1.0-SNAPSHOT.jar
-
+```
 **Avvertenze particolari**
 Il gioco è stato progettato per essere utilizzato a schermo intero. Se la finestra del gioco viene
 ridotta, questo potrebbe causare problemi di visualizzazione.Il software è stato sviluppato e testato esclusivamente su ambienti Windows 10 e Windows
