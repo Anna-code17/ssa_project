@@ -1,6 +1,6 @@
 # Use Case Diagram
 
-![use_case_diagram.png](img/diagrams/use_case_diagram.png)
+![use_case_diagram.png](.../img/diagrams/use_case_diagram.png)
 
 ```plantuml
 
