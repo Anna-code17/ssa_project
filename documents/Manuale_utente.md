@@ -108,7 +108,7 @@ mvn exec:java
 2. Scegli tra:
    - **Tassa Ambientale** (riduce inquinamento, aumenta felicità)
    - **Espansione Industriale** (aumenta budget, aumenta inquinamento)
-3. Solo dopo aver scelto una policy, è possibile cliccare si **'View details'** per vedere nel dettaglio come modifica i parametri
+3. Solo dopo aver scelto una policy, è possibile cliccare su **'View details'** per vedere nel dettaglio come la policy modifica i parametri.
 
 ### Salvare/Caricare
 
