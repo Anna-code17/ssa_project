@@ -1,6 +1,6 @@
 # Domain Class Model
 
-![domain_class_model.png](img/diagrams/domain_class_model.png)
+![domain_class_model.png](../img/diagrams/domain_class_model.png)
 
 ```plantuml
 
