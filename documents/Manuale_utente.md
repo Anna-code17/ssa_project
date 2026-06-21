@@ -44,6 +44,21 @@ Per avviare l'applicazione, aprire il terminale nella cartella contenente `city-
 ```bash
 java -jar city-simulator-1.0-SNAPSHOT.jar
 ```
+**Compilazione manuale**
+
+Se il file `.jar` non dovesse funzionare, è possibile ricompilarlo da terminale nella cartella `proj` (dove si trova `pom.xml`):
+
+1. Assicurarsi di trovarsi nella cartella proj (quella contenente il file pom.xml)
+2. Compilare il progetto:
+
+```bash
+mvn clean compile
+```
+3. Eseguire il programma:
+
+```bash
+mvn exec:java
+```
 ## Avvertenze particolari
 
 - Il gioco è stato progettato per essere utilizzato a **schermo intero**. Se la finestra del gioco viene ridotta, questo potrebbe causare problemi di visualizzazione.
