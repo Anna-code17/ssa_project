@@ -1,14 +1,20 @@
 # Domain Class Model
 ```
-Il Domain Model rappresenta le entità principali del sistema City Simulator e le loro relazioni. Il modello è focalizzato esclusivamente sulle classi del dominio:
-- Il modello quindi non include classi di controllo (Controller), persistenza (SaveManager, JsonManager) o interfaccia utente (UserInterface), in quanto non fanno parte del dominio.
-- PlacementRules e TickEngine sono incluse in quanto rappresentano logica di dominio (regole di posizionamento e simulazione temporale).
+Il Domain Model rappresenta le entità principali del sistema City Simulator e le loro relazioni.
+Il modello è focalizzato esclusivamente sulle classi del dominio:
+- Il modello quindi non include classi di controllo (Controller), persistenza (SaveManager, JsonManager)
+o interfaccia utente (UserInterface), in quanto non fanno parte del dominio.
+- PlacementRules e TickEngine sono incluse in quanto rappresentano logica di dominio
+(regole di posizionamento e simulazione temporale).
 ```
 ![domain_class_model.png](img/diagrams/domain_class_model.png)
 
 # Design Class Model
 ```
-Il Design Class Model rappresenta l'architettura completa del sistema City Simulator, includendo non solo le classi del dominio ma anche i componenti di controllo, persistenza, supporto all'interfaccia utente e factory. Il modello fornisce una visione dettagliata delle relazioni tra tutti i componenti del sistema.
+Il Design Class Model rappresenta l'architettura completa del sistema City Simulator,
+includendo non solo le classi del dominio ma anche i componenti di controllo, persistenza,
+supporto all'interfaccia utente e factory. Il modello fornisce una visione dettagliata
+delle relazioni tra tutti i componenti del sistema.
 ```
 ![design_class_model.png](img/diagrams/design_class_model.png)
 
