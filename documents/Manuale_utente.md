@@ -10,13 +10,10 @@ attraverso scelte strategiche.
 
 Le principali funzionalità includono:
 
--❖ Posizionamento di edifici e infrastrutture su una griglia
--❖ Gestione di Budget, Popolazione, Inquinamento e Felicità
--❖ Attivazione di politiche (Tassa Ambientale, Espansione Industriale)
--❖ Simulazione temporale tramite tick
--❖ Salvataggio e caricamento su file JSON
--❖ Interfaccia grafica interattiva
-
+- ❖ Posizionamento di edifici e infrastrutture su una griglia
+- ❖ Gestione di Budget, Popolazione, Inquinamento e Felicità
+- ❖ Attivazione di politiche (Tassa Ambientale, Espansione Industriale)
+- ❖ Simulazione temporale tramite tick
 ---
 
 ## Istruzioni per installare e lanciare il Software
