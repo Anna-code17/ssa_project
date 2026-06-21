@@ -18,13 +18,15 @@ public class City {
     public City () { }
     
 //--------------------------- METODI GESTIONE ENTITA' ------------------------------
-
+    
+    //Metodo per poter effettuare il posizionamento di un'entita'
     public boolean placeEntity(int x, int y, PlaceableEntity entity) {
 
     if (!grid.isValidPosition(x, y)) return false;
 
-    boolean result;
+    boolean result;//variabile che permette di sapere se e' effettivamente possibile posizionare un certo tipo di entita' nella griglia
 
+    //controllo sul tipo di identita'
     if (entity instanceof Building building) {
         result = placeBuilding(x, y, building);
     } else if (entity instanceof Infrastructure infrastructure) {
@@ -33,6 +35,7 @@ public class City {
         return false;
     }
 
+    // Viene applicato il costo di costruzione se e' possibile costruire effettivamente l'entita'
     if (result) {
         Effect effects = entity.getEffects();
         if (effects != null && effects.getBuildCost() != 0) {
@@ -62,7 +65,8 @@ public class City {
         return false;
     }
 
-       public void removeEntity(int x, int y) {
+    
+    public void removeEntity(int x, int y) {
         this.grid.remove(x, y);
     }
 // --------------------------- METODI GETTER ------------------------------
@@ -83,6 +87,7 @@ public class City {
         return activePolicy;
     }
     
+    //restituisce il budget massimo associato alla grandezza della citta'
     public int getMaxBudget()
     {
     	return calculateMaxBudget();
@@ -100,7 +105,8 @@ public class City {
 
 // --------------------------- METODI SETTER -----------------------------
 
-    public void setActivePolicy(Policy policy) {
+    public void setActivePolicy(Policy policy) 
+    {
         this.activePolicy = policy;
     }
 

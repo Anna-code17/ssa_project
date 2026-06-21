@@ -3,5 +3,6 @@
   "population": 5,
   "pollution": 5,
   "happiness": 8,
-  "buildCost": -100
+  "buildCost": -100,
+  "placementRule": "Must be placed within 2 cells of a PowerPlant."
 }

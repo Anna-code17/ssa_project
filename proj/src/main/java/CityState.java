@@ -8,7 +8,6 @@ public class CityState
 
 //--------------------------- COSTRUTTORE ------------------------------------------
 
-
     public CityState(int initialBudget) {
         this.budget = initialBudget;
         this.initialBudget = initialBudget;
@@ -20,7 +19,7 @@ public class CityState
     public CityState() { }
 // -------------------------- METODI PER EFFETTUARE OPERAZIONI SULLE METRICHE CITTA'------------------------
 
-    //applica un effetto dato in input andando a modificare i valori delle variabili 
+    //Applica un effetto dato in input andando a modificare i valori delle variabili 
     public void applyEffects(Effect effects) 
     {
         if (effects == null) 
@@ -34,7 +33,7 @@ public class CityState
         happiness += effects.getHappiness();
     }
 
-    //permette di visualizzare le metriche che appartengono ad una citta' in un determinato momento
+    //Permette di visualizzare le metriche che appartengono ad una citta' in un determinato momento
     @Override
     public String toString() {
         return "CityState{" +
@@ -44,6 +43,7 @@ public class CityState
                 ", happiness=" + happiness +
                 '}';
     }
+    
     //resetta i parametri alle condizioni iniziali
     public void clear() {
     this.budget = this.initialBudget;
@@ -80,9 +80,7 @@ public class CityState
     public void setBudget(int budget)
     {
         this.budget = budget;
-    }
-    
-    
+    }    
 
 
 }

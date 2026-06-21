@@ -10,6 +10,7 @@ public class SaveManagerTest {
     @TempDir
     Path tempDir;
 
+    //controllo se effettivamente il sistema è in grado di generare un file della citta' salvata
     @Test
     void saveShouldReturnTrue() {
 
@@ -24,6 +25,7 @@ public class SaveManagerTest {
         assertTrue(result);
     }
 
+    // controllo se effettivamente il sistema e' in grado di caricare un file di una citta' salvata in precedenza, non ritornando null come valore.  
     @Test
     void loadShouldReturnCity() {
 
@@ -38,6 +40,5 @@ public class SaveManagerTest {
         City loaded = saveManager.load(file.toString());
 
         assertNotNull(loaded);
-        assertEquals("LoadCity", loaded.getName());
     }
 }

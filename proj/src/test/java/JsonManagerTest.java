@@ -1,8 +1,7 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import java.nio.file.Path;
-import java.nio.file.Files;
-import java.io.*;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,6 +10,7 @@ public class JsonManagerTest {
     @TempDir
     Path tempDir;
 
+    //si controlla se il sistema e' in grado di salvare almeno le metriche generali di city, come il nome e la grandezza
     @Test
     void shouldSaveAndLoadCity() {
 
@@ -24,8 +24,10 @@ public class JsonManagerTest {
 
         assertNotNull(loaded);
         assertEquals("TestCity", loaded.getName());
+        assertEquals(10, loaded.getGrid().getSize());
     }
 
+    //Se si dovesse cercare di caricare un file che non esiste, il sistema deve essere in grado di laanciare un'eccezzione 
     @Test
     void shouldThrowExceptionWhenFileDoesNotExist() {
 
@@ -34,6 +36,7 @@ public class JsonManagerTest {
         });
     }
 
+    //controlla se e' in grado di prelevare dati da un file precedentemente salvato. E' presente su test/resources 
     @Test
     void shouldLoadFromResources() {
 
@@ -46,37 +49,27 @@ public class JsonManagerTest {
         assertEquals("MyCity", city.getName());
     }
 
+    //
     @Test
-    void shouldPersistGridEntity() throws IOException {
+    void shouldPersistGridEntity() {
 
         City city = new City("GridCity", 4);
 
         city.placeEntity(1, 1, new CommercialBuilding());
 
-        /* 
-	System.out.println("stampo entita'"+
-    	city.getGrid()
-        .getCell(1,1)
-        .getEntity()
-	+ "\n");
-	
-	System.out.println("provo a prendere la cella " + city.getGrid().getCell(1,1));
-	System.out.println(city.getGrid().getCell(1,1).getEntity());
-	System.out.println(city.getGrid().getCell(1,1).getX());
-	System.out.println(city.getGrid().getCell(1,1).getY());
-        */
-
         Path file = tempDir.resolve("grid.json");
 
         JsonManager.save(city, file.toString());
 
-	    //String json = Files.readString(file);
-	    //System.out.println(json);
-
-
         City loaded = JsonManager.load(file.toString(), City.class);
-
+        
+        //controllo se effettivamente la griglia presenta l'entita' scelta sulla cella in posizione (1,1)
         assertNotNull(
+            loaded.getGrid().getCell(1, 1).getEntity()
+        );
+        //controllo se Jackson e' in grado di gestire correttamente il polimorfismo
+        assertInstanceOf(
+            CommercialBuilding.class,
             loaded.getGrid().getCell(1, 1).getEntity()
         );
     }

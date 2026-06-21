@@ -1,8 +1,7 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import java.nio.file.Path;
-import java.nio.file.Files;
-import java.io.*;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,7 +12,7 @@ public class CompleteTest {
     Path tempDir;
 
     @Test
-    void shouldSaveAndLoadFullCityState() throws IOException {
+    void shouldSaveAndLoadFullCityState() {
 
         
         // ---------------------------------------- 1. CREAZIONE CITY-------------------------------------
@@ -43,7 +42,7 @@ public class CompleteTest {
 
         // ----------------------------------------- 5. SAVE ---------------------------------------------
 	
-	//creo un path themporaneo ma NON CREA FILE DA SOLO. il file viene creato con save. 
+	    //creo un path themporaneo ma NON CREA FILE DA SOLO. il file viene creato con save. 
         Path file = tempDir.resolve("full_city.json");
 
         SaveManager saveManager = new SaveManager();
@@ -52,10 +51,6 @@ public class CompleteTest {
 
         assertTrue(saved);
     	
-        
-        String json = Files.readString(file);
-	    System.out.println(json);        
-
 
         // ----------------------------------------- 6. LOAD ---------------------------------------------
 
@@ -68,7 +63,7 @@ public class CompleteTest {
         assertEquals(city.getCurrentTick(), loaded.getCurrentTick());
 
         // ----------------------------------------- 8. CHECK BUILDINGS ---------------------------------
- 	//punto e 8 e 9 sono focalizzati se è stato mantenuto correttamente il tipo di oggetti       
+ 	    //punto e 8 e 9 sono focalizzati se è stato mantenuto correttamente il tipo di oggetti       
         assertInstanceOf(
             ResidentialBuilding.class,
             loaded.getGrid().getCell(0, 1).getEntity()

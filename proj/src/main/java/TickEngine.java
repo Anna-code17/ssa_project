@@ -9,7 +9,6 @@ public class TickEngine {
         CityGrid grid = city.getGrid();
         CityState state = city.getState();
         Policy policy = city.getActivePolicy();
-        final int MAX_BUDGET = city.getMaxBudget();
 
         if (grid == null || state == null) {
             throw new IllegalStateException("City must have a valid grid and state");
