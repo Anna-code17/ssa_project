@@ -52,25 +52,25 @@ malfunzionamenti.
 ### Principali API Esterne Utilizzate
 
 Il progetto utilizza le seguenti API esterne:
-❖ Java Swing, versione Java 17 : Framework per l'interfaccia grafica (GUI). Utilizzato per
+- Java Swing, versione Java 17 : Framework per l'interfaccia grafica (GUI). Utilizzato per
 creare la finestra principale, i pannelli, i bottoni e la griglia interattiva.
-❖ Java AWT, versione Java 17 : Libreria per il disegno di componenti grafici e gestione
+- Java AWT, versione Java 17 : Libreria per il disegno di componenti grafici e gestione
 degli eventi.
-❖ Java I/O, versione Java 17 : Gestione dell'input/output per il salvataggio e caricamento
+- Java I/O, versione Java 17 : Gestione dell'input/output per il salvataggio e caricamento
 dei file JSON.
-❖ Java Reflection, versione Java 17 : Utilizzato per l'invocazione dinamica di metodi nelle
+- Java Reflection, versione Java 17 : Utilizzato per l'invocazione dinamica di metodi nelle
 classi UIUtils e PolicyFormatter.
-❖ Jackson Databind, versione 2.17.0 : Gestione della serializzazione/deserializzazione
+- Jackson Databind, versione 2.17.0 : Gestione della serializzazione/deserializzazione
 JSON.
-❖ JUnit Jupiter, versione 5.10.2: Framework per test unitari (solo in fase di sviluppo)
+- JUnit Jupiter, versione 5.10.2: Framework per test unitari (solo in fase di sviluppo)
 
 ### Principali Funzioni Riutilizzate da Librerie Esterne
 
 Il progetto utilizza le funzioni principali:
-❖ Jackson Databind versione 2.17.0:
-  o readValue(), writeValue(), @JsonAutoDetect, @JsonTypeInfo
-❖ JUnit Jupiter 5.10.2 :
-  o @Test, assertEquals(), assertTrue(), @BeforeEach, @TempDir
+- Jackson Databind versione 2.17.0:
+     o readValue(), writeValue(), @JsonAutoDetect, @JsonTypeInfo
+- JUnit Jupiter 5.10.2 :
+     o @Test, assertEquals(), assertTrue(), @BeforeEach, @TempDir
 
 ### Strumenti AI Utilizzati
 
