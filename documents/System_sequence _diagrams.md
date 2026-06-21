@@ -243,13 +243,6 @@ UI --> User : cityStateUpdated()
 
 @enduml
 
-end
-
-RuleEngine --> TickEngine : tickProcessed()
-
-TickEngine -> UI : refreshCityView()
-@enduml
-
 ```
 ## Save City State
 
