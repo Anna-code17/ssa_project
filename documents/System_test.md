@@ -1,15 +1,14 @@
-# DOCUMENTO DI SYSTEM TEST
+## DOCUMENTO DI SYSTEM TEST
 
-Questo documento riporta i risultati della validazione degli Acceptance Criteria definiti per le User Story del progetto City Simulator.
+Questo documento riporta i risultati della validazione degli Acceptance Criteria 
+definiti per le User Story del progetto City Simulator.
 
-Per ciascuna User Story vengono elencati i relativi Acceptance Criteria e l'esito della loro verifica (OK/KO), insieme alla data di validazione ed eventuali commenti.
-
----
-
-## ELENCO USER STORIES
+Per ciascuna User Story vengono elencati i relativi Acceptance Criteria e l'esito 
+della loro verifica (OK/KO), insieme alla data di validazione ed eventuali commenti.
 
 ---
-
+## ELENCO USER STORIES:
+---
 ### SCRUM-42 - Reset Simulation (Task)
 
 **Acceptance Criteria:**
