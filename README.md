@@ -22,3 +22,19 @@
 5. un documento di system test → 1-2 pagine - github ---> ✔  è in documents in versione pdf, date un'occhiata
 6. un report di unit test → automatico ✔
    + javadoc che Anna aveva ipotizzato di fare anche se non espressamente richiesto (ottima idea!) ✔ --> sempre in documents, 
+
+
+
+# Indicazioni su come navigare la repository
+All'interno della home di questa repository ci sono le cartelle
+-[proj](proj)
+-[documents](documents)
+
+## Cartella proj 
+Questa macro cartella contiene sottocartelle contenenti i deliverables:
+- [codice sorgente del progetto](proj/src/main/java) 
+- [classi di testing](proj/src/test/java)
+
+## Cartella documents 
+è possibile trovare all'interno di questa cartella il:
+
