@@ -27,8 +27,8 @@
 
 # Indicazioni su come navigare la repository
 All'interno della home di questa repository ci sono le cartelle
--[proj](proj)
--[documents](documents)
+- [proj](proj)
+- [documents](documents)
 
 ## Cartella proj 
 Questa macro cartella contiene sottocartelle contenenti i deliverables:
@@ -37,4 +37,8 @@ Questa macro cartella contiene sottocartelle contenenti i deliverables:
 
 ## Cartella documents 
 è possibile trovare all'interno di questa cartella il:
+- [Documento di design](documents/Documento_di_design.md)
+- [Manuale del progetto](documents/Manuale_utente.md)
+- [Documento di System test](documents/System_test.md)
+- [User stories(jira)](documents/User_stories.md)
 
