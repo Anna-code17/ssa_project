@@ -26,7 +26,7 @@ Le principali funzionalità includono:
 
 | Requisito | Versione | Note |
 |-----------|----------|------|
-| **Sistema Operativo** | Windows 10 o 11 | Testato solo su queste versioni |
+| **Sistema Operativo** | Windows 10 o 11 | Ambiente testato |
 | **Java JDK** | 17 o superiore | Necessario per eseguire il programma |
 | **Maven** | 3.8 o superiore | Necessario per eseguire il JAR |
 
