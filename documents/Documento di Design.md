@@ -2,6 +2,12 @@
 
 - [Domain Class Model](#Domain-Class-Model)
 - [Sequence Diagrams](#Sequence-Diagrams)
+    -[External Sequence Diagram](#External-Sequence-Diagram)
+    -Internal sequence diagrams:
+    -[Create Entity](##Create-entity)
+    -[Activate Policy](##Activate-Policy)
+    -[Tick](##Tick)
+    -[Save City State](##Save-City-State)
 - [Use Case Diagram](#Use-Case-Diagram)
 
 
