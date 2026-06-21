@@ -27,14 +27,14 @@ Le principali funzionalità includono:
 | Requisito | Versione | Note |
 |-----------|----------|------|
 | **Sistema Operativo** | Windows 10 o 11 | Ambiente testato |
-| **Java JDK** | 17 o superiore | Necessario per eseguire il programma |
-| **Maven** | 3.8 o superiore | Necessario per eseguire il JAR |
+| **Java** | 17 o superiore | Necessario per eseguire il programma |
+| **Maven** | 3.8 o superiore | Necessario per compilare ed eseguire il progetto senza utilizzare il file JAR |
 
 ---
 
 ### Download ed esecuzione del Programma
 
-Per scaricare il programma in formato `.jar`, scaricare la cartella **CitySimulator.zip**.
+Per scaricare il programma in formato `.jar`, scaricare il file **CitySimulator.zip**.
 Una volta completato il download del file `.zip`, estrarne il contenuto in una posizione a scelta sul dispositivo. Verrà creata una directory contenente il file:
 
 - `city-simulator-1.0-SNAPSHOT.jar` , l'applicazione
@@ -99,12 +99,15 @@ java -jar city-simulator-1.0-SNAPSHOT.jar
 
 ### Salvare/Caricare
 
-- Clicca su **"Save"** : scegli un file
-- Clicca su **"Load"** : seleziona un file salvato
+- Clicca su **Save** e seleziona il file di destinazione.
+- Clicca su **Load** e seleziona un file precedentemente salvato.
 
 ### Resettare
 
-- Clicca su **"Reset"** : ricomincia da zero
+- Clicca su **"Reset"** :
+- ricomincia da zero
+- Dopo il reset, tutte le entità, le metriche e la policy attiva vengono riportate allo stato iniziale.
+  
 ---
 
 ## Principali API Esterne Utilizzate
