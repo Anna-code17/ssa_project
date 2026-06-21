@@ -5,10 +5,10 @@
 - [Sequence Diagrams](#sequence-diagrams)
     - [External Sequence Diagram](#external-sequence-diagram)
     - Internal Sequence Diagrams
-        - [Create Entity](##create-entity)
-        - [Activate Policy](##activate-policy)
-        - [Tick](##tick)
-        - [Save City State](##save-city-state)
+        - [Create Entity](#create-entity)
+        - [Activate Policy](#activate-policy)
+        - [Tick](#tick)
+        - [Save City State](#save-city-state)
 
 - [Use Case Diagram](#use-case-diagram)
 
