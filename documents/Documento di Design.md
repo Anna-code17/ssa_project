@@ -33,7 +33,7 @@ delle relazioni tra tutti i componenti del sistema.
 
 ## Codice
 
-[Vai al codice di tutti i Sequence Diagrams](diagrams_md/System_sequence_diagrams.md)
+[Vai al codice di tutti i Sequence Diagrams](diagrams_md/system_sequence_diagrams.md)
 
 ## External sequence diagram
 ```
@@ -41,6 +41,8 @@ Questo diagramma mostra le principali interazioni tra l'utente e il sistema.
 L'utente può gestire la simulazione attraverso operazioni quali posizionamento e rimozione di entità,
 attivazione di policy, avanzamento dei tick, salvataggio, caricamento e reset della città.
 ```
+### Immagine
+
 ![external_sequence_diagram.png](img/diagrams/external_sequence_diagram.png)
 
 # Internal Sequence Diagrams
@@ -53,6 +55,9 @@ Il controller delega l'operazione alla città, che verifica la disponibilità de
 cella e aggiorna lo stato del sistema in caso di successo oppure notifica un errore
 in caso di posizionamento non valido.
 ```
+
+### Immagine
+
 ![create_entity.png](img/diagrams/create_entity.png)
 
 ## Activate Policy
@@ -61,6 +66,8 @@ Questo diagramma rappresenta il processo di attivazione di una policy cittadina.
 Dopo la selezione da parte dell'utente, la policy viene impostata come attiva
 nella città e l'interfaccia viene aggiornata per riflettere il nuovo comportamento della simulazione.
 ```
+### Immagine 
+
 ![activate_policy.png](img/diagrams/activate_policy.png)
 
 ## Tick
@@ -70,6 +77,9 @@ Ad ogni tick vengono analizzate le entità presenti nella griglia, calcolati
 gli effetti complessivi e applicate eventuali modifiche derivanti dalla policy
  attiva prima dell'aggiornamento dello stato della città.
 ```
+
+### Immagine 
+
 ![tick.png](img/diagrams/tick.png)
 
 ## Save City State
@@ -79,6 +89,8 @@ Lo stato della città viene serializzato in formato JSON e scritto su file;
 l'utente riceve una conferma in caso di successo oppure un messaggio di errore
 in caso di problemi durante il salvataggio.
 ```
+### Immagine 
+
 ![save_city_state.png](img/diagrams/save_city_state.png)
 
 ## Use Case Diagram
@@ -87,5 +99,11 @@ Il Use Case Diagram rappresenta le funzionalità principali del sistema City Sim
 dal punto di vista dell'utente. Il diagramma mostra le interazioni tra l'attore User
 e il sistema, identificando i casi d'uso principali e le loro relazioni.
 ```
+## Codice 
+
+[Vai al codice dell' Use Case Diagram](diagrams_md/use_case_diagram.md)
+
+### Immagine 
+
 ![use_case_diagram.png](img/diagrams/use_case_diagram.png)
 
