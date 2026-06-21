@@ -1,3 +1,11 @@
+# Indice:
+
+- [Domain Class Model](#Domain-Class-Model)
+- [Sequence Diagrams](#Sequence-Diagram)
+- [Use Case Diagram](#Use-Case-Diagram)
+
+
+
 # Domain Class Model
 ```
 Il Domain Model rappresenta le entità principali del sistema City Simulator e le loro relazioni.
