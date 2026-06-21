@@ -246,7 +246,7 @@ UI --> User : cityStateUpdated()
 ```
 ## Save City State
 
-![save_city_state.png](../../img/diagrams/save_city_state.png)
+![save_city_state.png](../img/diagrams/save_city_state.png)
 
 ```plantuml
 
@@ -291,4 +291,3 @@ end
 @enduml
 ```
 
-```
