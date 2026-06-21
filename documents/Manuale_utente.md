@@ -45,8 +45,9 @@ java -jar city-simulator-1.0-SNAPSHOT.jar
 ```
 **Avvertenze particolari**
 Il gioco è stato progettato per essere utilizzato a schermo intero. Se la finestra del gioco viene
-ridotta, questo potrebbe causare problemi di visualizzazione.Il software è stato sviluppato e testato esclusivamente su ambienti Windows 10 e Windows
-11. L'esecuzione su altri sistemi operativi potrebbe causare comportamenti imprevisti o
+ridotta, questo potrebbe causare problemi di visualizzazione.
+Il software è stato sviluppato e testato esclusivamente su ambienti `Windows 10` e `Windows 11`. 
+L'esecuzione su altri sistemi operativi potrebbe causare comportamenti imprevisti o
 malfunzionamenti.
 
 ### Principali API Esterne Utilizzate
