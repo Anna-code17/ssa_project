@@ -117,7 +117,7 @@ e il sistema, identificando i casi d'uso principali e le loro relazioni.
 ```
 ## Codice 
 
-[Vai al codice dell' Use Case Diagram](diagrams_md/use_case_diagram.md)
+[Vai al codice dello Use Case Diagram](diagrams_md/use_case_diagram.md)
 
 ### Immagine 
 
