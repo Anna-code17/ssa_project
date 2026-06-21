@@ -65,3 +65,12 @@ l'utente riceve una conferma in caso di successo oppure un messaggio di errore
 in caso di problemi durante il salvataggio.
 ```
 ![save_city_state.png](img/diagrams/save_city_state.png)
+
+## Use Case Diagram
+```
+Il Use Case Diagram rappresenta le funzionalità principali del sistema City Simulator
+dal punto di vista dell'utente. Il diagramma mostra le interazioni tra l'attore User
+e il sistema, identificando i casi d'uso principali e le loro relazioni.
+```
+![use_case_diagram.png](img/diagrams/use_case_diagram.png)
+
