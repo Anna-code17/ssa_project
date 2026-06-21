@@ -76,7 +76,7 @@ java -jar city-simulator-1.0-SNAPSHOT.jar
 3. Clicca su una cella vuota della griglia
 4. Clicca su **"Confirm"**
 
-> **Nota:** Gli edifici residenziali vanno costruiti **vicino a una Centrale Elettrica** (entro 2 celle)!
+> **Nota:** Gli edifici residenziali vanno costruiti **vicino a una Centrale Elettrica** (entro 2 celle)
 
 ### Rimuovere
 
@@ -99,14 +99,13 @@ java -jar city-simulator-1.0-SNAPSHOT.jar
 
 ### Salvare/Caricare
 
-- Clicca su **Save** e seleziona il file di destinazione.
-- Clicca su **Load** e seleziona un file precedentemente salvato.
+1. Clicca su **Save** e seleziona il file di destinazione.
+2. Clicca su **Load** e seleziona un file precedentemente salvato.
 
 ### Resettare
 
-- Clicca su **"Reset"** :
-- ricomincia da zero
-- Dopo il reset, tutte le entità, le metriche e la policy attiva vengono riportate allo stato iniziale.
+1. Clicca su **"Reset"** 
+2. Tutte le entità, le metriche e la policy attiva vengono riportate allo stato iniziale.
   
 ---
 
