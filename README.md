@@ -25,20 +25,54 @@
 
 
 
-# Indicazioni su come navigare la repository
-All'interno della home di questa repository ci sono le cartelle
-- [proj](proj)
-- [documents](documents)
 
-## Cartella proj 
-Questa macro cartella contiene sottocartelle contenenti i deliverables:
-- [codice sorgente del progetto](proj/src/main/java) 
-- [classi di testing](proj/src/test/java)
 
-## Cartella documents 
-è possibile trovare all'interno di questa cartella il:
-- [Documento di design](documents/Documento_di_design.md)
-- [Manuale del progetto](documents/Manuale_utente.md)
-- [Documento di System test](documents/System_test.md)
-- [User stories(jira)](documents/User_stories.md)
+# City Simulator - Panoramica della Repository
+
+## Introduzione
+Questa repository contiene l’implementazione e la documentazione del progetto **City Simulator**.  
+Il sistema è organizzato in due sezioni principali: il progetto software (`proj`) e la documentazione (`documents`).
+
+---
+
+## Struttura della Repository
+
+### proj
+Questa directory contiene l’intera implementazione del sistema, strutturata come progetto Maven.
+
+- **Codice sorgente**: `proj/src/main/java`  
+  Contiene la logica principale dell’applicazione e l’implementazione del dominio.
+
+- **Codice di test**: `proj/src/test/java`  
+  Contiene i test unitari e di integrazione del sistema.
+
+---
+
+### documents
+Questa directory contiene tutta la documentazione del progetto, inclusi design, test e materiali utente.
+
+- **Documento di design**  
+  [Documento di design](documents/Documento_di_design.md)
+
+- **Manuale utente**  
+  [Manuale utente](documents/Manuale_utente.md)
+
+- **Documento di system test**  
+  [System test](documents/System_test.md)
+
+- **User stories (Jira)**  
+  [User stories](documents/User_stories.md)
+
+---
+
+
+## Note
+- La repository segue la struttura standard di un progetto Maven.
+- Il progetto può essere compilato tramite Maven con il comando:
+
+```bash
+mvn clean package
+
+
+
 
