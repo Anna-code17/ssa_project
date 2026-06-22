@@ -1,4 +1,7 @@
 ## Manuale Utente - City Simulator
+---
+
+> **Benvenuto in City Simulator!** Costruisci la tua città virtuale e guidala verso la prosperità. Costruisci edifici, gestisci risorse e affronta le sfide della crescita urbana.
 
 ---
 
@@ -83,6 +86,7 @@ Ogni entità ha un effetto specifico sulle metriche della città. Gli effetti ve
 
 ### Regole di posizionamento
 Gli edifici Residenziali devono essere posizionati entro 2 celle da una Centrale Elettrica.
+Tutte le altre entità	sono posizionabili ovunque su cella vuota.
 
 ### Legenda simboli 
 
@@ -107,7 +111,7 @@ Sulla griglia di gioco, ogni entità è rappresentata da un simbolo e da un colo
 3. Clicca su una cella vuota della griglia
 4. Clicca su **"Confirm"**
 
-> **Nota:** Gli edifici residenziali vanno costruiti **vicino a una Centrale Elettrica** (entro 2 celle)
+> **Nota:** Gli edifici residenziali vanno costruiti **vicino a una Centrale Elettrica** (entro 2 celle).
 
 ### Rimuovere
 
@@ -175,4 +179,4 @@ Il progetto utilizza le funzioni principali:
 
 ## Strumenti AI utilizzati
 
-Durante lo sviluppo del progetto è stato utilizzato **ChatGPT** come supporto.
+Durante lo sviluppo del progetto è stato utilizzato **ChatGPT** come supporto per attività di revisione del testo, documentazione e verifica del codice. Tutte le decisioni progettuali e implementative sono state prese dagli autori del progetto. 
