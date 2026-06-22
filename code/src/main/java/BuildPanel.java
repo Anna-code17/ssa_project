@@ -73,12 +73,11 @@ public class BuildPanel extends JPanel {
         DefaultListModel<String> model =
                 new DefaultListModel<>();
 
-        model.addElement("Park");
-        model.addElement("Road");
-        model.addElement("PowerPlant");
-        model.addElement("ResidentialBuilding");
-        model.addElement("CommercialBuilding");
-        model.addElement("IndustrialBuilding");
+        for (String type :
+                EntityFactory.getAvailableEntityTypes()) {
+
+            model.addElement(type);
+        }
 
         buildEntityList = new JList<>(model);
 

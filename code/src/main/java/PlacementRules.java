@@ -15,6 +15,10 @@ public class PlacementRules {
             return hasNearby(grid, x, y, PowerPlant.class, 2);
         }
 
+      /*  if (entity instanceof School) {
+            return hasNearby(grid, x, y, ResidentialBuilding.class, 2);
+        }
+         */
         // Tutti gli altri edifici possono essere piazzati ovunque
         return true;
     }

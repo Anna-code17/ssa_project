@@ -91,36 +91,5 @@ public class CityGridPanel extends JPanel {
         gridPanel.revalidate();
         gridPanel.repaint();
     }
-
-    /**
-     * Restituisce il colore associato a una determinata entità.
-     */
-    public static Color colorForEntity(PlaceableEntity entity) {
-
-        if (entity instanceof Park) {
-            return new Color(198, 239, 206);
-        }
-
-        if (entity instanceof Road) {
-            return new Color(222, 226, 230);
-        }
-
-        if (entity instanceof ResidentialBuilding) {
-            return new Color(191, 219, 254);
-        }
-
-        if (entity instanceof CommercialBuilding) {
-            return new Color(255, 229, 180);
-        }
-
-        if (entity instanceof IndustrialBuilding) {
-            return new Color(255, 204, 204);
-        }
-
-        if (entity instanceof PowerPlant) {
-            return new Color(221, 214, 254);
-        }
-
-        return new Color(233, 236, 239);
-    }
 }
+

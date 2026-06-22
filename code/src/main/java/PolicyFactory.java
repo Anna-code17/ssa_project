@@ -9,6 +9,7 @@ public final class PolicyFactory {
         return List.of(
                 new EnvironmentalTaxPolicy(),
                 new IndustrialExpansionPolicy()
+             //   new EducationReformPolicy()
         );
     }
 }

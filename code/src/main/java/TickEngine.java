@@ -64,12 +64,17 @@ public class TickEngine {
     }
 
     //metodo per poter applicare le policy anche con valori negativi delle percentuali
+    // Applica una variazione percentuale arrotondando al valore intero più vicino.
     private int applyPolicyPercent(int value, int percent) {
 
+        double result;
+
         if (value >= 0) {
-            return value + value * percent / 100;
+            result = value + value * percent / 100.0;
+        } else {
+            result = value + Math.abs(value) * percent / 100.0;
         }
 
-        return value + Math.abs(value) * percent / 100;
+        return (int) Math.round(result);
     }
 }

@@ -8,8 +8,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
     property = "type"
 )
 @JsonSubTypes({
-    @JsonSubTypes.Type(value = EnvironmentalTaxPolicy.class, name = "EnvironmentalTaxPolicy"),
-    @JsonSubTypes.Type(value = IndustrialExpansionPolicy.class, name = "IndustrialExpansionPolicy")
+        @JsonSubTypes.Type(value = EnvironmentalTaxPolicy.class, name = "EnvironmentalTaxPolicy"),
+        @JsonSubTypes.Type(value = IndustrialExpansionPolicy.class, name = "IndustrialExpansionPolicy")
+      //  @JsonSubTypes.Type(value = EducationReformPolicy.class, name = "EducationReformPolicy")
 })
     
 /*Interfaccia per le policy applicabili alla città.

@@ -7,12 +7,13 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
     property = "type"
 )
 @JsonSubTypes({
-    @JsonSubTypes.Type(value = ResidentialBuilding.class, name = "ResidentialBuilding"),
-    @JsonSubTypes.Type(value = IndustrialBuilding.class, name = "IndustrialBuilding"),
-    @JsonSubTypes.Type(value = CommercialBuilding.class, name = "CommercialBuilding"),
-    @JsonSubTypes.Type(value = PowerPlant.class, name = "PowerPlant"),
-    @JsonSubTypes.Type(value = Park.class, name = "Park"),
-    @JsonSubTypes.Type(value = Road.class, name = "Road")
+        @JsonSubTypes.Type(value = ResidentialBuilding.class, name = "ResidentialBuilding"),
+        @JsonSubTypes.Type(value = IndustrialBuilding.class, name = "IndustrialBuilding"),
+        @JsonSubTypes.Type(value = CommercialBuilding.class, name = "CommercialBuilding"),
+        @JsonSubTypes.Type(value = PowerPlant.class, name = "PowerPlant"),
+        @JsonSubTypes.Type(value = Park.class, name = "Park"),
+        @JsonSubTypes.Type(value = Road.class, name = "Road")
+      //  @JsonSubTypes.Type(value = School.class, name = "School")
 }) 
 
 public abstract class PlaceableEntity {
