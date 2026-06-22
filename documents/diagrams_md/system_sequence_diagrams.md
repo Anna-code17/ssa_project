@@ -249,7 +249,6 @@ UI --> User : cityStateUpdated()
 ![save_city_state.png](../img/diagrams/save_city_state.png)
 
 ```plantuml
-
 @startuml
 autonumber
 
@@ -258,36 +257,30 @@ actor User
 boundary UI
 control Controller
 entity SaveManager
-entity City
-database SaveRepository
+entity JsonManager
 
-User -> UI : saveGame()
+User -> UI : click "Save"
 
-UI -> Controller : saveGame()
+UI -> Controller : saveCity(filepath)
 
 Controller -> SaveManager : save(city, filepath)
 
 SaveManager -> JsonManager : save(city, filepath)
 
-JsonManager -> City : serialize()
-City --> JsonManager : jsonData
-
-JsonManager -> SaveRepository : write(jsonData)
-SaveRepository --> JsonManager : written
-
-JsonManager --> SaveManager : success
+JsonManager --> SaveManager : success / exception
 
 opt save successful
-SaveManager --> Controller: true
-Controller --> UI : showSaveSuccess()
+SaveManager --> Controller : true
+Controller --> UI : showSaveSuccess
 UI --> User : save confirmed
 end
 
 opt save failed
-SaveManager --> Controller: false
-Controller --> UI : showSaveError()
+SaveManager --> Controller : false
+Controller --> UI : showSaveError
 UI --> User : show error
 end
+
 @enduml
 ```
 
