@@ -66,7 +66,7 @@ mvn exec:java
 
 ## Interfaccia principale
 
-### Tipi di Entità e Loro Effetti
+### Tipi di entità e loro effetti
 
 Le entità sono di due tipologie: **Edifici** e **Infrastrutture**.
 Ogni entità ha un effetto specifico sulle metriche della città. Gli effetti vengono applicati a ogni tick della simulazione, mentre il costo di costruzione viene applicato solo al momento del posizionamento dell'entità.
@@ -75,12 +75,13 @@ Ogni entità ha un effetto specifico sulle metriche della città. Gli effetti ve
 |--------|-----------|--------|-------------|--------------|----------|---------------------|
 | **Parco** | Infrastruttura | -50 | 0 | -15 | +20 | -200 |
 | **Strada** | Infrastruttura | -5 | 0 | 0 | +2 | -50 |
+| **Centrale Elettrica** | Infrastruttura | -50 | 0 | +15 | -5 | -400 |
 | **Residenziale** | Edificio | -10 | +5 | +5 | +8 | -100 |
 | **Commerciale** | Edificio | +60 | 0 | +9 | +5 | -200 |
 | **Industriale** | Edificio | +110 | 0 | +20 | -10 | -250 |
-| **Centrale Elettrica** | Infrastruttura | -50 | 0 | +15 | -5 | -400 |
 
-### Regole di Posizionamento
+
+### Regole di posizionamento
 Gli edifici Residenziali devono essere posizionati entro 2 celle da una Centrale Elettrica.
 
 ### Legenda simboli 
@@ -97,7 +98,7 @@ Sulla griglia di gioco, ogni entità è rappresentata da un simbolo e da un colo
 | ☢ | **Centrale Elettrica** | Violetto chiaro|
 ---
 
-## Come Giocare
+## Come giocare
 
 ### Costruire
 
@@ -114,7 +115,7 @@ Sulla griglia di gioco, ogni entità è rappresentata da un simbolo e da un colo
 2. Clicca su una cella occupata
 3. L'entità viene rimossa
 
-### Fare avanzare il Tempo
+### Fare avanzare il tempo
 
 1. Clicca su **"Advance Tick"**
 2. La città si evolve: gli effetti si applicano
@@ -140,7 +141,7 @@ Sulla griglia di gioco, ogni entità è rappresentata da un simbolo e da un colo
   
 ---
 
-## Principali API Esterne Utilizzate
+## Principali API esterne utilizzate
 
 Il progetto utilizza le seguenti API esterne:
 
@@ -153,7 +154,7 @@ Il progetto utilizza le seguenti API esterne:
 
 ---
 
-## Principali Funzioni Riutilizzate da Librerie Esterne
+## Principali funzioni riutilizzate da librerie esterne
 
 Il progetto utilizza le funzioni principali:
 
@@ -172,6 +173,6 @@ Il progetto utilizza le funzioni principali:
 
 ---
 
-## Strumenti AI Utilizzati
+## Strumenti AI utilizzati
 
 Durante lo sviluppo del progetto è stato utilizzato **ChatGPT** come supporto.
