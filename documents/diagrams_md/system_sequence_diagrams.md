@@ -144,7 +144,6 @@ end
 ![activate_policy.png](../img/diagrams/activate_policy.png)
 
 ```plantuml
-
 @startuml
 autonumber
 
@@ -153,31 +152,32 @@ actor User
 boundary UI
 control Controller
 entity City
-collections Policy
+collections PolicyFactory
 
-User -> UI : selectPolicy(policy)
-User -> UI : confirmActivation()
+User -> UI : click "Set Policy"
+
+UI -> PolicyFactory : getAvailablePolicies()
+PolicyFactory --> UI : List<Policy>
+
+UI --> User : display policy menu
+
+User -> UI : select policy
+UI --> UI : store selected policy
+
+User -> UI : click "Apply"
 
 UI -> Controller : applyPolicy(policy)
-
 Controller -> City : setActivePolicy(policy)
 
-opt Policy successfully added
-    Controller -> UI : policyApplied()
-end
+UI -> UI : refresh()
 
-opt Policy already active
-    Controller -> UI : showPolicyError()
-end
 @enduml
-
 ```
 ## Tick
 
 ![tick.png](../img/diagrams/tick.png)
 
 ```plantuml
-
 @startuml
 autonumber
 
