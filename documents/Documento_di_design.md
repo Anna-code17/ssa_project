@@ -2,6 +2,8 @@
 
 - [Domain Class Model](#domain-class-model)
 
+- [Design Class Model](#design-class-model)
+
 - [Sequence Diagrams](#sequence-diagrams)
     - [External Sequence Diagram](#external-sequence-diagram)
     - Internal Sequence Diagrams
