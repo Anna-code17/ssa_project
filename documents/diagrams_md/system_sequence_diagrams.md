@@ -98,7 +98,6 @@ System --> User : applicationClosed()
 ![create_entity.png](../img/diagrams/create_entity.png)
 
 ```plantuml
-
 @startuml
 autonumber
 
