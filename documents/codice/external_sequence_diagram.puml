@@ -7,74 +7,75 @@ System --> User : displayUI(cityState, cityGrid)
 
 loop While simulation is running
 
-    opt Place Entity
-        User -> System : placeEntity(entityType, position)
-        System -> System : validatePlacement()
 
-        alt Placement allowed
-            System -> System : addEntityToGrid()
-            System --> User : updateGrid()
-            System --> User : updateState()
+opt Place Entity
+    User -> System : click "Build"
+    User -> System : select cell
+    User -> System : select entity
+    User -> System : click "Confirm"
 
-        else Placement not allowed
-            System --> User : showError("Invalid placement")
-        end
-    end
-
-    opt Remove Entity
-        User -> System : removeEntity(position)
-        System -> System : removeEntityFromGrid()
-        System --> User : updateGrid()
-        System --> User : updateState()
-    end
-
-    opt Activate Policy
-        User -> System : activatePolicy(policy)
-        System -> System : applyPolicy()
+    alt Placement successful
         System --> User : updateUI()
+    else Placement failed
+        System --> User : show error of invalid placement
     end
+end
 
-    opt Deactivate Policy
-        User -> System : deactivatePolicy()
-        System -> System : removePolicy()
+opt Remove Entity
+    User -> System : click "Remove"
+    User -> System : select entity on grid
+    System --> User : updateUI()
+end
+
+opt Activate Policy
+    User -> System : click "Set Policy"
+    User -> System : select policy
+    User -> System : click "Apply"
+    System --> User : updateUI()
+
+    opt View Active Policy Details
+        User -> System : click "View Details"
+        System --> User : displayPolicyDetails()
+    end
+end
+
+opt Deactivate Policy
+    User -> System : click "Set Policy"
+    User -> System : select "No Active Policy"
+    User -> System : click "Apply"
+    System --> User : updateUI()
+end
+
+opt Advance Tick
+    User -> System : click "Advance Tick"
+    System --> User : updateUI()
+end
+
+opt Save Simulation
+    User -> System : click "Save"
+
+    alt Save successful
+        System --> User : saveConfirmed()
+    else Save failed
+        System --> User : showError("Error while saving.")
+    end
+end
+
+opt Load Simulation
+    User -> System : click "Load"
+
+    alt Load successful
         System --> User : updateUI()
+    else Load failed
+        System --> User : showError("Error while loading.")
     end
+end
 
-    opt Advance Tick
-        User -> System : advanceTick()
-        System -> System : scanGridAndApplyEffects()
-        System -> System : updateCityState()
-        System --> User : updateUI()
-    end
+opt Reset Simulation
+    User -> System : click "Reset"
+    System --> User : updateUI()
+end
 
-    opt Save Simulation
-        User -> System : saveCityState()
-        System -> System : saveSimulationToFile()
-
-        alt Save successful
-            System --> User : saveConfirmed()
-        else Save failed
-            System --> User : showError("Save failed")
-        end
-    end
-
-    opt Load Simulation
-        User -> System : loadCityState()
-        System -> System : loadSimulationFromFile()
-
-        alt Load successful
-            System --> User : updateUI()
-        else Load failed
-            System --> User : showError("Load failed")
-        end
-
-    end
-
-    opt Reset Simulation
-        User -> System : resetSimulation()
-        System -> System : resetSimulationState()
-        System --> User : updateUI()
-    end
 
 end
 
