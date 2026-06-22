@@ -66,16 +66,35 @@ mvn exec:java
 
 ## Interfaccia Principale
 
-### Legenda Simboli
+### Legenda Simboli e Tipi di Entità
 
-| Simbolo | Entità |
-|---------|--------|
-| 🌳 | Parco |
-| ➖ | Strada |
-| 🏡 | Edificio Residenziale |
-| 🏪 | Edificio Commerciale |
-| 🏭 | Edificio Industriale |
-| ☢ | Centrale Elettrica |
+Sulla griglia di gioco, ogni entità è rappresentata da un simbolo e da un colore specifico che ne identificano il tipo e la funzione.
+
+| Simbolo | Entità | Colore | 
+|---------|--------|--------|
+| 🌳 | **Parco** | Verdino chiaro | 
+| ➖ | **Strada** | Grigio chiaro |
+| 🏠 | **Edificio Residenziale** | 
+| 🏪 | **Edificio Commerciale** | Arancione chiaro | 
+| 🏭 | **Edificio Industriale** | Rosa chiaro| 
+| ☢ | **Centrale Elettrica** | Violetto chiaro|
+
+### Tipi di Entità e Loro Effetti
+
+Le entità sono di due tipologie: **Edifici** e **Infrastrutture**.
+Ogni entità ha un effetto specifico sulle metriche della città. Gli effetti vengono applicati a ogni tick della simulazione, mentre il costo di costruzione viene applicato solo al momento del posizionamento dell'entità.
+
+| Entità | Tipologia  | Budget | Popolazione | Inquinamento | Felicità | Costo di Costruzione |
+|--------|-----------|--------|-------------|--------------|----------|---------------------|
+| **Parco** | Infrastruttura | -50 | 0 | -15 | +20 | -200 |
+| **Strada** | Infrastruttura | -5 | 0 | 0 | +2 | -50 |
+| **Residenziale** | Edificio | -10 | +5 | +5 | +8 | -100 |
+| **Commerciale** | Edificio | +60 | 0 | +9 | +5 | -200 |
+| **Industriale** | Edificio | +110 | 0 | +20 | -10 | -250 |
+| **Centrale Elettrica** | Infrastruttura | -50 | 0 | +15 | -5 | -400 |
+
+### Regole di Posizionamento
+Gli edifici Residenziali devono essere posizionati entro 2 celle da una Centrale Elettrica.
 
 ---
 
