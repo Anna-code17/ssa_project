@@ -44,10 +44,7 @@ Questa directory contiene tutta la documentazione del progetto, inclusi design, 
 
 ## Note
 - La repository segue la struttura standard di un progetto Maven.
-- Il progetto può essere compilato tramite Maven con il comando:
 
-```bash
-mvn clean package
 
 
 
