@@ -193,7 +193,7 @@ entity PlaceableEntity
 entity CityState
 collections Policy
 
-User -> UI : advanceTick()
+User -> UI : click "Advance Tick"
 UI -> Controller : nextTick()
 
 Controller -> TickEngine : advanceTick(city)
@@ -220,7 +220,7 @@ loop for each Cell
         TickEngine -> PlaceableEntity : getEffects()
         PlaceableEntity --> TickEngine : effect
 
-        TickEngine -> TickEngine : sumEffects(budget, pollution, happiness, population)
+        TickEngine --> TickEngine : sumEffects(budget, pollution, happiness, population)
 
     end
 
@@ -234,12 +234,12 @@ end
 
 TickEngine -> CityState : applyEffects(totalEffect)
 TickEngine -> CityState : setPopulation(currentPopulation)
-TickEngine -> CityState : setBudget(newBudget)
+
 
 TickEngine -> City : incrementTick()
 
-TickEngine -> UI : refreshUI()
-UI --> User : cityStateUpdated()
+
+UI -> UI : refresh()
 
 @enduml
 
