@@ -7,30 +7,45 @@ control Controller
 entity City
 entity CityGrid
 entity Cell
-entity PlaceableEntity
+entity CityState
+control PlacementRules
 
-User -> UI : selectEntity(entity)
-User -> UI : selectCell(x, y)
-User -> UI : confirmPlacement()
+User -> UI : click "Build"
+User -> UI : select Cell
+User -> UI : choose Entity
+User -> UI : click "Confirm"
 
-UI -> Controller : placeEntity(entity, x, y)
+UI -> Controller : placeEntity(x, y, entity)
 
-Controller -> City : placeEntity(entity, x, y)
-City -> CityGrid : place(x, y, entity)
-CityGrid -> Cell : placeEntity(entity)
+Controller -> City : placeEntity(x, y, entity)
 
-alt Cell is free
-    Cell --> CityGrid : success
-    CityGrid --> City : success
-    City --> Controller : success
-    Controller -> UI : placementSuccess()
+alt entity instanceof Building
+    City -> City : placeBuilding(x, y, entity)
+    City -> PlacementRules : canPlaceBuilding(entity, grid, x, y)
+    PlacementRules --> City : canPlace
+else entity instanceof Infrastructure
+    City -> City : placeInfrastructure(x, y, entity)
+    City -> PlacementRules : canPlaceInfrastructure(entity, grid, x, y)
+    PlacementRules --> City : canPlace
 end
 
-alt Cell is occupied
-    Cell --> CityGrid : failed (occupied)
-    CityGrid --> City : placement failed
-    City --> Controller : failed
-    Controller -> UI : showPlacementError()
-end
+alt canPlace == false
+    City --> Controller : false
+    Controller --> UI : false
+    UI -> User : show error dialog
+else canPlace == true
+    City -> CityGrid : place(x, y, entity)
+    CityGrid -> Cell : placeEntity(entity)
 
-@enduml 
+    Cell --> CityGrid : true
+    CityGrid --> City : true
+        
+    City -> CityState : setBudget(budget + buildCost)
+        
+    City --> Controller : true
+    Controller --> UI : true
+        
+    UI -> UI : exitBuildMode()
+    UI -> UI : refresh()
+ end
+@enduml
