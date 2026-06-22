@@ -2,7 +2,7 @@
 
 ---
 
-## Descrizione ad Alto Livello del Progetto
+## Descrizione ad alto livello del Progetto
 
 City Simulator è un gioco di strategia in cui il giocatore costruisce e gestisce una città virtuale. 
 
@@ -64,20 +64,7 @@ mvn exec:java
 
 ---
 
-## Interfaccia Principale
-
-### Legenda Simboli e Tipi di Entità
-
-Sulla griglia di gioco, ogni entità è rappresentata da un simbolo e da un colore specifico che ne identificano il tipo e la funzione.
-
-| Simbolo | Entità | Colore | 
-|---------|--------|--------|
-| 🌳 | **Parco** | Verdino chiaro | 
-| ➖ | **Strada** | Grigio chiaro |
-| 🏠 | **Edificio Residenziale** | 
-| 🏪 | **Edificio Commerciale** | Arancione chiaro | 
-| 🏭 | **Edificio Industriale** | Rosa chiaro| 
-| ☢ | **Centrale Elettrica** | Violetto chiaro|
+## Interfaccia principale
 
 ### Tipi di Entità e Loro Effetti
 
@@ -96,6 +83,18 @@ Ogni entità ha un effetto specifico sulle metriche della città. Gli effetti ve
 ### Regole di Posizionamento
 Gli edifici Residenziali devono essere posizionati entro 2 celle da una Centrale Elettrica.
 
+### Legenda simboli 
+
+Sulla griglia di gioco, ogni entità è rappresentata da un simbolo e da un colore specifico che ne identificano il tipo e la funzione.
+
+| Simbolo | Entità | Colore | 
+|---------|--------|--------|
+| 🌳 | **Parco** | Verdino chiaro | 
+| ➖ | **Strada** | Grigio chiaro |
+| 🏠 | **Edificio Residenziale** | Azzurrino chiaro |
+| 🏪 | **Edificio Commerciale** | Arancione chiaro | 
+| 🏭 | **Edificio Industriale** | Rosa chiaro| 
+| ☢ | **Centrale Elettrica** | Violetto chiaro|
 ---
 
 ## Come Giocare
