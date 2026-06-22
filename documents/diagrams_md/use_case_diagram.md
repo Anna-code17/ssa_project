@@ -3,7 +3,6 @@
 ![use_case_diagram.png](../img/diagrams/use_case_diagram.png)
 
 ```plantuml
-
 @startuml 
 left to right direction
 
