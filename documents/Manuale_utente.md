@@ -5,6 +5,31 @@
 
 ---
 
+## Indice
+
+- [Descrizione ad alto livello del Progetto](#descrizione-ad-alto-livello-del-progetto)
+- [Istruzioni per installare e lanciare il Software](#istruzioni-per-installare-e-lanciare-il-software)
+  - [Requisiti](#requisiti)
+  - [Download ed esecuzione del Programma](#download-ed-esecuzione-del-programma)
+  - [Compilazione manuale](#compilazione-manuale)
+  - [Avvertenze particolari](#avvertenze-particolari)
+- [Interfaccia principale](#interfaccia-principale)
+  - [Tipi di entità e loro effetti](#tipi-di-entità-e-loro-effetti)
+  - [Regole di posizionamento](#regole-di-posizionamento)
+  - [Legenda simboli](#legenda-simboli)
+- [Come giocare](#come-giocare)
+  - [Costruire](#costruire)
+  - [Rimuovere](#rimuovere)
+  - [Fare avanzare il tempo](#fare-avanzare-il-tempo)
+  - [Policy](#policy)
+  - [Salvare/Caricare](#salvarecaricare)
+  - [Resettare](#resettare)
+- [Principali API esterne utilizzate](#principali-api-esterne-utilizzate)
+- [Principali funzioni riutilizzate da librerie esterne](#principali-funzioni-riutilizzate-da-librerie-esterne)
+- [Strumenti AI utilizzati](#strumenti-ai-utilizzati)
+
+---
+
 ## Descrizione ad alto livello del Progetto
 
 City Simulator è un gioco di strategia in cui il giocatore costruisce e gestisce una città virtuale. 
