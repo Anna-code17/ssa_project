@@ -44,8 +44,8 @@ else canPlace == true
         
     City --> Controller : true
     Controller --> UI : true
-        
-    UI -> UI : exitBuildMode()
-    UI -> UI : refresh()
- end
+  end      
+UI -> UI : exitBuildMode()
+UI -> UI : refresh()
+ 
 @enduml
