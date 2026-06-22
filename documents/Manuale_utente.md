@@ -1,7 +1,7 @@
 ## Manuale Utente - City Simulator
 ---
 
-> **Benvenuto in City Simulator!** Costruisci la tua città virtuale e guidala verso la prosperità. Costruisci edifici, gestisci risorse e affronta le sfide della crescita urbana.
+> **Benvenuto in City Simulator!** Costruisci la tua città virtuale e guidala verso la prosperità. Costruisci edifici, gestisci risorse e affronta le sfide della crescita urbana.<
 
 ---
 
