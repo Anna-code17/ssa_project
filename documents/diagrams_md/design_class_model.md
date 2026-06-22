@@ -51,7 +51,6 @@ class CityGrid {
   + getOccupiedCount(): int
   + isValidPosition(x: int, y: int): boolean
   + isEmpty(x: int, y: int): boolean
-  + isFull(): boolean
   + toString(): String
 }
 
@@ -94,6 +93,7 @@ class Effect {
   - pollution: int
   - happiness: int
   - buildCost: int
+  - placementRule: String
   + Effect(budget: int, population: int, pollution: int, happiness: int)
   + Effect(budget: int, population: int, pollution: int, happiness: int, buildCost: int)
   + Effect()
@@ -102,11 +102,13 @@ class Effect {
   + getPollution(): int
   + getHappiness(): int
   + getBuildCost(): int
+  + getPlacementRule(): String
   + setBudget(budget: int): void
   + setPopulation(population: int): void
   + setPollution(pollution: int): void
   + setHappiness(happiness: int): void
   + setBuildCost(buildCost: int): void
+  + setPlacementRule(placementRule: String)
   + toString(): String
 }
 
@@ -203,14 +205,13 @@ class Controller {
 }
 
 class PlacementRules {
-  - hasPowerPlantNearby(grid: CityGrid, x: int, y: int): boolean
   + canPlaceBuilding(entity: Building, grid: CityGrid, x: int, y: int): boolean
-  + canPlaceInfrastructure(entity: Infrastructure, grid: CityGrid, x: int, y: int): boolean
+  + canPlaceInfrastructure(infrastructure: Infrastructure, grid: CityGrid, x: int, y: int): boolean
 }
 
 class TickEngine {
-  + advanceTick(city: City): void
   - applyPolicyPercent(value: int, percent: int): int
+  + advanceTick(city: City): void 
 }
 
 class SaveManager {
