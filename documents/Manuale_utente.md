@@ -145,12 +145,8 @@ Tutti i calcoli vengono eseguiti utilizzando numeri interi. Quando una policy pr
 
 | Policy | Effetto | Descrizione |
 |--------|---------|-------------|
-| **Tassa Ambientale** | Budget: -15% | Riduce il budget ma diminuisce l'inquinamento e aumenta la felicità |
-| | Inquinamento: -15% | |
-| | Felicità: +10% | |
-| **Espansione Industriale** | Budget: +10% | Aumenta il budget e l'inquinamento, ma riduce la felicità |
-| | Inquinamento: +15% | |
-| | Felicità: -5% | |
+| **Tassa Ambientale** | Budget: -15% | Inquinamento: -15% | Felicità: +10% | 
+| **Espansione Industriale** | Budget: +10% | Inquinamento: +15% | Felicità: -5% |
 
 ---
 
