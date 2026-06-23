@@ -77,6 +77,7 @@ As a user, I want to create and remove city entities, so that I can control the 
 
 1. Given a valid empty grid cell, when the user places an entity, then the entity is created in that cell.
 2. Given an occupied cell, when the user tries to place another entity, then the operation is rejected.
+3. Given an occupied cell, when the user removes an entity, then the entity must be removed and the cell must become empty.
 
 **Esito:** OK
 
