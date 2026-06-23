@@ -296,7 +296,6 @@ Policy <|.. IndustrialExpansionPolicy
 
 
 City ..> PlacementRules : uses
-City "0..1" o-- "0..1" Policy : activates
 CityGrid "1" *-- "1..*" Cell : composed of
 Cell "0..1" -- "0..1" PlaceableEntity : hosts
 PlaceableEntity "1" --> "1" Effect : produces
