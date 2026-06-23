@@ -3,7 +3,6 @@
 ![domain_class_model.png](../img/diagrams/domain_class_model.png)
 
 ```plantuml
-
 @startuml
 
 ' ======================
