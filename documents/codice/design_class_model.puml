@@ -46,7 +46,6 @@ class CityGrid {
   + getOccupiedCount(): int
   + isValidPosition(x: int, y: int): boolean
   + isEmpty(x: int, y: int): boolean
-  + isFull(): boolean
   + toString(): String
 }
 
@@ -208,7 +207,7 @@ class Controller {
 class PlacementRules {
   - hasNearby(grid: CityGrid, x: int, y: int, entityType: Class<? extends PlaceableEntity>, distance: int): boolean
   + canPlaceBuilding(entity: Building, grid: CityGrid, x: int, y: int): boolean
-  + canPlaceInfrastructure(entity: Infrastructure, grid: CityGrid, x: int, y: int): boolean
+  + canPlaceInfrastructure(infrastructure: Infrastructure, grid: CityGrid, x: int, y: int): boolean
 }
 
 class TickEngine {
@@ -233,82 +232,15 @@ class JsonManager {
 }
 
 ' ======================
-' Supporto UI
-' ======================
-
-class BuildSession {
-  - mode: InteractionMode
-  - waitingForCellSelection: boolean
-  - selectedX: int
-  - selectedY: int
-  - selectedType: String
-  + BuildSession()
-  + startBuild(): void
-  + startRemove(): void
-  + reset(): void
-  + cancel(): void
-  + isActive(): boolean
-  + isBuildMode(): boolean
-  + isRemoveMode(): boolean
-  + isWaitingForCellSelection(): boolean
-  + selectCell(x: int, y: int): void
-  + setSelectedType(type: String): void
-  + getSelectedType(): String
-  + getSelectedX(): int
-  + getSelectedY(): int
-  + canConfirm(): boolean
-}
-
-enum InteractionMode {
-  NORMAL
-  BUILD
-  REMOVE
-}
-
-' ======================
-' Factory
-' ======================
-
-class PolicyFactory {
-  + {static} getAvailablePolicies(): List<Policy>
-}
-
-class EntityFactory {
-  + {static} create(type: String): PlaceableEntity
-}
-
-' ======================
-' INTERFACCIA UTENTE 
-' ======================
-
-class UserInterface {
-  - controller: Controller
-  - buildSession: BuildSession
-  - isFirstBuild: boolean
-  + UserInterface(controller: Controller)
-  + refresh()
-  + refreshGrid()
-  + refreshState()
-  + enterBuildMode()
-  + enterRemoveMode()
-  + confirmBuild()
-  + cancelBuild()
-  + saveCity()
-  + loadCity()
-  + showPolicySelector()
-  + countOccupiedCells(grid: CityGrid): int
-}
-
-' ======================
 ' Relazioni
 ' ======================
 
 ' ---- Domain ----
 City "1" *-- "1" CityGrid : contains
 City "1" *-- "1" CityState : owns
-City "0..1" o-- "0..1" Policy : activates
+City "0..1" --> "0..1" Policy : activates
 
-CityGrid "1" *-- "1..*" Cell : composed of
+CityGrid "1" *-- "*" Cell : composed of
 Cell "0..1" -- "0..1" PlaceableEntity : hosts
 PlaceableEntity "1" --> "1" Effect : produces
 
@@ -328,8 +260,8 @@ Policy <|.. EnvironmentalTaxPolicy
 Policy <|.. IndustrialExpansionPolicy
 
 ' ---- Controller ----
-Controller --> City : manages
-Controller o-- TickEngine : uses
+Controller "1" --> "1" City : manages
+Controller --> TickEngine : uses
 Controller --> SaveManager : uses
 
 ' ---- TickEngine ----
@@ -339,25 +271,13 @@ TickEngine ..> CityState : updates
 
 ' ---- PlacementRules ----
 PlacementRules ..> CityGrid : uses
-PlacementRules ..> PlaceableEntity : validates
 City ..> PlacementRules : uses
+
 
 ' ---- SaveManager ----
 SaveManager --> JsonManager : uses
 SaveManager --> City : saves
 
-' ---- BuildSession ----
-BuildSession --> InteractionMode
-
-' ---- Factories ----
-EntityFactory ..> PlaceableEntity : creates
-PolicyFactory ..> Policy : creates
-
-' ---- User Interface ----
-UserInterface --> Controller : uses
-UserInterface --> BuildSession : uses
-UserInterface ..> EntityFactory : creates entities
-UserInterface ..> PolicyFactory : creates policies
 
 ' ======================
 ' Note
@@ -376,12 +296,8 @@ note bottom of Policy
   gli effetti vengono applicati durante un tick.
 end note
 
-note right of UserInterface
-  Classe unica per l'interfaccia utente.
-  Gestisce l'interazione con il Controller
-  e lo stato della sessione di build/remove.
-  Le classi Swing interne (JPanel, JFrame, ecc.)
-  non sono rappresentate nel diagramma.
-end note
-
 @enduml
+
+```
+ 
+  
