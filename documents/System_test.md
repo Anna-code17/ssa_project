@@ -109,7 +109,7 @@ As a user, I want the system to prevent invalid placements so that the city obey
 ### SCRUM-36 - Save and Load
 
 **User Story:**  
-As a user, I want to save and load the simulation state so that I can continue playing later.
+As a user, I want to be able to save the city state so that I can load it later and continue the simulation.
 
 **Acceptance Criteria:**
 
