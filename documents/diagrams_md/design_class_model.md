@@ -277,8 +277,7 @@ TickEngine ..> CityState : updates
 ' ---- PlacementRules ----
 PlacementRules ..> CityGrid : uses
 City ..> PlacementRules : uses
-PlacementRules ..> Building
-PlacementRules ..> Infrastructure
+
 
 ' ---- SaveManager ----
 SaveManager --> JsonManager : uses
