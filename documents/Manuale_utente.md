@@ -178,8 +178,8 @@ Tutti i calcoli vengono eseguiti utilizzando numeri interi. Quando una policy pr
 
 1. Clicca su **"Set policy"**
 2. Scegli tra:
-   - **Tassa Ambientale** (riduce inquinamento, aumenta felicità)
-   - **Espansione Industriale** (aumenta budget, aumenta inquinamento)
+   - **Tassa Ambientale** (riduce budget, riduce inquinamento, aumenta felicità)
+   - **Espansione Industriale** (aumenta budget, aumenta inquinamento, riduce felicità)
 3. Solo dopo aver scelto una policy, è possibile cliccare su **'View details'** per vedere nel dettaglio come la policy modifica i parametri.
 
 ### Salvare/Caricare
