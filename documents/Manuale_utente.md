@@ -139,7 +139,7 @@ Le policy agiscono sulle statistiche della città applicando variazioni percentu
 **Esempio:** Un Parco produce un -15 sull'inquinamento. Con la policy Tassa Ambientale attiva, che applica un -15% sull'inquinamento, il risultato finale sarà una riduzione di 17 punti di inquinamento (il calcolo esatto sarebbe -17.25, ma viene troncato all'intero più vicino).
 
 **Attenzione agli arrotondamenti:** 
-Tutti i calcoli vengono eseguiti utilizzando numeri interi. Quando una policy produce valori con decimali, questi vengono **troncata all'intero più vicino**.
+Tutti i calcoli vengono eseguiti utilizzando numeri interi. Quando una policy produce valori con decimali, questi vengono **troncati all'intero più vicino**.
 
 ### Policy disponibili
 
