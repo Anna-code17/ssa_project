@@ -243,10 +243,10 @@ class JsonManager {
 ' ---- Domain ----
 City "1" *-- "1" CityGrid : contains
 City "1" *-- "1" CityState : owns
-City "1" --> "0..1" Policy : activates
+City "0..1" --> "0..1" Policy : activates
 
 CityGrid "1" *-- "*" Cell : composed of
-Cell "1" -- "0..1" PlaceableEntity : hosts
+Cell "0..1" -- "0..1" PlaceableEntity : hosts
 PlaceableEntity "1" --> "1" Effect : produces
 
 ' ---- Inheritance ----
@@ -266,7 +266,7 @@ Policy <|.. IndustrialExpansionPolicy
 
 ' ---- Controller ----
 Controller "1" --> "1" City : manages
-Controller "1" o-- "1" TickEngine : uses
+Controller --> TickEngine : uses
 Controller --> SaveManager : uses
 
 ' ---- TickEngine ----
@@ -276,8 +276,9 @@ TickEngine ..> CityState : updates
 
 ' ---- PlacementRules ----
 PlacementRules ..> CityGrid : uses
-PlacementRules ..> PlaceableEntity : validates
 City ..> PlacementRules : uses
+PlacementRules ..> Building
+PlacementRules ..> Infrastructure
 
 ' ---- SaveManager ----
 SaveManager --> JsonManager : uses
