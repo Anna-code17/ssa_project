@@ -48,7 +48,7 @@ Il progetto è disponibile per il download in due formati:
 
 ### Istruzioni per l'Installazione
 
-Le istruzioni dettagliate per l'installazione e la configurazione dell'ambiente di sviluppo sono fornite nel **[Manuale Utente](documents/manuale_utente.md)** . Consulta quel documento per i passaggi specifici su come importare il progetto, configurare le dipendenze e avviare l'applicazione.
+Le istruzioni dettagliate per l'installazione e la configurazione dell'ambiente di sviluppo sono fornite nel **[Manuale Utente](documents/Manuale_utente.md)** . Consulta quel documento per i passaggi specifici su come importare il progetto, configurare le dipendenze e avviare l'applicazione.
 
 ---
 
