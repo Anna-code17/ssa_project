@@ -11,6 +11,9 @@ della loro verifica (OK/KO), insieme alla data di validazione ed eventuali comme
 ---
 ### SCRUM-42 - Reset Simulation (Task)
 
+**User Story:**
+As a User I want to reset the current simulation, so that I can start a new city simulation without restarting the application or manually removing all existing buildings and data.
+
 **Acceptance Criteria:**
 
 1. The city grid must be cleared.
