@@ -113,8 +113,8 @@ As a user, I want to be able to save the city state so that I can load it later 
 
 **Acceptance Criteria:**
 
-1. Saving stores grid configuration, entities, active policy and city metrics.
-2. Loading restores exactly the previously saved state.
+1. Saving the grid configuration, entities, active policy and city metrics to a file.
+2. Loading a file must restore exactly the previously saved state.
 3. After loading, the simulation must continue correctly.
 
 **Esito:** OK
