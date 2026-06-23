@@ -50,10 +50,7 @@ Il progetto è disponibile per il download in due formati:
 
 Le istruzioni dettagliate per l'installazione e la configurazione dell'ambiente di sviluppo sono fornite nel **[Manuale Utente](documents/Manuale_utente.md)** . Consulta quel documento per i passaggi specifici su come importare il progetto, configurare le dipendenze e avviare l'applicazione.
 
----
 
-## Note
-- La repository segue la struttura standard di un progetto Maven.
 
 
 
