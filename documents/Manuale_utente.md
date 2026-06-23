@@ -125,6 +125,33 @@ Sulla griglia di gioco, ogni entità è rappresentata da un simbolo e da un colo
 | 🏪 | **Edificio Commerciale** | Arancione chiaro | 
 | 🏭 | **Edificio Industriale** | Rosa chiaro| 
 | ☢ | **Centrale Elettrica** | Violetto chiaro|
+
+---
+## Policy
+
+Le policy sono strumenti strategici che il giocatore può attivare per influenzare le metriche della città. 
+
+Le policy agiscono sulle statistiche della città applicando variazioni percentuali:
+
+- Una **percentuale positiva** produce sempre un **aumento** della statistica su cui si applica.
+- Una **percentuale negativa** produce sempre una **diminuzione** della statistica su cui si applica.
+
+**Esempio:** Un Parco produce un -15 sull'inquinamento. Con la policy Tassa Ambientale attiva, che applica un -15% sull'inquinamento, il risultato finale sarà una riduzione di 17 punti di inquinamento (il calcolo esatto sarebbe -17.25, ma viene troncato all'intero più vicino).
+
+**Attenzione agli arrotondamenti:** 
+Tutti i calcoli vengono eseguiti utilizzando numeri interi. Quando una policy produce valori con decimali, questi vengono **troncata all'intero più vicino**.
+
+### Policy disponibili
+
+| Policy | Effetto | Descrizione |
+|--------|---------|-------------|
+| **Tassa Ambientale** | Budget: -15% | Riduce il budget ma diminuisce l'inquinamento e aumenta la felicità |
+| | Inquinamento: -15% | |
+| | Felicità: +10% | |
+| **Espansione Industriale** | Budget: +10% | Aumenta il budget e l'inquinamento, ma riduce la felicità |
+| | Inquinamento: +15% | |
+| | Felicità: -5% | |
+
 ---
 
 ## Come giocare
@@ -179,7 +206,6 @@ Il progetto utilizza le seguenti API esterne:
 - **Java Swing**, versione Java 17 : Framework per l'interfaccia grafica (GUI). Utilizzato per creare la finestra principale, i pannelli, i bottoni e la griglia interattiva.
 - **Java AWT**, versione Java 17 : Libreria per il disegno di componenti grafici e gestione degli eventi.
 - **Java I/O**, versione Java 17 : Gestione dell'input/output per il salvataggio e caricamento dei file JSON.
-- **Java Reflection**, versione Java 17 : Utilizzato per l'invocazione dinamica di metodi nelle classi UIUtils e PolicyFormatter.
 - **Jackson Databind**, versione 2.17.0 : Gestione della serializzazione/deserializzazione JSON.
 - **JUnit Jupiter**, versione 5.10.2: Framework per test unitari (solo in fase di sviluppo).
 
