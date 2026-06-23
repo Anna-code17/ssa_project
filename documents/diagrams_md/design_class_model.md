@@ -243,10 +243,10 @@ class JsonManager {
 ' ---- Domain ----
 City "1" *-- "1" CityGrid : contains
 City "1" *-- "1" CityState : owns
-City "0..1" o-- "0..1" Policy : activates
+City "1" --> "0..1" Policy : activates
 
-CityGrid "1" *-- "1..*" Cell : composed of
-Cell "0..1" -- "0..1" PlaceableEntity : hosts
+CityGrid "1" *-- "*" Cell : composed of
+Cell "1" -- "0..1" PlaceableEntity : hosts
 PlaceableEntity "1" --> "1" Effect : produces
 
 ' ---- Inheritance ----
@@ -265,8 +265,8 @@ Policy <|.. EnvironmentalTaxPolicy
 Policy <|.. IndustrialExpansionPolicy
 
 ' ---- Controller ----
-Controller --> City : manages
-Controller o-- TickEngine : uses
+Controller "1" --> "1" City : manages
+Controller "1" o-- "1" TickEngine : uses
 Controller --> SaveManager : uses
 
 ' ---- TickEngine ----
@@ -283,18 +283,6 @@ City ..> PlacementRules : uses
 SaveManager --> JsonManager : uses
 SaveManager --> City : saves
 
-' ---- BuildSession ----
-BuildSession --> InteractionMode
-
-' ---- Factories ----
-EntityFactory ..> PlaceableEntity : creates
-PolicyFactory ..> Policy : creates
-
-' ---- User Interface ----
-UserInterface --> Controller : uses
-UserInterface --> BuildSession : uses
-UserInterface ..> EntityFactory : creates entities
-UserInterface ..> PolicyFactory : creates policies
 
 ' ======================
 ' Note
@@ -311,14 +299,6 @@ end note
 note bottom of Policy
   Le policy modificano il modo in cui
   gli effetti vengono applicati durante un tick.
-end note
-
-note right of UserInterface
-  Classe unica per l'interfaccia utente.
-  Gestisce l'interazione con il Controller
-  e lo stato della sessione di build/remove.
-  Le classi Swing interne (JPanel, JFrame, ecc.)
-  non sono rappresentate nel diagramma.
 end note
 
 @enduml
