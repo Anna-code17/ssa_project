@@ -44,7 +44,7 @@ Il progetto è disponibile per il download in due formati:
 
 1.  [**CitySimulator.zip**](https://github.com/Anna-code17/ssa_project/blob/main/CitySimulator.zip) : È un file ZIP che contiene `city-simulator-1.0-SNAPSHOT.jar`, il JAR eseguibile dell'applicazione. Puoi scaricarlo direttamente da questa repository.
 
-2.  **[Codice sorgente](code)** : Il codice sorgente completo è disponibile nella cartella code e può essere eseguito come un normale progetto Maven.
+2.  **[Codice sorgente](code)** : Il codice sorgente completo è disponibile nella cartella `code` e può essere eseguito come un normale progetto Maven.
 
 ### Istruzioni per l'Installazione
 
