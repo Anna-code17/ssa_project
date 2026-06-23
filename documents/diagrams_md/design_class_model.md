@@ -296,9 +296,6 @@ Policy <|.. IndustrialExpansionPolicy
 
 
 City ..> PlacementRules : uses
-CityGrid "1" *-- "1..*" Cell : composed of
-Cell "0..1" -- "0..1" PlaceableEntity : hosts
-PlaceableEntity "1" --> "1" Effect : produces
 Controller --> City : manages
 Controller o-- TickEngine : uses
 Controller --> SaveManager : uses
