@@ -11,7 +11,7 @@
 - [Istruzioni per installare e lanciare il Software](#istruzioni-per-installare-e-lanciare-il-software)
   - [Requisiti](#requisiti)
   - [Download ed esecuzione del Programma](#download-ed-esecuzione-del-programma)
-  - [Compilazione manuale](#compilazione-manuale)
+  - [Compilazione manuale](#download-e-compilazione-del-programma)
   - [Avvertenze particolari](#avvertenze-particolari)
 - [Interfaccia principale](#interfaccia-principale)
   - [Tipi di entità e loro effetti](#tipi-di-entità-e-loro-effetti)
