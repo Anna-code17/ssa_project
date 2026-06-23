@@ -227,16 +227,17 @@ class JsonManager {
 }
 
 class BuildSession {
+  - {static, final} NO_SELECTION : int
   - mode: InteractionMode
   - waitingForCellSelection: boolean
   - selectedX: int
   - selectedY: int
   - selectedType: String
   + BuildSession()
+  + clearSelection() : void
   + startBuild(): void
   + startRemove(): void
   + reset(): void
-  + cancel(): void
   + isActive(): boolean
   + isBuildMode(): boolean
   + isRemoveMode(): boolean
@@ -247,6 +248,7 @@ class BuildSession {
   + getSelectedX(): int
   + getSelectedY(): int
   + canConfirm(): boolean
+  + cancel(): void
 }
 
 enum InteractionMode {
@@ -260,6 +262,8 @@ class PolicyFactory {
 }
 
 class EntityFactory {
+  + {static} getAvailableEntityTypes() : List<String>
+  + {static} getColor(type : String) : Color
   + {static} create(type: String): PlaceableEntity
 }
 
