@@ -11,7 +11,7 @@
 - [Istruzioni per installare e lanciare il Software](#istruzioni-per-installare-e-lanciare-il-software)
   - [Requisiti](#requisiti)
   - [Download ed esecuzione del Programma](#download-ed-esecuzione-del-programma)
-  - [Compilazione manuale](#download-e-compilazione-del-programma)
+  - [Compilazione manuale](#compilazione-manuale)
   - [Avvertenze particolari](#avvertenze-particolari)
 - [Interfaccia principale](#interfaccia-principale)
   - [Tipi di entità e loro effetti](#tipi-di-entità-e-loro-effetti)
@@ -72,7 +72,7 @@ Per avviare l'applicazione, aprire il terminale nella cartella contenente `city-
 ```bash
 java -jar city-simulator-1.0-SNAPSHOT.jar
 ```
-**Compilazione manuale**
+### Compilazione manuale
 
 Se il file `.jar` non dovesse funzionare, è possibile ricompilare il progetto manualmente. Scaricare da GitHub la cartella `code`, che contiene il codice sorgente dell'applicazione:
 
