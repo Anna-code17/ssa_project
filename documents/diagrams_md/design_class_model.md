@@ -51,7 +51,6 @@ class CityGrid {
   + getOccupiedCount(): int
   + isValidPosition(x: int, y: int): boolean
   + isEmpty(x: int, y: int): boolean
-  + isFull(): boolean
   + toString(): String
 }
 
@@ -213,7 +212,7 @@ class Controller {
 class PlacementRules {
   - hasNearby(grid: CityGrid, x: int, y: int, entityType: Class<? extends PlaceableEntity>, distance: int): boolean
   + canPlaceBuilding(entity: Building, grid: CityGrid, x: int, y: int): boolean
-  + canPlaceInfrastructure(entity: Infrastructure, grid: CityGrid, x: int, y: int): boolean
+  + canPlaceInfrastructure(infrastructure: Infrastructure, grid: CityGrid, x: int, y: int): boolean
 }
 
 class TickEngine {
@@ -235,73 +234,6 @@ class JsonManager {
   + {static} loadFromResources(path: String, clazz: Class<T>): T
   + {static} save(object: Object, path: String): void
   + {static} load(path: String, clazz: Class<T>): T
-}
-
-' ======================
-' Supporto UI
-' ======================
-
-class BuildSession {
-  - mode: InteractionMode
-  - waitingForCellSelection: boolean
-  - selectedX: int
-  - selectedY: int
-  - selectedType: String
-  + BuildSession()
-  + startBuild(): void
-  + startRemove(): void
-  + reset(): void
-  + cancel(): void
-  + isActive(): boolean
-  + isBuildMode(): boolean
-  + isRemoveMode(): boolean
-  + isWaitingForCellSelection(): boolean
-  + selectCell(x: int, y: int): void
-  + setSelectedType(type: String): void
-  + getSelectedType(): String
-  + getSelectedX(): int
-  + getSelectedY(): int
-  + canConfirm(): boolean
-}
-
-enum InteractionMode {
-  NORMAL
-  BUILD
-  REMOVE
-}
-
-' ======================
-' Factory
-' ======================
-
-class PolicyFactory {
-  + {static} getAvailablePolicies(): List<Policy>
-}
-
-class EntityFactory {
-  + {static} create(type: String): PlaceableEntity
-}
-
-' ======================
-' INTERFACCIA UTENTE 
-' ======================
-
-class UserInterface {
-  - controller: Controller
-  - buildSession: BuildSession
-  - isFirstBuild: boolean
-  + UserInterface(controller: Controller)
-  + refresh()
-  + refreshGrid()
-  + refreshState()
-  + enterBuildMode()
-  + enterRemoveMode()
-  + confirmBuild()
-  + cancelBuild()
-  + saveCity()
-  + loadCity()
-  + showPolicySelector()
-  + countOccupiedCells(grid: CityGrid): int
 }
 
 ' ======================
