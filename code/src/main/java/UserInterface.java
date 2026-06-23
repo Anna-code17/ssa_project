@@ -63,6 +63,7 @@ public class UserInterface extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(1320, 820));
         setLocationRelativeTo(null);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         initComponents();
         refresh();
@@ -119,8 +120,7 @@ public class UserInterface extends JFrame {
         statePanel = new StatePanel();
         statePanel.getActivePolicyButton().addActionListener(e -> showPolicySelector());
         statePanel.getPolicyDetailsButton().addActionListener(e -> showActivePolicyDetails());
-        statePanel.getSaveButton().addActionListener(e -> saveCity());
-        statePanel.getLoadButton().addActionListener(e -> loadCity());
+    
 
         centerCardLayout = new CardLayout();
         centerCardPanel = new JPanel(centerCardLayout);
@@ -194,45 +194,66 @@ public class UserInterface extends JFrame {
     /**
      * Costruisce il footer con i comandi principali.
      */
-    private JComponent buildFooter() {
-        JPanel footer = new JPanel(new BorderLayout());
-        footer.setOpaque(false);
+     private JComponent buildFooter() {
+    JPanel footer = new JPanel(new BorderLayout());
+    footer.setOpaque(false);
 
-        JPanel left = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
-        left.setOpaque(false);
+    // Save e Load a sinistra
+    JPanel left = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
+    left.setOpaque(false);
 
-        JLabel note = new JLabel(FOOTER_NOTE);
-        note.setFont(new Font("SansSerif", Font.PLAIN, 13));
-        note.setForeground(SUBTEXT_COLOR);
-        left.add(note);
+    JButton saveButton = new JButton("Save");
+    JButton loadButton = new JButton("Load");
 
-        JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 12, 0));
-        right.setOpaque(false);
+    styleButton(saveButton);
+    styleButton(loadButton);
 
-        buildButton = new JButton("Build");
-        JButton resetButton = new JButton("Reset");
-        JButton nextTickButton = new JButton("Advance Tick");
-        removeButton = new JButton("Remove");
+    saveButton.addActionListener(e -> saveCity());
+    loadButton.addActionListener(e -> loadCity());
 
-        styleButton(removeButton);
-        styleButton(buildButton);
-        styleButton(resetButton);
-        styleButton(nextTickButton);
+    left.add(saveButton);
+    left.add(loadButton);
 
-        buildButton.addActionListener(e -> enterBuildMode());
-        resetButton.addActionListener(e -> { controller.resetCity(); refresh(); });
-        nextTickButton.addActionListener(e -> { controller.nextTick(); refresh(); });
-        removeButton.addActionListener(e -> enterRemoveMode());
+    // nota al centro
+    JPanel center = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+    center.setOpaque(false);
 
-        right.add(buildButton);
-        right.add(resetButton);
-        right.add(nextTickButton);
-        right.add(removeButton);
+    JLabel note = new JLabel("Click a cell to inspect the entity effects.");
+    note.setFont(new Font("SansSerif", Font.PLAIN, 13));
+    note.setForeground(new Color(108, 117, 125));
+    center.add(note);
 
-        footer.add(left, BorderLayout.WEST);
-        footer.add(right, BorderLayout.EAST);
-        return footer;
-    }
+    //a destra azioni
+    JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 12, 0));
+    right.setOpaque(false);
+
+    JButton buildButton = new JButton("Build");
+    JButton resetButton = new JButton("Reset");
+    JButton nextTickButton = new JButton("Advance Tick");
+    JButton removeButton = new JButton("Remove");
+
+    styleButton(buildButton);
+    styleButton(resetButton);
+    styleButton(nextTickButton);
+    styleButton(removeButton);
+
+    buildButton.addActionListener(e -> enterBuildMode());
+    resetButton.addActionListener(e -> { controller.resetCity(); refresh(); });
+    nextTickButton.addActionListener(e -> { controller.nextTick(); refresh(); });
+    removeButton.addActionListener(e -> enterRemoveMode());
+
+    right.add(buildButton);
+    right.add(resetButton);
+    right.add(nextTickButton);
+    right.add(removeButton);
+
+    // footer
+    footer.add(left, BorderLayout.WEST);
+    footer.add(center, BorderLayout.CENTER);
+    footer.add(right, BorderLayout.EAST);
+
+    return footer;
+}
 
     /**
      * Applica lo stile standard ai pulsanti.

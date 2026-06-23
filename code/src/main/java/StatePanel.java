@@ -29,10 +29,6 @@ public class StatePanel extends JPanel {
     private final JButton activePolicyButton;
     private JButton policyDetailsButton;
 
-    // Pulsanti per la persistenza della simulazione.
-    private final JButton saveButton;
-    private final JButton loadButton;
-
     /**
      * Costruisce il pannello laterale che mostra
      * lo stato della città e i principali controlli utente.
@@ -104,14 +100,6 @@ public class StatePanel extends JPanel {
         add(buildLegend());
 
         add(Box.createVerticalStrut(16));
-
-        // Pulsanti per salvare e caricare una simulazione.
-        saveButton = createActionButton("Save");
-        loadButton = createActionButton("Load");
-
-        add(saveButton);
-        add(Box.createVerticalStrut(8));
-        add(loadButton);
 
         // Mantiene il contenuto allineato verso l'alto.
         add(Box.createVerticalGlue());
@@ -253,22 +241,6 @@ public class StatePanel extends JPanel {
      */
     public JButton getActivePolicyButton() {
         return activePolicyButton;
-    }
-
-    /**
-     * Restituisce il pulsante di salvataggio.
-     * La logica del salvataggio viene gestita all'esterno.
-     */
-    public JButton getSaveButton() {
-        return saveButton;
-    }
-
-    /**
-     * Restituisce il pulsante di caricamento.
-     * La logica del caricamento viene gestita all'esterno.
-     */
-    public JButton getLoadButton() {
-        return loadButton;
     }
 
     public JButton getPolicyDetailsButton() {
