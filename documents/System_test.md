@@ -269,13 +269,14 @@ As a user, I want every entity placed in the city to affect the city state so th
 1. Entities affect one or more city metrics.
 2. Effects are calculated according to the active policy.
 3. Effects may depend on surrounding entities.
+4. Larger cities must start with a higher initial budget or different economic balance compared to smaller cities.
 
 **Esito:** PARZIALE
 
 **Data:** 7/06
 
 **Commento:**
-- Gli Acceptance Criteria 1 e 2 sono stati implementati.
+- Gli Acceptance Criteria 1,2,4 sono stati implementati.
 - L'Acceptance Criteria 3 non è stato implementato: nel nostro progetto l'effetto generato da un'entità è indipendente da quello delle altre.
 
 ---
@@ -290,6 +291,8 @@ As a user, I want to see the city grid so that I can understand the layout of th
 1. The city must be displayed as a grid.
 2. Occupied cells must be distinguishable from empty cells.
 3. Selecting a cell containing an entity must show its current state or values.
+4. The grid dimensions must match the city size specified during the initialization of the application.
+5. Any change in the grid (entity placement or removal) must be reflected immediately in the displayed city layout.
 
 **Esito:** OK
 
