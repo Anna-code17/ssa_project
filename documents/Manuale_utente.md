@@ -145,8 +145,8 @@ Tutti i calcoli vengono eseguiti utilizzando numeri interi. Quando una policy pr
 
 | Policy | Budget | Inquinamento | Felicità |
 |--------|---------|-------------|----------|
-| **Tassa Ambientale** | -15% |  -15% | +10% | 
-| **Espansione Industriale** |+10% | +15% | -5% |
+| **Tassa Ambientale** | -15%    | -15%   | +10%    | 
+| **Espansione Industriale** |+10%    | +15%   | -5%    |
 
 ---
 
