@@ -294,8 +294,7 @@ Infrastructure <|-- Road
 Policy <|.. EnvironmentalTaxPolicy
 Policy <|.. IndustrialExpansionPolicy
 
-City "1" *-- "1" CityGrid : contains
-City "1" *-- "1" CityState : owns
+
 City ..> PlacementRules : uses
 City "0..1" o-- "0..1" Policy : activates
 CityGrid "1" *-- "1..*" Cell : composed of
