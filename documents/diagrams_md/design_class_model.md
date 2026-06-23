@@ -10,7 +10,7 @@ skinparam nodesep 10
 skinparam ranksep 10
 
 ' ======================
-' Classi
+' Classi del Dominio
 ' ======================
 
 class City {
@@ -51,6 +51,7 @@ class CityGrid {
   + getOccupiedCount(): int
   + isValidPosition(x: int, y: int): boolean
   + isEmpty(x: int, y: int): boolean
+  + isFull(): boolean
   + toString(): String
 }
 
@@ -96,6 +97,7 @@ class Effect {
   - placementRule: String
   + Effect(budget: int, population: int, pollution: int, happiness: int)
   + Effect(budget: int, population: int, pollution: int, happiness: int, buildCost: int)
+  + Effect(budget: int, population: int, pollution: int, happiness: int, buildCost: int, placementRule: String)
   + Effect()
   + getBudget(): int
   + getPopulation(): int
@@ -108,7 +110,7 @@ class Effect {
   + setPollution(pollution: int): void
   + setHappiness(happiness: int): void
   + setBuildCost(buildCost: int): void
-  + setPlacementRule(placementRule: String)
+  + setPlacementRule(placementRule: String): void
   + toString(): String
 }
 
@@ -183,6 +185,10 @@ class IndustrialExpansionPolicy {
   + getPercentHappiness(): int
 }
 
+' ======================
+' Controller e Motore
+' ======================
+
 class Controller {
   - city: City
   - tickEngine: TickEngine
@@ -205,14 +211,19 @@ class Controller {
 }
 
 class PlacementRules {
+  - hasNearby(grid: CityGrid, x: int, y: int, entityType: Class<? extends PlaceableEntity>, distance: int): boolean
   + canPlaceBuilding(entity: Building, grid: CityGrid, x: int, y: int): boolean
-  + canPlaceInfrastructure(infrastructure: Infrastructure, grid: CityGrid, x: int, y: int): boolean
+  + canPlaceInfrastructure(entity: Infrastructure, grid: CityGrid, x: int, y: int): boolean
 }
 
 class TickEngine {
+  + advanceTick(city: City): void
   - applyPolicyPercent(value: int, percent: int): int
-  + advanceTick(city: City): void 
 }
+
+' ======================
+' Persistenza
+' ======================
 
 class SaveManager {
   + save(city: City, filepath: String): boolean
@@ -226,18 +237,21 @@ class JsonManager {
   + {static} load(path: String, clazz: Class<T>): T
 }
 
+' ======================
+' Supporto UI
+' ======================
+
 class BuildSession {
-  - {static, final} NO_SELECTION : int
   - mode: InteractionMode
   - waitingForCellSelection: boolean
   - selectedX: int
   - selectedY: int
   - selectedType: String
   + BuildSession()
-  + clearSelection() : void
   + startBuild(): void
   + startRemove(): void
   + reset(): void
+  + cancel(): void
   + isActive(): boolean
   + isBuildMode(): boolean
   + isRemoveMode(): boolean
@@ -248,7 +262,6 @@ class BuildSession {
   + getSelectedX(): int
   + getSelectedY(): int
   + canConfirm(): boolean
-  + cancel(): void
 }
 
 enum InteractionMode {
@@ -257,20 +270,45 @@ enum InteractionMode {
   REMOVE
 }
 
+' ======================
+' Factory
+' ======================
+
 class PolicyFactory {
   + {static} getAvailablePolicies(): List<Policy>
 }
 
 class EntityFactory {
-  + {static} getAvailableEntityTypes() : List<String>
-  + {static} getColor(type : String) : Color
   + {static} create(type: String): PlaceableEntity
 }
 
-' ==========================
-' Ereditarietà e Relazioni
-' =========================
+' ======================
+' INTERFACCIA UTENTE 
+' ======================
 
+class UserInterface {
+  - controller: Controller
+  - buildSession: BuildSession
+  - isFirstBuild: boolean
+  + UserInterface(controller: Controller)
+  + refresh()
+  + refreshGrid()
+  + refreshState()
+  + enterBuildMode()
+  + enterRemoveMode()
+  + confirmBuild()
+  + cancelBuild()
+  + saveCity()
+  + loadCity()
+  + showPolicySelector()
+  + countOccupiedCells(grid: CityGrid): int
+}
+
+' ======================
+' Relazioni
+' ======================
+
+' ---- Domain ----
 City "1" *-- "1" CityGrid : contains
 City "1" *-- "1" CityState : owns
 City "0..1" o-- "0..1" Policy : activates
@@ -279,7 +317,7 @@ CityGrid "1" *-- "1..*" Cell : composed of
 Cell "0..1" -- "0..1" PlaceableEntity : hosts
 PlaceableEntity "1" --> "1" Effect : produces
 
-
+' ---- Inheritance ----
 PlaceableEntity <|-- Building
 PlaceableEntity <|-- Infrastructure
 
@@ -294,23 +332,65 @@ Infrastructure <|-- Road
 Policy <|.. EnvironmentalTaxPolicy
 Policy <|.. IndustrialExpansionPolicy
 
-
-City ..> PlacementRules : uses
+' ---- Controller ----
 Controller --> City : manages
 Controller o-- TickEngine : uses
 Controller --> SaveManager : uses
+
+' ---- TickEngine ----
 TickEngine --> City : advances
 TickEngine ..> CityGrid : uses
 TickEngine ..> CityState : updates
+
+' ---- PlacementRules ----
 PlacementRules ..> CityGrid : uses
 PlacementRules ..> PlaceableEntity : validates
+City ..> PlacementRules : uses
+
+' ---- SaveManager ----
 SaveManager --> JsonManager : uses
 SaveManager --> City : saves
+
+' ---- BuildSession ----
 BuildSession --> InteractionMode
+
+' ---- Factories ----
 EntityFactory ..> PlaceableEntity : creates
 PolicyFactory ..> Policy : creates
 
+' ---- User Interface ----
+UserInterface --> Controller : uses
+UserInterface --> BuildSession : uses
+UserInterface ..> EntityFactory : creates entities
+UserInterface ..> PolicyFactory : creates policies
+
+' ======================
+' Note
+' ======================
+
+note right of Effect
+  Modifiche applicate allo stato della città.
+  buildCost applicato una sola volta
+  durante il posizionamento.
+  placementRule descrive la regola di
+  posizionamento dell'entità.
+end note
+
+note bottom of Policy
+  Le policy modificano il modo in cui
+  gli effetti vengono applicati durante un tick.
+end note
+
+note right of UserInterface
+  Classe unica per l'interfaccia utente.
+  Gestisce l'interazione con il Controller
+  e lo stato della sessione di build/remove.
+  Le classi Swing interne (JPanel, JFrame, ecc.)
+  non sono rappresentate nel diagramma.
+end note
+
 @enduml
 
-
 ```
+ 
+  
