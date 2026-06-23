@@ -144,7 +144,7 @@ Sulla griglia di gioco, ogni entità è rappresentata da un simbolo e da un colo
 2. Clicca su una cella occupata
 3. L'entità viene rimossa
 
-> **Nota** è possibile effettuare il remove **solo se è presente almeno un'entità nella città** 
+> **Nota**: è possibile effettuare il remove **solo se è presente almeno un'entità nella città.** 
 
 ### Fare avanzare il tempo
 
